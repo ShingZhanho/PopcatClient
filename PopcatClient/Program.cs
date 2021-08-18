@@ -9,7 +9,7 @@ namespace PopcatClient
     {
         private static readonly HttpClient HttpClient = new();
         private const string PostUrl = "https://stats.popcat.click/pop";
-        public static CommandLineOptions Options;
+        public static CommandLineOptions Options = CommandLineOptions.DefaultCommandLineOptions;
 
         public static void Main(string[] args)
         {
@@ -17,6 +17,14 @@ namespace PopcatClient
             
             CommandLine.WriteWarningVerbose("Verbose mode is enabled.");
             CommandLine.WriteWarningDebug("Debug mode is enabled.");
+            
+            ShowStartOptionsVerbose(Options);
+        }
+
+        private static void ShowStartOptionsVerbose(CommandLineOptions options)
+        {
+            CommandLine.WriteMessageVerbose("PopcatClient started with following settings:");
+            CommandLine.WriteMessageVerbose($"Waiting time: {options.WaitTime}ms");
         }
 
         private static (int, string) SendRequest(int popCount, string captchaToken = "8964")
