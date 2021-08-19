@@ -38,6 +38,7 @@ namespace PopcatClient
             _client.DefaultRequestHeaders.Add("User-Agent", UserAgentString);
             
             CommandLine.WriteMessage("PopcatClient object started.");
+            var firstTrySuccessful = false;
             for (var i = 0; i < 3; i++)
             {
                 CommandLine.WriteMessage($"Trying to send first pop (count: 1), attempt {i + 1} of 3.");
@@ -49,7 +50,39 @@ namespace PopcatClient
                         : "Failed 3 times, application will exit.");
                     if (i + 1 < 3) System.Threading.Thread.Sleep(WaitTime);
                 }
-                else break;
+                else
+                {
+                    firstTrySuccessful = true;
+                    break;
+                }
+            }
+
+            var sequentialFailures = 0;
+            // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
+            while (firstTrySuccessful && sequentialFailures < 3)
+            {
+                System.Threading.Thread.Sleep(WaitTime);
+                var popCount = new Random().Next(790, 800);
+                CommandLine.WriteMessage($"Trying to send {popCount} pops.");
+                var status = SendPopRequest(popCount);
+                if ((int) status == 201)
+                {
+                    sequentialFailures = 0;
+                    CommandLine.WriteSuccess($"Sent {popCount} pops successfully.");
+                    CommandLine.WriteMessage($"Total pops: {TotalPops}.");
+                }
+                else
+                {
+                    sequentialFailures += 1;
+                    CommandLine.WriteWarning($"Sequential failures: {sequentialFailures}. " +
+                                             "Application will exit after failed for 3 times in a row.");
+                }
+            }
+            if (sequentialFailures == 3)
+            {
+                // failed for three times
+                CommandLine.WriteError("Failed to send pops for 3 times. You may have been blocked, " +
+                                       "please try restarting the application later.");
             }
             End();
         }
