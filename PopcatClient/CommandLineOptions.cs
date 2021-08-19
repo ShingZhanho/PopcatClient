@@ -54,6 +54,7 @@ namespace PopcatClient
                         CommandLine.WriteWarning("Invalid parameter specified for --init-pops. Using default value 1.");
                 }
             }
+            DisableLeaderboard = args.Contains("--disable-leaderboard");
         }
         
         /// <summary>
@@ -77,6 +78,10 @@ namespace PopcatClient
         /// Indicates how many pops should the application send to the server for the first time.
         /// </summary>
         public int InitialPops { get; private init; } = 1;
+        /// <summary>
+        /// Indicates whether disable the leaderboard
+        /// </summary>
+        public bool DisableLeaderboard { get; private init; }
 
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
@@ -84,7 +89,8 @@ namespace PopcatClient
             Debug = false,
             WaitTime = 30 * 1000,
             MaxFailures = 3,
-            InitialPops = 1
+            InitialPops = 1,
+            DisableLeaderboard = false
         };
     }
 }

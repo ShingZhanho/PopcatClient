@@ -17,9 +17,14 @@ namespace PopcatClient
             
             ShowStartOptionsVerbose(Options);
 
+            var leaderboardClient = new LeaderboardClient(Options);
+            if (!Options.DisableLeaderboard) leaderboardClient.Run();
+
             var popClient = new PopcatClient(Options);
             popClient.Run();
+
             Console.Read();
+            leaderboardClient.Dispose();
             popClient.Dispose();
         }
 
@@ -29,6 +34,7 @@ namespace PopcatClient
             CommandLine.WriteMessageVerbose($"Waiting time: {options.WaitTime}ms");
             CommandLine.WriteMessageVerbose($"Max sequential failures: {options.MaxFailures}");
             CommandLine.WriteMessageVerbose($"Initial pops: {Options.InitialPops}");
+            CommandLine.WriteMessageVerbose("Leaderboard: " + (Options.DisableLeaderboard ? "Disabled" : "Enabled"));
         }
     }
 }
