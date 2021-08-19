@@ -63,6 +63,7 @@ namespace PopcatClient
                 {
                     CommandLine.WriteError("Failed to get leaderboard. " +
                                            "Please check your network connection and firewall settings.");
+                    Thread.Sleep(_options.WaitTime);
                     continue;
                 }
                 var responseString = response.Content.ReadAsStringAsync().Result;
