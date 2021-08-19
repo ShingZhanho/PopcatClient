@@ -20,6 +20,10 @@ namespace PopcatClient
         /// The time to wait between each pop
         /// </summary>
         public int WaitTime { get; }
+        /// <summary>
+        /// The total pop count the application has sent.
+        /// </summary>
+        public int TotalPops { get; private set; }
 
         private readonly HttpClient _client = new();
         private const string UserAgentString =
@@ -39,15 +43,14 @@ namespace PopcatClient
                 var status = SendPopRequest(1);
                 if ((int) status != 201)
                 {
-                    CommandLine.WriteError($"Failed. Status code: {(int) status} - {status.ToString()}.");
                     CommandLine.WriteMessage(i + 1 < 3
                         ? $"Retrying after {WaitTime}ms."
                         : "Failed 3 times, application will exit.");
-                    if (i + 1 == 3) End();
                 }
                 else break;
                 System.Threading.Thread.Sleep(WaitTime);
             }
+            End();
         }
 
         private HttpStatusCode SendPopRequest(int count)
@@ -62,11 +65,16 @@ namespace PopcatClient
             var response = _client.PostAsync(RequestUrl, content).Result;
             
             var responseString = response.Content.ReadAsStringAsync().Result;
-            CommandLine.WriteMessageVerbose($"Response: {responseString}");
+            CommandLine.WriteMessageVerbose($"Response:\n\n{responseString}");
             // extract token from response
             if ((int)response.StatusCode == 201)
             {
-                
+                CommandLine.WriteSuccess($"Success! Status: {(int) response.StatusCode} - {response.StatusCode}.");
+                TotalPops += count;
+            }
+            else
+            {
+                CommandLine.WriteError($"Failed. Status: {(int) response.StatusCode} - {response.StatusCode}.");
             }
             
             return response.StatusCode;
