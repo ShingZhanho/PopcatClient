@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
 
 namespace PopcatClient
 {
@@ -10,6 +8,8 @@ namespace PopcatClient
 
         public static void Main(string[] args)
         {
+            Console.Title = "Popcat Client";
+
             Options = new CommandLineOptions(args);
             
             CommandLine.WriteWarningVerbose("Verbose mode is enabled.");
