@@ -56,7 +56,8 @@ namespace PopcatClient
                 if ((int) status != 201)
                 {
                     CommandLine.WriteMessage(i + 1 < Options.MaxFailures
-                        ? $"Retrying after {Options.WaitTime}ms."
+                        ? $"Retrying after {Options.WaitTime / 1000}s " +
+                          $"at {DateTime.Now.AddMilliseconds(Options.WaitTime):dd-MM-yyyy hh:mm:ss tt}."
                         : $"Failed {Program.Options.MaxFailures} times, application will exit.");
                     if (i + 1 < Options.MaxFailures) System.Threading.Thread.Sleep(Options.WaitTime);
                 }
@@ -89,6 +90,8 @@ namespace PopcatClient
                     CommandLine.WriteWarning($"Sequential failures: {sequentialFailures}. " +
                                              $"Application will exit after failed for {Options.MaxFailures} times in a row.");
                 }
+                CommandLine.WriteMessage($"Sending pops after {Options.WaitTime/1000}s " +
+                                         $"at {DateTime.Now.AddMilliseconds(Options.WaitTime):dd-MM-yyyy hh:mm:ss tt}.");
             }
             if (sequentialFailures == Options.MaxFailures)
             {
