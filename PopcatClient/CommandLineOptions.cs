@@ -18,13 +18,40 @@ namespace PopcatClient
             if (args.Contains("--wait-time"))
             {
                 if (args.ToList().IndexOf("--wait-time") + 1 > args.Length - 1)
-                    CommandLine.WriteWarning("No parameter specified for --wait-time. Using default value (300000).");
+                    CommandLine.WriteWarning("No parameter specified for --wait-time. Using default value (30000).");
                 else
                 {
-                    if (int.TryParse(args[args.ToList().IndexOf("--wait-time") + 1], out var result))
+                    if (int.TryParse(args[args.ToList().IndexOf("--wait-time") + 1], out var result) && result > 30000)
                         WaitTime = result;
                     else
-                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value (300000).");
+                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value (30000).");
+                }
+            }
+            if (args.Contains("--max-failures"))
+            {
+                var indexOfOption = args.ToList().IndexOf("--max-failures");
+                if (indexOfOption + 1 > args.Length - 1)
+                    CommandLine.WriteWarning("No parameter specified for --max-failures. Using default value 3.");
+                else
+                {
+                    if (int.TryParse(args[indexOfOption + 1], out var result) && result > 0)
+                        MaxFailures = result;
+                    else
+                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value 3.");
+                }
+            }
+
+            if (args.Contains("--init-pops"))
+            {
+                var indexOfOption = args.ToList().IndexOf("--init-pops");
+                if (indexOfOption + 1 > args.Length - 1)
+                    CommandLine.WriteWarning("No parameter specified for --init-pops. Using default value 1.");
+                else
+                {
+                    if (int.TryParse(args[indexOfOption + 1], out var result) && result is <= 800 and >= 0)
+                        InitialPops = result;
+                    else 
+                        CommandLine.WriteWarning("Invalid parameter specified for --init-pops. Using default value 1.");
                 }
             }
         }
@@ -42,12 +69,22 @@ namespace PopcatClient
         /// Indicates the time should the program wait between each pop in ms.
         /// </summary>
         public int WaitTime { get; private init; } = 30 * 1000;
+        /// <summary>
+        /// Indicates how many times of failures in a row should the application exit.
+        /// </summary>
+        public int MaxFailures { get; private init; } = 3;
+        /// <summary>
+        /// Indicates how many pops should the application send to the server for the first time.
+        /// </summary>
+        public int InitialPops { get; private init; } = 1;
 
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
             Verbose = false,
             Debug = false,
-            WaitTime = 30 * 1000
+            WaitTime = 30 * 1000,
+            MaxFailures = 3,
+            InitialPops = 1
         };
     }
 }
