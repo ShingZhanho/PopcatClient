@@ -47,9 +47,9 @@ namespace PopcatClient
                     CommandLine.WriteMessage(i + 1 < 3
                         ? $"Retrying after {WaitTime}ms."
                         : "Failed 3 times, application will exit.");
+                    if (i + 1 < 3) System.Threading.Thread.Sleep(WaitTime);
                 }
                 else break;
-                System.Threading.Thread.Sleep(WaitTime);
             }
             End();
         }
