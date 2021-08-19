@@ -149,10 +149,10 @@ namespace PopcatClient
             counts.Sort((x, y) => y.CompareTo(x));
             // Gets current location's pop count
             var indexOfLocation = counts.IndexOf(eventArgs.Leaderboard[LocationCode]);
-            CommandLine.WriteMessage($"Leaderboard: {LocationCode} #{indexOfLocation + 1:D3} {counts[indexOfLocation]:N} POPS");
+            CommandLine.WriteMessage($"Leaderboard: {LocationCode} #{indexOfLocation + 1:D3} {counts[indexOfLocation]:0,0} POPS");
             CommandLine.WriteMessage(
                 $"             {eventArgs.Leaderboard.First(entry => entry.Value == counts.First()).Key} #001 " +
-                $"{counts.First():N} POPS"); // gets the first one
+                $"{counts.First():0,0} POPS"); // gets the first one
         }
 
         private void End()
