@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 
 namespace PopcatClient
 {
@@ -19,6 +18,11 @@ namespace PopcatClient
             CommandLine.WriteWarningDebug("Debug mode is enabled.");
             
             ShowStartOptionsVerbose(Options);
+
+            var popClient = new PopcatClient(Options.WaitTime);
+            popClient.Run();
+            Console.Read();
+            popClient.Dispose();
         }
 
         private static void ShowStartOptionsVerbose(CommandLineOptions options)

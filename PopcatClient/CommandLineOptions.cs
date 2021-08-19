@@ -37,10 +37,11 @@ namespace PopcatClient
         /// Indicates whether debug mode is enabled.
         /// </summary>
         public bool Debug { get; private init;  }
+
         /// <summary>
         /// Indicates the time should the program wait between each pop in ms.
         /// </summary>
-        public int WaitTime { get; private init; }
+        public int WaitTime { get; private init; } = 30 * 1000;
 
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
