@@ -111,7 +111,16 @@ namespace PopcatClient
                 {"captcha_token", Token}
             };
             var content = new FormUrlEncodedContent(parameters);
-            var response = _client.PostAsync(RequestUrl, content).Result;
+            HttpResponseMessage response;
+            try
+            {
+                response = _client.PostAsync(RequestUrl, content).Result;
+            }
+            catch
+            {
+                CommandLine.WriteError("Failed. Please check your network connection and firewall settings.");
+                return HttpStatusCode.BadRequest;
+            }
             
             var responseString = response.Content.ReadAsStringAsync().Result;
             CommandLine.WriteMessageVerbose($"Response:\n\n{responseString}");

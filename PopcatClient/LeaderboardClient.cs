@@ -54,7 +54,17 @@ namespace PopcatClient
                 CommandLine.WriteMessageVerbose("Trying to get leaderboard information.");
                 CommandLine.WriteMessageVerbose($"GET {RequestUrl}");
                 // get leaderboard information
-                var response = _client.GetAsync(RequestUrl).Result;
+                HttpResponseMessage response;
+                try
+                {
+                    response = _client.GetAsync(RequestUrl).Result;
+                }
+                catch
+                {
+                    CommandLine.WriteError("Failed to get leaderboard. " +
+                                           "Please check your network connection and firewall settings.");
+                    continue;
+                }
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 // check results
                 if (response.StatusCode == HttpStatusCode.OK)
