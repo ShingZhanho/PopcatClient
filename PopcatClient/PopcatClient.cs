@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
@@ -8,9 +9,12 @@ namespace PopcatClient
 {
     public class PopcatClient : IDisposable
     {
-        public PopcatClient(CommandLineOptions options)
+        public PopcatClient(CommandLineOptions options, LeaderboardClient leaderboardClient)
         {
             Options = options;
+            _leaderboard = leaderboardClient;
+            if (leaderboardClient.LeaderboardRunning)
+                leaderboardClient.LeaderboardFetchFinished += OnLeaderboardFetchFinished;
         }
 
         /// <summary>
@@ -25,11 +29,17 @@ namespace PopcatClient
         /// The settings for the object to use.
         /// </summary>
         public CommandLineOptions Options { get; }
+        /// <summary>
+        /// The code of the current location.
+        /// </summary>
+        public string LocationCode { get; private set; }
 
         private readonly HttpClient _client = new();
         private const string UserAgentString =
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
         private const string RequestUrl = "https://stats.popcat.click/pop";
+
+        private readonly LeaderboardClient _leaderboard;
 
         public void Run()
         {
@@ -53,6 +63,8 @@ namespace PopcatClient
                 else
                 {
                     firstTrySuccessful = true;
+                    // start leaderboard client after first pop
+                    if (!Options.DisableLeaderboard) _leaderboard.Run();
                     break;
                 }
             }
@@ -112,8 +124,12 @@ namespace PopcatClient
                     CommandLine.WriteError("Cannot extract token from response. JSON format unexpected.");
                     End();
                 }
+                // get token from response
                 Token = jo["Token"]?.ToString();
                 CommandLine.WriteMessageVerbose($"Token extracted: {Token}");
+                // get location code from response
+                LocationCode = jo["Location"]?["Code"]?.ToString();
+                CommandLine.WriteMessageVerbose($"Location code extracted: {LocationCode}");
             }
             else
             {
@@ -123,9 +139,22 @@ namespace PopcatClient
             return response.StatusCode;
         }
 
+        private void OnLeaderboardFetchFinished(object sender, LeaderboardFetchFinishedEventArgs eventArgs)
+        {
+            // gets list of values of leaderboard
+            var counts = eventArgs.Leaderboard.Select(entry => entry.Value).ToList();
+            counts.Sort((x, y) => y.CompareTo(x));
+            // Gets current location's pop count
+            var indexOfLocation = counts.IndexOf(eventArgs.Leaderboard[LocationCode]);
+            CommandLine.WriteMessage($"Leaderboard: {LocationCode} #{indexOfLocation + 1:D3} {counts[indexOfLocation]:N} POPS");
+            CommandLine.WriteMessage(
+                $"             {eventArgs.Leaderboard.First(entry => entry.Value == counts.First()).Key} #001 " +
+                $"{counts.First():N} POPS"); // gets the first one
+        }
+
         private void End()
         {
-            CommandLine.WriteMessage("Application has stopped due to error(s). Press any key to exit.");
+            CommandLine.WriteError("Application has stopped due to error(s). Press any key to exit.");
             Dispose();
         }
 

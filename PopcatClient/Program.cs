@@ -18,9 +18,8 @@ namespace PopcatClient
             ShowStartOptionsVerbose(Options);
 
             var leaderboardClient = new LeaderboardClient(Options);
-            if (!Options.DisableLeaderboard) leaderboardClient.Run();
 
-            var popClient = new PopcatClient(Options);
+            var popClient = new PopcatClient(Options, leaderboardClient);
             popClient.Run();
 
             Console.Read();

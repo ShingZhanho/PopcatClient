@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace PopcatClient
 {
@@ -26,10 +28,15 @@ namespace PopcatClient
         /// Indicates whether the leaderboard thread is running
         /// </summary>
         public bool LeaderboardRunning { get; private set; }
+
         /// <summary>
         /// Stores all countries' pop counts
         /// </summary>
-        public Dictionary<string, int> Leaderboard;
+        public Dictionary<string, long> Leaderboard { get; private set; } = new();
+        /// <summary>
+        /// Raised each time fetch is successful.
+        /// </summary>
+        public event EventHandler<LeaderboardFetchFinishedEventArgs> LeaderboardFetchFinished; 
 
         public void Run()
         {
@@ -54,7 +61,9 @@ namespace PopcatClient
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     // 200 OK
+                    CommandLine.WriteMessageVerbose($"Returned: {responseString}");
                     ExtractLeaderboard(responseString);
+                    LeaderboardFetchFinished?.Invoke(this, new LeaderboardFetchFinishedEventArgs(Leaderboard));
                 }
                 else
                 {
@@ -62,6 +71,7 @@ namespace PopcatClient
                     CommandLine.WriteErrorVerbose($"Failed to get leaderboard information. Status: " +
                                                   $"{(int)response.StatusCode} - {response.StatusCode.ToString()}");
                 }
+                Thread.Sleep(_options.WaitTime);
             }
 
             LeaderboardRunning = false;
@@ -69,12 +79,26 @@ namespace PopcatClient
 
         private void ExtractLeaderboard(string json)
         {
-            
+            CommandLine.WriteMessageVerbose("Deserializing leaderboard JSON");
+            var jObject = (JObject) JToken.Parse(json);
+            var dict = new Dictionary<string, long>();
+            foreach (var (key, value) in jObject) dict.Add(key, long.Parse(value.ToString()));
+            Leaderboard = dict;
         }
 
         public void Dispose()
         {
             _terminateThread = true;
         }
+    }
+
+    public class LeaderboardFetchFinishedEventArgs : EventArgs
+    {
+        public LeaderboardFetchFinishedEventArgs(Dictionary<string, long> leaderboard)
+        {
+            Leaderboard = leaderboard;
+        }
+
+        public Dictionary<string, long> Leaderboard { get; }
     }
 }
