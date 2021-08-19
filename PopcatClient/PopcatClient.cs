@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace PopcatClient
 {
@@ -66,11 +67,20 @@ namespace PopcatClient
             
             var responseString = response.Content.ReadAsStringAsync().Result;
             CommandLine.WriteMessageVerbose($"Response:\n\n{responseString}");
-            // extract token from response
             if ((int)response.StatusCode == 201)
             {
+                // extract token from response if success
                 CommandLine.WriteSuccess($"Success! Status: {(int) response.StatusCode} - {response.StatusCode}.");
                 TotalPops += count;
+
+                var jo = JToken.Parse(responseString);
+                if (jo["Token"] is null)
+                {
+                    CommandLine.WriteError("Cannot extract token from response. JSON format unexpected.");
+                    End();
+                }
+                Token = jo["Token"]?.ToString();
+                CommandLine.WriteMessageVerbose($"Token extracted: {Token}");
             }
             else
             {
