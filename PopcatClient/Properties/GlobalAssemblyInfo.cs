@@ -6,8 +6,9 @@ using PopcatClient;
 
 namespace PopcatClient
 {
-    public static class AssemblyData
+    internal static class AssemblyData
     {
         public const string InformationalVersion = "v0.1-beta.3";
+        public static readonly VersionName VersionName = InformationalVersion;
     }
 }

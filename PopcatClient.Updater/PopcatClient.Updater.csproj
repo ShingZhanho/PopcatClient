@@ -10,7 +10,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <Compile Include="..\GlobalAssemblyInfo.cs">
+        <Compile Include="..\PopcatClient\Properties\GlobalAssemblyInfo.cs">
             <Link>Properties\GlobalAssemblyInfo.cs</Link>
         </Compile>
     </ItemGroup>

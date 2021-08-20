@@ -8,7 +8,7 @@ namespace PopcatClient
 
         public static void Main(string[] args)
         {
-            Console.Title = "Popcat Client";
+            Console.Title = $"Popcat Client {AssemblyData.InformationalVersion}";
 
             Options = new CommandLineOptions(args);
             
