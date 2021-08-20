@@ -1,10 +1,7 @@
-﻿//
-// This class is a shared class and is imported as a link in all projects.
-//
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 
-namespace PopcatClient
+namespace PopcatClient.Updater
 {
     public struct VersionName
     {
@@ -48,6 +45,8 @@ namespace PopcatClient
         public VersionFlag FlagName { get; set; }
         public int? BetaBuild { get; set; }
         public bool PreRelease => FlagName == VersionFlag.Beta;
+
+        public string FourDigitVersionName => $"{Major}.{Minor}.{Patch}.0";
 
         public static bool operator >(VersionName a, VersionName b)
         {
