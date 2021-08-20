@@ -1,10 +1,11 @@
-﻿using System;
+﻿#nullable enable
+using System;
 
 namespace PopcatClient
 {
     public class CommandLine
     {
-        public CommandLine(CommandLineOptions options = null)
+        public CommandLine(CommandLineOptions? options = null)
         {
             _options = options ?? new CommandLineOptions(null);
         }
@@ -25,7 +26,14 @@ namespace PopcatClient
         /// Writes a message to the console.
         /// </summary>
         /// <param name="text">The message to write</param>
-        public static void WriteMessage(string text) => Output($"[INFO] {text}", NormalText, NormalBack);
+        public static void WriteMessage(string text) => WriteMessage(text, null);
+        /// <summary>
+        /// Writes a formatted message to the console.
+        /// </summary>
+        /// <param name="text">The message to write</param>
+        /// <param name="args">The format parameters</param>
+        public static void WriteMessage(string text, params object[]? args) =>
+            Output($"[INFO] {text}", NormalText, NormalBack, args);
         /// <summary>
         /// Writes a verbose message to the console. Has no effect if verbose mode is not enabled.
         /// </summary>
@@ -87,7 +95,7 @@ namespace PopcatClient
         public static void WriteSuccessDebug(string text) =>
             OutputWithTag($"[SUCCESS] {text}", "DEBUG", SuccessText, SuccessBack);
 
-        private static void Output(string text, ConsoleColor textColour, ConsoleColor backgroundColour)
+        private static void Output(string text, ConsoleColor textColour, ConsoleColor backgroundColour, object[]? args = null)
         {
             // Write timestamp
             Console.BackgroundColor = ConsoleColor.Black;
@@ -97,10 +105,10 @@ namespace PopcatClient
             Console.BackgroundColor = backgroundColour;
             Console.ForegroundColor = textColour;
             // Write message
-            Console.WriteLine(text);
+            OutputText(text, args);
         }
 
-        private static void OutputWithTag(string text, string tag,  ConsoleColor textColour, ConsoleColor backgroundColour)
+        private static void OutputWithTag(string text, string tag,  ConsoleColor textColour, ConsoleColor backgroundColour, object[]? args = null)
         {
             switch (tag)
             {
@@ -124,7 +132,9 @@ namespace PopcatClient
             // Write message
             Console.BackgroundColor = backgroundColour;
             Console.ForegroundColor = textColour;
-            Console.WriteLine(text);
+            OutputText(text, args);
         }
+
+        private static void OutputText(string text, object[]? args) => Console.WriteLine(text, args);
     }
 }

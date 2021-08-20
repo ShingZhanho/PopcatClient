@@ -141,6 +141,8 @@ namespace PopcatClient
                 CommandLine.WriteMessageVerbose($"Token extracted: {Token}");
                 // get location code from response
                 LocationCode = jo["Location"]?["Code"]?.ToString();
+                // leaderboard debug
+                if (Options.Debug) LocationCode = "KP";
                 CommandLine.WriteMessageVerbose($"Location code extracted: {LocationCode}");
             }
             else
@@ -156,12 +158,44 @@ namespace PopcatClient
             // gets list of values of leaderboard
             var counts = eventArgs.Leaderboard.Select(entry => entry.Value).ToList();
             counts.Sort((x, y) => y.CompareTo(x));
-            // Gets current location's pop count
-            var indexOfLocation = counts.IndexOf(eventArgs.Leaderboard[LocationCode]);
-            CommandLine.WriteMessage($"Leaderboard: {LocationCode} #{indexOfLocation + 1:D3} {counts[indexOfLocation]:0,0} POPS");
-            CommandLine.WriteMessage(
-                $"             {eventArgs.Leaderboard.First(entry => entry.Value == counts.First()).Key} #001 " +
-                $"{counts.First():0,0} POPS"); // gets the first one
+
+            // stores the first three and current location's info
+            // Structure: {Location Code : {Rank : Count}}
+            var myLeaderboard = new List<KeyValuePair<string, KeyValuePair<int, long>>>();
+            
+            // gets the first three on board
+            for (var i = 0; i < 3; i++) myLeaderboard.Add(
+                new KeyValuePair<string, KeyValuePair<int, long>>(
+                    eventArgs.Leaderboard.First(entry => entry.Value == counts[i]).Key,
+                    new KeyValuePair<int, long>(i + 1, counts[i])));
+            
+            // add current location if current location is not included in first three
+            if (myLeaderboard.All(item => item.Key != LocationCode))
+                myLeaderboard.Add(
+                    new KeyValuePair<string, KeyValuePair<int, long>>(LocationCode,
+                        new KeyValuePair<int, long>(counts.IndexOf(eventArgs.Leaderboard[LocationCode]) + 1,
+                            eventArgs.Leaderboard[LocationCode])));
+            CommandLine.WriteMessage("================= LEADERBOARD =================");
+            CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}", "RANK(#)", "LOCATION", "POPS");
+            
+            // Writes first three items in list
+            for (var i = 0; i < 3; i++)
+                CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}", 
+                    myLeaderboard[i].Value.Key.ToString("D3"),
+                    myLeaderboard[i].Key + (myLeaderboard[i].Key == LocationCode ? " (HERE)" : ""),
+                    myLeaderboard[i].Value.Value.ToString("0,0"));
+            
+            // Writes current location if not yet written
+            if (myLeaderboard.Count > 3)
+            {
+                if (myLeaderboard.Last().Value.Key != 4) CommandLine.WriteMessage("...");
+                CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}",
+                    myLeaderboard.Last().Value.Key.ToString("D3"),
+                    myLeaderboard.Last().Key + " (HERE)",
+                    myLeaderboard.Last().Value.Value.ToString("0,0"));
+            }
+            
+            CommandLine.WriteMessage("===============================================");
         }
 
         private void End()
