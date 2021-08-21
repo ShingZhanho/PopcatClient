@@ -46,7 +46,7 @@ namespace PopcatClient.Updater
         public int? BetaBuild { get; set; }
         public bool PreRelease => FlagName == VersionFlag.Beta;
 
-        public string FourDigitVersionName => $"{Major}.{Minor}.{Patch}.0";
+        public string GetFourDigitVersionName(int lastDigit = 0) => $"{Major}.{Minor}.{Patch}.{lastDigit}";
 
         public static bool operator >(VersionName a, VersionName b)
         {

@@ -113,13 +113,13 @@ namespace PopcatClient
         /// </summary>
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
-            Verbose = false,
             Debug = false,
-            WaitTime = 30 * 1000,
-            MaxFailures = 3,
-            InitialPops = 1,
             DisableLeaderboard = false,
-            DisableUpdate = false
+            DisableUpdate = false,
+            InitialPops = 1,
+            MaxFailures = 3,
+            Verbose = false,
+            WaitTime = 30 * 1000
         };
     }
 }
