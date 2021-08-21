@@ -23,9 +23,9 @@ namespace PopcatClient.Updater
                 var releases = (await github.Repository.Release.GetAll(RepoOwner, RepoName)).ToList();
             
                 // remove unsupported version names
-                releases = releases.Where(release => !VersionName.VersionNameIsValid(release.TagName)).ToList();
+                releases = releases.Where(release => VersionName.VersionNameIsValid(release.TagName)).ToList();
                 // remove beta if specified
-                releases = releases.Where(release => !release.Prerelease).ToList();
+                if (includeBeta) releases = releases.Where(release => !release.Prerelease).ToList();
                 // remove versions older than current
                 releases = releases.Where(release => release.TagName <= currentVersion).ToList();
                 

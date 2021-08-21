@@ -25,7 +25,7 @@ namespace PopcatClient
             ;
         public const string FileVersion = 
             // <FileVersionName>
-            "0.1.0.7"
+            "0.1.0.9"
             // </FileVersionName>
             ;
     }

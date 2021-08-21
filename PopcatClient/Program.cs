@@ -32,7 +32,7 @@ namespace PopcatClient
             var leaderboardClient = new LeaderboardClient(Options);
 
             var popClient = new PopcatClient(Options, leaderboardClient);
-            popClient.Run();
+            if (!Options.Debug) popClient.Run();
 
             Console.Read();
             leaderboardClient.Dispose();
@@ -41,7 +41,22 @@ namespace PopcatClient
 
         private static async void SoftwareUpdate(VersionName currentVersion)
         {
-            // todo: check update and install if available
+            var checkResult = await UpdateTools.CheckUpdate(currentVersion);
+            switch (checkResult.Status)
+            {
+                case CheckUpdateStatus.UpToDate:
+                    CommandLine.WriteSuccess("Your application is up-to-date.");
+                    return;
+                case CheckUpdateStatus.UpdateAvailable:
+                    break;
+                case CheckUpdateStatus.Failed:
+                    CommandLine.WriteError($"Failed to check update. Reason: {checkResult.ExceptionMessage}");
+                    CommandLine.WriteErrorVerbose($"Further message about the update failure:\n{checkResult.ExceptionStacktrace}");
+                    return;
+                default:
+                    CommandLine.WriteWarning("The application cannot determine whether your application is up-to-date.");
+                    return;
+            }
         }
 
         private static void ShowStartOptionsVerbose(CommandLineOptions options)
