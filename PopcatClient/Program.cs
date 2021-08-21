@@ -41,7 +41,8 @@ namespace PopcatClient
 
         private static async void SoftwareUpdate(VersionName currentVersion)
         {
-            var checkResult = await UpdateTools.CheckUpdate(currentVersion);
+            var checkResult = await UpdateTools.CheckUpdate(currentVersion,
+                Options.IncludeBeta || ((VersionName) AssemblyData.InformationalVersion).PreRelease);
             switch (checkResult.Status)
             {
                 case CheckUpdateStatus.UpToDate:

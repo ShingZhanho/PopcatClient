@@ -27,6 +27,10 @@ namespace PopcatClient
             //
             DisableUpdate = args.Contains("--disable-updates") || args.Contains("-u");
             //
+            // --include-beta (shortname: -b)
+            //
+            IncludeBeta = args.Contains("--include-beta") || args.Contains("-b");
+            //
             // --init-pops
             //
             if (args.Contains("--init-pops"))
@@ -92,6 +96,10 @@ namespace PopcatClient
         /// </summary>
         public bool DisableUpdate { get; private init; }
         /// <summary>
+        /// Indicates if to include beta versions when updating. This option will always be ignored if the app is already a beta.
+        /// </summary>
+        public bool IncludeBeta { get; private init; }
+        /// <summary>
         /// Indicates how many pops should the application send to the server for the first time.
         /// </summary>
         public int InitialPops { get; private init; } = 1;
@@ -116,6 +124,7 @@ namespace PopcatClient
             Debug = false,
             DisableLeaderboard = false,
             DisableUpdate = false,
+            IncludeBeta = false,
             InitialPops = 1,
             MaxFailures = 3,
             Verbose = false,
