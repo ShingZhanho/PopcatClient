@@ -11,34 +11,37 @@ extract all files into a folder and run `PopcatClient.exe`. That's it!
 ## Command line options
 Popcat Client supports command line options. Here are the complete doc of the available options:
 
-### `--debug` option
+### `--debug` (or `-d`) option
 Turns on Debug Mode. Currently does nothing.
 Disabled by default.
 
-### `--verbose` option
-Turns on Verbose Mode. Prints more details while the application is running.
-Disabled by default.
+### `--disable-leaderboard` (or `-l`) option
+Turns off leaderboard function. Enabled by default.
 
-### `--max-failures <int: failures count>` option
-Specifies how many failures in a row should the application exit automatically.
-3 is the default value.
-
-`<int: failure count>` parameter: Non-optional, an integer specifies the maximum sequential failures.
-Must be larger than 0.
+### `--disable-update` (or `-u`) option
+Indicates the application not to check for updates.
 
 ### `--init-pops <int: initial pops count>` option
 Specifies how many pops should the application send to the server for testing.
 1 is the default value.
 
-`<int: inital pops count>` parameter: Non-optional, an integer specifies the number of pops
+* `<int: inital pops count>` parameter: Non-optional, an integer specifies the number of pops
 to send when starting the application. Must be larger than 0 and smaller than 801.
+
+### `--max-failures <int: failures count>` option
+Specifies how many failures in a row should the application exit automatically.
+3 is the default value.
+
+* `<int: failure count>` parameter: Non-optional, an integer specifies the maximum sequential failures.
+Must be larger than 0.
+
+### `--verbose` (or `-v`) option
+Turns on Verbose Mode. Prints more details while the application is running.
+Disabled by default.
 
 ### `--wait-time <int: time to wait>` option
 Specifies how much time (in ms) should the program wait between sending pops.
 30000 is the default value.
 
-`<int: time to wait>` parameter: Non-optional, an integer specifies the amount of time
+* `<int: time to wait>` parameter: Non-optional, an integer specifies the amount of time
 (in ms) should the program wait between sending another bunch of pops.
-
-### `--disable-leaderboard` option
-Turns off leaderboard function. Enabled by default.
