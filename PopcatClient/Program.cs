@@ -22,9 +22,9 @@ namespace PopcatClient
             var popClient = new PopcatClient(Options, leaderboardClient);
             popClient.Run();
 
-            Console.Read();
             leaderboardClient.Dispose();
             popClient.Dispose();
+            Console.Read();
         }
 
         private static void ShowStartOptionsVerbose(CommandLineOptions options)
