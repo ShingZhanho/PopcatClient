@@ -1,4 +1,5 @@
 ﻿using System;
+using PopcatClient.Updater;
 
 namespace PopcatClient
 {
@@ -16,6 +17,17 @@ namespace PopcatClient
             CommandLine.WriteWarningDebug("Debug mode is enabled.");
             
             ShowStartOptionsVerbose(Options);
+            
+            // software update
+            if (Options.DisableUpdate)
+                // Disabled
+                CommandLine.WriteWarning("You have disabled software update. " +
+                                         "Application might not work properly if you are using an outdated version.");
+            else
+            {
+                CommandLine.WriteMessage("Checking for updates on server...");
+                SoftwareUpdate(AssemblyData.InformationalVersion);
+            }
 
             var leaderboardClient = new LeaderboardClient(Options);
 
@@ -27,6 +39,11 @@ namespace PopcatClient
             popClient.Dispose();
         }
 
+        private static async void SoftwareUpdate(VersionName currentVersion)
+        {
+            // todo: check update and install if available
+        }
+
         private static void ShowStartOptionsVerbose(CommandLineOptions options)
         {
             CommandLine.WriteMessageVerbose("PopcatClient started with following settings:");
@@ -34,6 +51,7 @@ namespace PopcatClient
             CommandLine.WriteMessageVerbose($"Max sequential failures: {options.MaxFailures}");
             CommandLine.WriteMessageVerbose($"Initial pops: {Options.InitialPops}");
             CommandLine.WriteMessageVerbose("Leaderboard: " + (Options.DisableLeaderboard ? "Disabled" : "Enabled"));
+            CommandLine.WriteMessageVerbose("Software update: " + (Options.DisableUpdate ? "Disabled" : "Enabled"));
         }
     }
 }

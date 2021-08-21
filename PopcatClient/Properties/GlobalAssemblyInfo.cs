@@ -11,6 +11,7 @@ using PopcatClient.Updater;
 [assembly: AssemblyTitle("Popcat Client")]
 [assembly: AssemblyDescription("A command line tool to send pops to popcat automatically.")]
 [assembly: AssemblyCopyright("ShingZhanho (c) 2021  All Rights Reserved")]
+[assembly: AssemblyProduct("Popcat Client")]
 
 
 namespace PopcatClient
@@ -24,7 +25,7 @@ namespace PopcatClient
             ;
         public const string FileVersion = 
             // <FileVersionName>
-            "0.1.0.6"
+            "0.1.0.7"
             // </FileVersionName>
             ;
     }

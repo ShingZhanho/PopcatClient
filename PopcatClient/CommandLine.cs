@@ -2,15 +2,8 @@
 
 namespace PopcatClient
 {
-    public class CommandLine
+    public static class CommandLine
     {
-        public CommandLine(CommandLineOptions options = null)
-        {
-            _options = options ?? new CommandLineOptions(null);
-        }
-
-        private readonly CommandLineOptions _options;
-        
         // colour scheme
         private const ConsoleColor NormalText = ConsoleColor.White;
         private const ConsoleColor NormalBack = ConsoleColor.Black;

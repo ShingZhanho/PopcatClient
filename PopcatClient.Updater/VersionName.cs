@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace PopcatClient.Updater
 {
-    public struct VersionName
+    public class VersionName
     {
         public VersionName(string stringVersionName) {
             // rawVersion accepts formats like the following:
@@ -78,6 +78,10 @@ namespace PopcatClient.Updater
             if (a == b) return false;
             return !(a > b);
         }
+
+        public static bool operator >=(VersionName a, VersionName b) => a > b || a == b;
+
+        public static bool operator <=(VersionName a, VersionName b) => a < b || a == b;
 
         public static bool operator ==(VersionName a, VersionName b)
         {
