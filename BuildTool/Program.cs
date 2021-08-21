@@ -15,10 +15,15 @@ namespace BuildTool
     {
         public static void Main(string[] args)
         {
+            // for logging
+            var logs = new List<string>();
+            
             var fileName = args[0];
+            AddToLog(logs, $"File name: {fileName}");
             if (!File.Exists(fileName))
             {
                 Console.WriteLine("{0} does not exist.", fileName);
+                AddToLog(logs, $"File does not exist.");
                 Environment.Exit(1);
             }
 
@@ -32,6 +37,7 @@ namespace BuildTool
             catch
             {
                 Console.WriteLine("Failed to read {0}", fileName);
+                AddToLog(logs, "Failed to read file.");
                 Environment.Exit(2);
             }
 
@@ -40,9 +46,11 @@ namespace BuildTool
             var stringBetweenTag = lines.Skip(tagStartIndex + 1).First();
             
             var parsedVersionName = stringBetweenTag.StringBetween("\"", "\"");
+            AddToLog(logs, $"Parsed source version name: {parsedVersionName}");
             if (!VersionName.VersionNameIsValid(parsedVersionName))
             {
                 Console.WriteLine("Invalid version name: {0}.", parsedVersionName);
+                AddToLog(logs, $"The parsed source version name is invalid. ({parsedVersionName})");
                 Environment.Exit(3);
             }
             var sourceVersion = new VersionName(parsedVersionName);
@@ -54,11 +62,13 @@ namespace BuildTool
             var versionNameLineIndex = lines.IndexOf(stringBetweenTag);
             
             parsedVersionName = stringBetweenTag.StringBetween("\"", "\"");
+            AddToLog(logs, $"Parsed file version name: {parsedVersionName}");
             var buildNumber = 0;
             if (parsedVersionName.Split('.').Length == 4)
                 if (!int.TryParse(parsedVersionName.Split('.').Last(), out buildNumber))
                     buildNumber = 0;
                 else buildNumber++;
+            AddToLog(logs, $"New file version name: {sourceVersion.GetFourDigitVersionName(buildNumber)}");
             
             // insert new file version back to lines
             lines[versionNameLineIndex] = lines[versionNameLineIndex].Replace(
@@ -73,8 +83,11 @@ namespace BuildTool
             {
                 Console.WriteLine("Could not write new contents to the file. " +
                                   "Use version control to restore the original file.");
+                AddToLog(logs, "Could not write to file.");
                 Environment.Exit(4);
             }
+            
+            File.WriteAllLines($".\\log_{DateTime.Now:dd-MM-yyyy}_{DateTime.Now:HH-mm-ss-fff}.log", logs);
         }
 
         private static string StringBetween(this string source, string begin, string end)
@@ -102,5 +115,8 @@ namespace BuildTool
                 indexes.Add(index);
             }
         }
+
+        private static void AddToLog(ICollection<string> logObject, string message) => 
+            logObject.Add(DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss.fff tt") + $" {message}");
     }
 }
