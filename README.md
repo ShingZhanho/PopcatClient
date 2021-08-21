@@ -21,6 +21,10 @@ Turns off leaderboard function. Enabled by default.
 ### `--disable-update` (or `-u`) option
 Indicates the application not to check for updates.
 
+### `--include-beta` (or `-b`) option
+Include beta verions while checking for updates.
+This option will always enable if the current option itself is beta.
+
 ### `--init-pops <int: initial pops count>` option
 Specifies how many pops should the application send to the server for testing.
 1 is the default value.
