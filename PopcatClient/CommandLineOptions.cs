@@ -15,17 +15,17 @@ namespace PopcatClient
             args ??= System.Array.Empty<string>();
             // parsing options
             //
-            // --debug
+            // --debug (shortname: -d)
             //
-            Debug = args.Contains("--debug");
+            Debug = args.Contains("--debug") || args.Contains("-d");
             //
-            // --disable-leaderboard
+            // --disable-leaderboard (shortname: -l)
             //
-            DisableLeaderboard = args.Contains("--disable-leaderboard");
+            DisableLeaderboard = args.Contains("--disable-leaderboard") || args.Contains("-l");
             //
-            // --disable-updates
+            // --disable-updates (shortname: -u)
             //
-            DisableUpdate = args.Contains("--disable-updates");
+            DisableUpdate = args.Contains("--disable-updates") || args.Contains("-u");
             //
             // --init-pops
             //
@@ -59,9 +59,9 @@ namespace PopcatClient
                 }
             }
             //
-            // --verbose
+            // --verbose (shortname: -v)
             //
-            Verbose = args.Contains("--verbose");
+            Verbose = args.Contains("--verbose") || args.Contains("-v");
             //
             // --wait-time
             //
@@ -108,6 +108,9 @@ namespace PopcatClient
         /// </summary>
         public int WaitTime { get; private init; } = 30 * 1000;
 
+        /// <summary>
+        /// An instance with default options
+        /// </summary>
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
             Verbose = false,
