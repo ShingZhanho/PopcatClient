@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace PopcatClient.Updater
 {
-    public class VersionName
+    public class VersionName : IComparable<VersionName>
     {
         public VersionName(string stringVersionName) {
             // rawVersion accepts formats like the following:
@@ -103,6 +103,8 @@ namespace PopcatClient.Updater
                 return false;
             }
         }
+
+        public int CompareTo(VersionName other) => this > other ? 1 : this == other ? 0 : -1;
 
         public override bool Equals(object obj)
         {

@@ -29,7 +29,7 @@ namespace PopcatClient.Updater
                 // remove versions older than current
                 releases = releases.Where(release => release.TagName <= currentVersion).ToList();
                 
-                releases.Sort((a,b) => a.TagName.CompareTo(b));
+                releases.Sort((a, b) => ((VersionName) b.TagName).CompareTo(a.TagName));
             }
             catch (Exception e)
             {
