@@ -28,7 +28,7 @@ namespace PopcatClient.Updater.Utils
             }
             return positionEnd == -1 
                 ? string.Empty 
-                : source.Substring(positionStart + 1, positionEnd - positionStart - 1);
+                : source.Substring(positionStart + beginningStr.Length, positionEnd - positionStart - beginningStr.Length);
         }
         
         /// <summary>

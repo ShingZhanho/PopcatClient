@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using PopcatClient.Updater;
+using PopcatClient.Updater.Utils;
+
 // ReSharper disable StringIndexOfIsCultureSpecific.1
 
 /*
@@ -88,32 +90,6 @@ namespace BuildTool
             }
             
             File.WriteAllLines($".\\log_{DateTime.Now:dd-MM-yyyy}_{DateTime.Now:HH-mm-ss-fff}.log", logs);
-        }
-
-        private static string StringBetween(this string source, string begin, string end)
-        {
-            var positionStart = source.IndexOf(begin);
-            if (positionStart == -1) throw new ArgumentException("Not found begin string in source string.");
-            var positionEnd = -1;
-            foreach (var index in source.AllIndexesOf(end).Where(index => index > positionStart + begin.Length - 1))
-            {
-                positionEnd = index;
-                break;
-            }
-            if (positionEnd == -1) throw new ArgumentException("Not found end string in source string.");
-            return source.Substring(positionStart + 1, positionEnd - positionStart - 1);
-        }
-
-        private static IEnumerable<int> AllIndexesOf(this string str, string value) {
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentException("the string to find may not be empty", nameof(value));
-            var indexes = new List<int>();
-            for (var index = 0;; index += value.Length) {
-                index = str.IndexOf(value, index, StringComparison.Ordinal);
-                if (index == -1)
-                    return indexes;
-                indexes.Add(index);
-            }
         }
 
         private static void AddToLog(ICollection<string> logObject, string message) => 

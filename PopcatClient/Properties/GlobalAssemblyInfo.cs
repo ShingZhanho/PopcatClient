@@ -20,12 +20,12 @@ namespace PopcatClient
     {
         public const string InformationalVersion = 
             // <SourceVersionName>
-            "v0.1-beta.3"
+            "v0.1-beta.1"
             // </SourceVersionName>
             ;
         public const string FileVersion = 
             // <FileVersionName>
-            "0.1.0.9"
+            "0.1.0.13"
             // </FileVersionName>
             ;
     }

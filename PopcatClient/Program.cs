@@ -68,6 +68,7 @@ namespace PopcatClient
             CommandLine.WriteMessageVerbose($"Initial pops: {Options.InitialPops}");
             CommandLine.WriteMessageVerbose("Leaderboard: " + (Options.DisableLeaderboard ? "Disabled" : "Enabled"));
             CommandLine.WriteMessageVerbose("Software update: " + (Options.DisableUpdate ? "Disabled" : "Enabled"));
+            CommandLine.WriteMessageVerbose("Install beta versions: " + (Options.IncludeBeta ? "Do not install" : "Install"));
         }
     }
 }

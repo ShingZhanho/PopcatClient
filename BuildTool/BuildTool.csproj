@@ -9,6 +9,9 @@
         <Compile Include="..\PopcatClient.Updater\VersionName.cs">
             <Link>.\VersionName.cs</Link>
         </Compile>
+        <Compile Include="..\PopcatClient.Updater\Utils\StringUtils.cs">
+            <Link>.\StringUtils.cs</Link>
+        </Compile>
     </ItemGroup>
 
 </Project>
