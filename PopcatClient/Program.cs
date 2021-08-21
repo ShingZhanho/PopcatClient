@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using PopcatClient.Updater;
 
 namespace PopcatClient
@@ -43,14 +44,14 @@ namespace PopcatClient
         {
             var checkResult = await UpdateTools.CheckUpdate(currentVersion,
                 Options.IncludeBeta || ((VersionName) AssemblyData.InformationalVersion).PreRelease);
-            switch (checkResult.Status)
+            switch (checkResult.ResultStatus)
             {
-                case CheckUpdateStatus.UpToDate:
+                case CheckUpdateResultStatus.UpToDate:
                     CommandLine.WriteSuccess("Your application is up-to-date.");
                     return;
-                case CheckUpdateStatus.UpdateAvailable:
+                case CheckUpdateResultStatus.UpdateAvailable:
                     break;
-                case CheckUpdateStatus.Failed:
+                case CheckUpdateResultStatus.Failed:
                     CommandLine.WriteError($"Failed to check update. Reason: {checkResult.ExceptionMessage}");
                     CommandLine.WriteErrorVerbose($"Further message about the update failure:\n{checkResult.ExceptionStacktrace}");
                     return;
@@ -58,6 +59,9 @@ namespace PopcatClient
                     CommandLine.WriteWarning("The application cannot determine whether your application is up-to-date.");
                     return;
             }
+
+            var tempDir = Path.Combine(Path.GetTempPath(), "PopcatClient_Update");
+            Directory.CreateDirectory(tempDir);
         }
 
         private static void ShowStartOptionsVerbose(CommandLineOptions options)
