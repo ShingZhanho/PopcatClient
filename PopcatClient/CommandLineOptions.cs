@@ -13,34 +13,22 @@ namespace PopcatClient
         public CommandLineOptions(string[] args)
         {
             args ??= System.Array.Empty<string>();
-            Verbose = args.Contains("--verbose");
+            // parsing options
+            //
+            // --debug
+            //
             Debug = args.Contains("--debug");
-            if (args.Contains("--wait-time"))
-            {
-                if (args.ToList().IndexOf("--wait-time") + 1 > args.Length - 1)
-                    CommandLine.WriteWarning("No parameter specified for --wait-time. Using default value (30000).");
-                else
-                {
-                    if (int.TryParse(args[args.ToList().IndexOf("--wait-time") + 1], out var result) && result > 30000)
-                        WaitTime = result;
-                    else
-                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value (30000).");
-                }
-            }
-            if (args.Contains("--max-failures"))
-            {
-                var indexOfOption = args.ToList().IndexOf("--max-failures");
-                if (indexOfOption + 1 > args.Length - 1)
-                    CommandLine.WriteWarning("No parameter specified for --max-failures. Using default value 3.");
-                else
-                {
-                    if (int.TryParse(args[indexOfOption + 1], out var result) && result > 0)
-                        MaxFailures = result;
-                    else
-                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value 3.");
-                }
-            }
-
+            //
+            // --disable-leaderboard
+            //
+            DisableLeaderboard = args.Contains("--disable-leaderboard");
+            //
+            // --disable-updates
+            //
+            DisableUpdate = args.Contains("--disable-updates");
+            //
+            // --init-pops
+            //
             if (args.Contains("--init-pops"))
             {
                 var indexOfOption = args.ToList().IndexOf("--init-pops");
@@ -54,31 +42,47 @@ namespace PopcatClient
                         CommandLine.WriteWarning("Invalid parameter specified for --init-pops. Using default value 1.");
                 }
             }
-            DisableLeaderboard = args.Contains("--disable-leaderboard");
-            DisableUpdate = args.Contains("--disable-updates");
+            //
+            // --max-failures
+            //
+            if (args.Contains("--max-failures"))
+            {
+                var indexOfOption = args.ToList().IndexOf("--max-failures");
+                if (indexOfOption + 1 > args.Length - 1)
+                    CommandLine.WriteWarning("No parameter specified for --max-failures. Using default value 3.");
+                else
+                {
+                    if (int.TryParse(args[indexOfOption + 1], out var result) && result > 0)
+                        MaxFailures = result;
+                    else
+                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value 3.");
+                }
+            }
+            //
+            // --verbose
+            //
+            Verbose = args.Contains("--verbose");
+            //
+            // --wait-time
+            //
+            if (args.Contains("--wait-time"))
+            {
+                if (args.ToList().IndexOf("--wait-time") + 1 > args.Length - 1)
+                    CommandLine.WriteWarning("No parameter specified for --wait-time. Using default value (30000).");
+                else
+                {
+                    if (int.TryParse(args[args.ToList().IndexOf("--wait-time") + 1], out var result) && result > 30000)
+                        WaitTime = result;
+                    else
+                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value (30000).");
+                }
+            }
         }
         
-        /// <summary>
-        /// Indicates whether verbose mode is enabled.
-        /// </summary>
-        public bool Verbose { get; private init; }
         /// <summary>
         /// Indicates whether debug mode is enabled.
         /// </summary>
         public bool Debug { get; private init;  }
-
-        /// <summary>
-        /// Indicates the time should the program wait between each pop in ms.
-        /// </summary>
-        public int WaitTime { get; private init; } = 30 * 1000;
-        /// <summary>
-        /// Indicates how many times of failures in a row should the application exit.
-        /// </summary>
-        public int MaxFailures { get; private init; } = 3;
-        /// <summary>
-        /// Indicates how many pops should the application send to the server for the first time.
-        /// </summary>
-        public int InitialPops { get; private init; } = 1;
         /// <summary>
         /// Indicates whether disable the leaderboard
         /// </summary>
@@ -87,6 +91,22 @@ namespace PopcatClient
         /// Indicates whether disable checking for updates on launching.
         /// </summary>
         public bool DisableUpdate { get; private init; }
+        /// <summary>
+        /// Indicates how many pops should the application send to the server for the first time.
+        /// </summary>
+        public int InitialPops { get; private init; } = 1;
+        /// <summary>
+        /// Indicates how many times of failures in a row should the application exit.
+        /// </summary>
+        public int MaxFailures { get; private init; } = 3;
+        /// <summary>
+        /// Indicates whether verbose mode is enabled.
+        /// </summary>
+        public bool Verbose { get; private init; }
+        /// <summary>
+        /// Indicates the time should the program wait between each pop in ms.
+        /// </summary>
+        public int WaitTime { get; private init; } = 30 * 1000;
 
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
