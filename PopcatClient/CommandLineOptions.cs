@@ -55,6 +55,7 @@ namespace PopcatClient
                 }
             }
             DisableLeaderboard = args.Contains("--disable-leaderboard");
+            DisableUpdate = args.Contains("--disable-updates");
         }
         
         /// <summary>
@@ -82,6 +83,10 @@ namespace PopcatClient
         /// Indicates whether disable the leaderboard
         /// </summary>
         public bool DisableLeaderboard { get; private init; }
+        /// <summary>
+        /// Indicates whether disable checking for updates on launching.
+        /// </summary>
+        public bool DisableUpdate { get; private init; }
 
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
@@ -90,7 +95,8 @@ namespace PopcatClient
             WaitTime = 30 * 1000,
             MaxFailures = 3,
             InitialPops = 1,
-            DisableLeaderboard = false
+            DisableLeaderboard = false,
+            DisableUpdate = false
         };
     }
 }
