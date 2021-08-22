@@ -19,12 +19,12 @@ namespace PopcatClient
     internal static class AssemblyData
     {
         public const string InformationalVersion = 
-            // <SourceVersionName>
-            "v0.1-beta.2"
+            // <SourceVersionName> (this tag is required for build tools to run)
+            "v0.1-beta.4"
             // </SourceVersionName>
             ;
         public const string FileVersion = 
-            // <FileVersionName>
+            // <FileVersionName> (this tag is required for build tools to run)
             "0.1.0.25"
             // </FileVersionName>
             ;
