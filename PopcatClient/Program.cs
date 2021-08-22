@@ -42,6 +42,7 @@ namespace PopcatClient
 
         private static async void SoftwareUpdate(VersionName currentVersion)
         {
+            // check for updates
             var checkResult = await UpdateTools.CheckUpdate(currentVersion,
                 Options.IncludeBeta || ((VersionName) AssemblyData.InformationalVersion).PreRelease);
             switch (checkResult.ResultStatus)
@@ -50,17 +51,18 @@ namespace PopcatClient
                     CommandLine.WriteSuccess("Your application is up-to-date.");
                     return;
                 case CheckUpdateResultStatus.UpdateAvailable:
-                    CommandLine.WriteMessage($"A new version ({checkResult.ServerLatestVersion.ToString()}) is available.");
+                    CommandLine.WriteWarning($"A new version ({checkResult.ServerLatestVersion.ToString()}) is available.");
                     break;
                 case CheckUpdateResultStatus.Failed:
                     CommandLine.WriteError($"Failed to check update. Reason: {checkResult.ExceptionMessage}");
-                    CommandLine.WriteErrorVerbose($"Further message about the update failure:\n{checkResult.ExceptionStacktrace}");
+                    CommandLine.WriteErrorVerbose($"Further message about the update failure:\n{checkResult.ExceptionStackTrace}");
                     return;
                 default:
                     CommandLine.WriteWarning("The application cannot determine whether your application is up-to-date.");
                     return;
             }
 
+            // download from server
             CommandLine.WriteMessage("Downloading update asset from server...");
             CommandLine.WriteMessageVerbose($"GET {checkResult.AssetDownloadUrl}");
             var tempDir = Path.Combine(Path.GetTempPath(), "PopcatClient_Update");
@@ -75,10 +77,27 @@ namespace PopcatClient
                     break;
                 case BasicResultStatus.Failed:
                     CommandLine.WriteError($"Failed to download update asset. Reason: {downloadResult.ExceptionMessage}");
-                    CommandLine.WriteErrorVerbose($"More information:\n{downloadResult.ExceptionStacktrace}");
+                    CommandLine.WriteErrorVerbose($"More information:\n{downloadResult.ExceptionStackTrace}");
                     return;
                 default:
                     CommandLine.WriteWarning("The application cannot determine whether the asset is downloaded.");
+                    return;
+            }
+            
+            // extract downloaded file
+            CommandLine.WriteMessage("Preparing update asset for installing.");
+            var prepareResult = await UpdateTools.PrepareUpdateAsset(downloadResult.FilePath);
+            switch (prepareResult.Status)
+            {
+                case BasicResultStatus.Success:
+                    CommandLine.WriteSuccess("Asset is ready for install.");
+                    break;
+                case BasicResultStatus.Failed:
+                    CommandLine.WriteError($"Failed to prepare update asset. Reason: {prepareResult.ExceptionMessage}");
+                    CommandLine.WriteErrorVerbose($"More information:\n{prepareResult.ExceptionStackTrace}");
+                    return;
+                default:
+                    CommandLine.WriteWarning("The application cannot determine whether the asset is prepared.");
                     return;
             }
         }

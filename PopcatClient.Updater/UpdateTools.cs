@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -55,6 +56,7 @@ namespace PopcatClient.Updater
                 // if no matching asset is found
                 if (releases.First().Assets.All(asset => asset.Name != assetFileName))
                     throw new InvalidDataException("The received release does not contain an asset for downloading.");
+                // gets the asset to be downloaded
                 var assetId = releases.First().Assets.First(asset => asset.Name == assetFileName).Id;
                 result.ResultStatus = CheckUpdateResultStatus.UpdateAvailable;
                 result.ServerLatestVersion = releases.First().TagName;
@@ -64,7 +66,7 @@ namespace PopcatClient.Updater
             {
                 result.ResultStatus = CheckUpdateResultStatus.Failed;
                 result.ExceptionMessage = e.Message;
-                result.ExceptionStacktrace = e.StackTrace;
+                result.ExceptionStackTrace = e.StackTrace;
             }
 
             return result;
@@ -90,7 +92,57 @@ namespace PopcatClient.Updater
             {
                 result.Status = BasicResultStatus.Failed;
                 result.ExceptionMessage = e.Message;
-                result.ExceptionStacktrace = e.StackTrace;
+                result.ExceptionStackTrace = e.StackTrace;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Prepares the specified asset for installing.
+        /// </summary>
+        /// <param name="assetFile">The downloaded asset file</param>
+        /// <returns></returns>
+        public static async Task<PrepareAssetResult> PrepareUpdateAsset(string assetFile)
+        {
+            var result = new PrepareAssetResult();
+            try
+            {
+                if (!File.Exists(assetFile))
+                    throw new FileNotFoundException($"The specified update file could not be found. ({assetFile})");
+                
+                // read the file
+                await using var fileMemoryStream = new MemoryStream(await File.ReadAllBytesAsync(assetFile));
+                using var zipArchive = new ZipArchive(fileMemoryStream);
+                
+                // extract files to folder
+                var extractDir = Path.Combine(Path.GetDirectoryName(assetFile)!, "PopcatClient_new_ver");
+                if (Directory.Exists(extractDir)) Directory.Delete(extractDir, true);
+                zipArchive.ExtractToDirectory(extractDir, true);
+                
+                // copy installer to installer dir
+                var installerDir = Path.Combine(Path.GetDirectoryName(assetFile)!, "installer");
+                if (Directory.Exists(installerDir)) Directory.Delete(installerDir, true);
+                Directory.CreateDirectory(installerDir);
+                var installerFiles = new[] // copy these file from extractDir to installerDir
+                {
+                    "PopcatClient.Updater.exe",
+                    "PopcatClient.Updater.dll",
+                    "Octokit.dll"
+                };
+                foreach (var file in installerFiles)
+                    File.Copy(Path.Combine(extractDir, file), Path.Combine(installerDir, file), true);
+                
+                // return results
+                result.Status = BasicResultStatus.Success;
+                result.ExtractedDir = extractDir;
+                result.InstallerExecutable = Path.Combine(installerDir, "Popcat.Updater.exe");
+            }
+            catch (Exception e)
+            {
+                result.Status = BasicResultStatus.Failed;
+                result.ExceptionMessage = e.Message;
+                result.ExceptionStackTrace = e.StackTrace;
             }
 
             return result;

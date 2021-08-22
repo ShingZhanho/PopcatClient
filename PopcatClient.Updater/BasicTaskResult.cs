@@ -11,7 +11,7 @@
         /// <summary>
         /// The stacktrace if error occured.
         /// </summary>
-        public string ExceptionStacktrace { get; internal set; }
+        public string ExceptionStackTrace { get; internal set; }
     }
 
     /// <summary>
