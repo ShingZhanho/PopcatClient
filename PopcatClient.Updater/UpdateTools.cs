@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace PopcatClient.Updater
         /// <param name="currentVersion">The current application's version</param>
         /// <param name="includeBeta">Whether include beta versions</param>
         /// <returns>The results object</returns>
-        public static async Task<CheckUpdateResult> CheckUpdate(VersionName currentVersion, bool includeBeta = false)
+        public static async Task<CheckUpdateResult> CheckUpdateAsync(VersionName currentVersion, bool includeBeta = false)
         {
             var result = new CheckUpdateResult
             {
@@ -77,7 +78,7 @@ namespace PopcatClient.Updater
         /// </summary>
         /// <param name="uri">The file to download.</param>
         /// <param name="destination">The destination file.</param>
-        public static async Task<DownloadUpdateResult> DownloadUpdateAsset(string uri, string destination)
+        public static async Task<DownloadUpdateResult> DownloadUpdateAssetAsync(string uri, string destination)
         {
             var result = new DownloadUpdateResult();
             try
@@ -103,7 +104,7 @@ namespace PopcatClient.Updater
         /// </summary>
         /// <param name="assetFile">The downloaded asset file</param>
         /// <returns></returns>
-        public static async Task<PrepareAssetResult> PrepareUpdateAsset(string assetFile)
+        public static async Task<PrepareAssetResult> PrepareUpdateAssetAsync(string assetFile)
         {
             var result = new PrepareAssetResult();
             try
@@ -136,7 +137,7 @@ namespace PopcatClient.Updater
                 // return results
                 result.Status = BasicResultStatus.Success;
                 result.ExtractedDir = extractDir;
-                result.InstallerExecutable = Path.Combine(installerDir, "Popcat.Updater.exe");
+                result.InstallerExecutable = Path.Combine(installerDir, "PopcatClient.Updater.exe");
             }
             catch (Exception e)
             {

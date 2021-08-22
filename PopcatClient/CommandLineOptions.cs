@@ -15,6 +15,10 @@ namespace PopcatClient
             args ??= System.Array.Empty<string>();
             // parsing options
             //
+            // --clear-temp
+            //
+            ClearTempDir = args.Contains("--clear-temp");
+            //
             // --debug (shortname: -d)
             //
             Debug = args.Contains("--debug") || args.Contains("-d");
@@ -83,6 +87,10 @@ namespace PopcatClient
             }
         }
         
+        /// <summary>
+        /// Indicates whether clear the temp folder.
+        /// </summary>
+        public bool ClearTempDir { get; private init; }
         /// <summary>
         /// Indicates whether debug mode is enabled.
         /// </summary>

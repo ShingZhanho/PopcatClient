@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Text;
 using PopcatClient.Updater;
 
 namespace PopcatClient
@@ -29,6 +32,14 @@ namespace PopcatClient
                 CommandLine.WriteMessage("Checking for updates on server...");
                 SoftwareUpdate(AssemblyData.InformationalVersion);
             }
+            
+            // clear temporary folder
+            if (Options.ClearTempDir)
+            {
+                CommandLine.WriteMessage("Clearing temporary folder...");
+                Directory.Delete(Path.Combine(Path.GetTempPath(), "PopcatClient_Update"), true);
+                CommandLine.WriteSuccess("Temporary folder cleared.");
+            }
 
             var leaderboardClient = new LeaderboardClient(Options);
 
@@ -43,7 +54,7 @@ namespace PopcatClient
         private static async void SoftwareUpdate(VersionName currentVersion)
         {
             // check for updates
-            var checkResult = await UpdateTools.CheckUpdate(currentVersion,
+            var checkResult = await UpdateTools.CheckUpdateAsync(currentVersion,
                 Options.IncludeBeta || ((VersionName) AssemblyData.InformationalVersion).PreRelease);
             switch (checkResult.ResultStatus)
             {
@@ -68,7 +79,7 @@ namespace PopcatClient
             var tempDir = Path.Combine(Path.GetTempPath(), "PopcatClient_Update");
             Directory.CreateDirectory(tempDir);
             
-            var downloadResult = await UpdateTools.DownloadUpdateAsset(checkResult.AssetDownloadUrl,
+            var downloadResult = await UpdateTools.DownloadUpdateAssetAsync(checkResult.AssetDownloadUrl,
                 Path.Combine(tempDir, $"PopcatClient_{AssemblyData.InformationalVersion}.zip"));
             switch (downloadResult.Status)
             {
@@ -86,7 +97,7 @@ namespace PopcatClient
             
             // extract downloaded file
             CommandLine.WriteMessage("Preparing update asset for installing.");
-            var prepareResult = await UpdateTools.PrepareUpdateAsset(downloadResult.FilePath);
+            var prepareResult = await UpdateTools.PrepareUpdateAssetAsync(downloadResult.FilePath);
             switch (prepareResult.Status)
             {
                 case BasicResultStatus.Success:
@@ -100,6 +111,52 @@ namespace PopcatClient
                     CommandLine.WriteWarning("The application cannot determine whether the asset is prepared.");
                     return;
             }
+            
+            // run installer
+            CommandLine.WriteMessage("Running installer to install update...");
+            CommandLine.WriteWarning("The app will restart after installing update.");
+            var installerArgs = $"\"{prepareResult.ExtractedDir}\" \"{Environment.CurrentDirectory}\" " +
+                                $"{Environment.ProcessId} " +
+                                Convert.ToBase64String(Encoding.UTF8.GetBytes(
+                                    string.Join(" ", Environment.CommandLine.Split(' ').Skip(1))));
+            var installerProcess = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = prepareResult.InstallerExecutable,
+                    Arguments = installerArgs,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true
+                }
+            };
+            installerProcess.Start();
+            await installerProcess.WaitForExitAsync();
+            
+            // app should be killed and restarted if installation is successful
+            // if the app is not killed and the following lines are run, the installer must failed at some point
+
+            
+            CommandLine.WriteError($"One or more errors occured while installing new version. Exit code: {installerProcess.ExitCode}");
+            switch (installerProcess.ExitCode)
+            {
+                case 1:
+                    // PID invalid
+                    CommandLine.WriteErrorVerbose("The PID argument was invalid.");
+                    break;
+                case 2:
+                    // new version not exist
+                    CommandLine.WriteErrorVerbose("The new version directory does not exist.");
+                    break;
+                case 3:
+                    // current working directory does not exist
+                    CommandLine.WriteErrorVerbose("The current working directory does not exist.");
+                    break;
+                default:
+                    CommandLine.WriteErrorVerbose($"Unknown error. Exit code: {installerProcess.ExitCode}");
+                    break;
+            }
+            CommandLine.WriteErrorVerbose(await installerProcess.StandardOutput.ReadToEndAsync());
         }
 
         private static void ShowStartOptionsVerbose(CommandLineOptions options)
@@ -113,6 +170,7 @@ namespace PopcatClient
             CommandLine.WriteMessageVerbose("Install beta versions: " + 
                                             (Options.IncludeBeta || ((VersionName)AssemblyData.InformationalVersion).PreRelease 
                                                 ? "Install" : "Do not install"));
+            CommandLine.WriteMessageVerbose("Clear temporary directory: " + (Options.ClearTempDir ? "Yes" : "No"));
         }
     }
 }
