@@ -115,8 +115,9 @@ namespace PopcatClient
             // run installer
             CommandLine.WriteMessage("Running installer to install update...");
             CommandLine.WriteWarning("The app will restart after installing update.");
-            var installerArgs = $"\"{prepareResult.ExtractedDir}\" \"{Environment.CurrentDirectory}\" " +
-                                $"{Environment.ProcessId} " +
+            var installerArgs = $"\"{prepareResult.ExtractedDir}\" " +
+                                $"\"{Environment.CurrentDirectory}\" " +
+                                $"{Environment.ProcessId.ToString()} " +
                                 Convert.ToBase64String(Encoding.UTF8.GetBytes(
                                     string.Join(" ", Environment.CommandLine.Split(' ').Skip(1))));
             var installerProcess = new Process
@@ -127,9 +128,11 @@ namespace PopcatClient
                     Arguments = installerArgs,
                     UseShellExecute = false,
                     CreateNoWindow = true,
-                    RedirectStandardOutput = true
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
                 }
             };
+            
             installerProcess.Start();
             await installerProcess.WaitForExitAsync();
             
@@ -157,6 +160,7 @@ namespace PopcatClient
                     break;
             }
             CommandLine.WriteErrorVerbose(await installerProcess.StandardOutput.ReadToEndAsync());
+            CommandLine.WriteErrorVerbose(await installerProcess.StandardError.ReadToEndAsync());
         }
 
         private static void ShowStartOptionsVerbose(CommandLineOptions options)

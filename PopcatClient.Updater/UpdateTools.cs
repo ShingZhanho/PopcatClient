@@ -129,6 +129,9 @@ namespace PopcatClient.Updater
                 {
                     "PopcatClient.Updater.exe",
                     "PopcatClient.Updater.dll",
+                    "PopcatClient.Updater.deps.json",
+                    "PopcatClient.Updater.runtimeconfig.json",
+                    "PopcatClient.Updater.runtimeconfig.dev.json",
                     "Octokit.dll"
                 };
                 foreach (var file in installerFiles)

@@ -17,5 +17,17 @@
     <ItemGroup>
       <ProjectReference Include="..\PopcatClient.Updater\PopcatClient.Updater.csproj" />
     </ItemGroup>
+    
+    <Target Name="RunBuildTool" BeforeTargets="Build">
+        <PropertyGroup>
+            <SolutionDir>$([System.IO.Path]::GetDirectoryName($(MSBuildProjectDirectory)))</SolutionDir>
+            <BuildToolRuntimeDir>$(SolutionDir)\BuildTool\bin\$(Configuration)\net5.0\runtime</BuildToolRuntimeDir>
+        </PropertyGroup>
+
+        <Exec Command="dotnet &quot;$(MSBuildBinPath)\MSBuild.dll&quot; &quot;$(SolutionDir)\BuildTool\BuildTool.csproj&quot;"/>
+        <Exec Command="cmd.exe mkdir &quot;$(BuildToolRuntimeDir)&quot;" IgnoreExitCode="true"/>
+        <Exec Command="&quot;$(SolutionDir)\BuildTool\bin\$(Configuration)\net5.0\BuildTool.exe&quot; &quot;$(SolutionDir)\PopcatClient\Properties\GlobalAssemblyInfo.cs&quot;" 
+            WorkingDirectory="$(BuildToolRuntimeDir)"/>
+    </Target>
 
 </Project>

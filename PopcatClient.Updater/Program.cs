@@ -11,8 +11,9 @@ namespace PopcatClient.Updater
         public static void Main(string[] args)
         {
             // arguments: <new version dir> <current version dir> <current version PID> <current process commandline arguments (Base64)>
-            var currentVersionPid = 0;
-            if (args.Length != 4 && !int.TryParse(args[2], out currentVersionPid)) Environment.Exit(1);
+            if (args.Length < 4) Environment.Exit(6);
+
+            if (!int.TryParse(args[2], out var currentVersionPid)) Environment.Exit(1);
             if (currentVersionPid == 0) Environment.Exit(1);
             
             var newVersionDir = args[0];
