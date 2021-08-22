@@ -128,6 +128,17 @@ namespace PopcatClient
             OutputText(text, args);
         }
 
-        private static void OutputText(string text, object[]? args) => Console.WriteLine(text, args);
+        private static void OutputText(string text, object[]? args = null)
+        {
+            try
+            {
+                Console.WriteLine(text, args);
+            }
+            catch 
+            {
+                // write without formatting if error occured
+                Console.WriteLine(text);
+            }
+        }
     }
 }
