@@ -42,7 +42,8 @@ namespace PopcatClient.Updater
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = Path.Combine(currentVersionDir, "PopcatClient.exe"),
-                        Arguments = Encoding.UTF8.GetString(Convert.FromBase64String(commandlineArgs)) + " --clear-temp"
+                        Arguments = Encoding.UTF8.GetString(Convert.FromBase64String(commandlineArgs)) + " --clear-temp",
+                        UseShellExecute = true
                     }
                 }.Start();
             }
