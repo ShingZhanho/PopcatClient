@@ -175,6 +175,18 @@ namespace PopcatClient
                     new KeyValuePair<string, KeyValuePair<int, long>>(LocationCode,
                         new KeyValuePair<int, long>(counts.IndexOf(eventArgs.Leaderboard[LocationCode]) + 1,
                             eventArgs.Leaderboard[LocationCode])));
+
+            // add location after current location if not included
+            var locationAfterHereIndex = myLeaderboard.First(country => country.Key == LocationCode).Value.Key;
+            if ((myLeaderboard.Count > 3 || myLeaderboard[2].Key == LocationCode) && locationAfterHereIndex != counts.Count)
+            {
+                myLeaderboard.Add(
+                    new KeyValuePair<string, KeyValuePair<int, long>>(eventArgs.Leaderboard
+                            .First(country => country.Value == counts[locationAfterHereIndex])
+                            .Key,
+                        new KeyValuePair<int, long>(locationAfterHereIndex + 1, counts[locationAfterHereIndex])));
+            }
+            
             CommandLine.WriteMessage("================= LEADERBOARD =================");
             CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}", "RANK(#)", "LOCATION", "POPS");
             
@@ -185,14 +197,17 @@ namespace PopcatClient
                     myLeaderboard[i].Key + (myLeaderboard[i].Key == LocationCode ? " (HERE)" : ""),
                     myLeaderboard[i].Value.Value.ToString("0,0"));
             
+            myLeaderboard = myLeaderboard.Skip(3).ToList(); // remove the first three items in list
+            
             // Writes current location if not yet written
-            if (myLeaderboard.Count > 3)
+            if (myLeaderboard.Count > 0)
             {
-                if (myLeaderboard.Last().Value.Key != 4) CommandLine.WriteMessage("...");
-                CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}",
-                    myLeaderboard.Last().Value.Key.ToString("D3"),
-                    myLeaderboard.Last().Key + " (HERE)",
-                    myLeaderboard.Last().Value.Value.ToString("0,0"));
+                if (myLeaderboard.First().Value.Key != 4) CommandLine.WriteMessage("...");
+                foreach (var (code, (rank, count)) in myLeaderboard)
+                    CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}",
+                        rank.ToString("D3"),
+                        code + (code == LocationCode ? " (HERE)" : ""),
+                        count.ToString("0,0"));
             }
             
             CommandLine.WriteMessage("===============================================");
