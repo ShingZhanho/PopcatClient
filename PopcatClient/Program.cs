@@ -50,6 +50,7 @@ namespace PopcatClient
                     CommandLine.WriteSuccess("Your application is up-to-date.");
                     return;
                 case CheckUpdateResultStatus.UpdateAvailable:
+                    CommandLine.WriteMessage($"A new version ({checkResult.ServerLatestVersion.ToString()}) is available.");
                     break;
                 case CheckUpdateResultStatus.Failed:
                     CommandLine.WriteError($"Failed to check update. Reason: {checkResult.ExceptionMessage}");
@@ -60,8 +61,26 @@ namespace PopcatClient
                     return;
             }
 
+            CommandLine.WriteMessage("Downloading update asset from server...");
+            CommandLine.WriteMessageVerbose($"GET {checkResult.AssetDownloadUrl}");
             var tempDir = Path.Combine(Path.GetTempPath(), "PopcatClient_Update");
             Directory.CreateDirectory(tempDir);
+            
+            var downloadResult = await UpdateTools.DownloadUpdateAsset(checkResult.AssetDownloadUrl,
+                Path.Combine(tempDir, $"PopcatClient_{AssemblyData.InformationalVersion}.zip"));
+            switch (downloadResult.Status)
+            {
+                case BasicResultStatus.Success:
+                    CommandLine.WriteSuccess($"Asset downloaded to {downloadResult.FilePath}");
+                    break;
+                case BasicResultStatus.Failed:
+                    CommandLine.WriteError($"Failed to download update asset. Reason: {downloadResult.ExceptionMessage}");
+                    CommandLine.WriteErrorVerbose($"More information:\n{downloadResult.ExceptionStacktrace}");
+                    return;
+                default:
+                    CommandLine.WriteWarning("The application cannot determine whether the asset is downloaded.");
+                    return;
+            }
         }
 
         private static void ShowStartOptionsVerbose(CommandLineOptions options)
@@ -72,7 +91,9 @@ namespace PopcatClient
             CommandLine.WriteMessageVerbose($"Initial pops: {Options.InitialPops}");
             CommandLine.WriteMessageVerbose("Leaderboard: " + (Options.DisableLeaderboard ? "Disabled" : "Enabled"));
             CommandLine.WriteMessageVerbose("Software update: " + (Options.DisableUpdate ? "Disabled" : "Enabled"));
-            CommandLine.WriteMessageVerbose("Install beta versions: " + (Options.IncludeBeta ? "Do not install" : "Install"));
+            CommandLine.WriteMessageVerbose("Install beta versions: " + 
+                                            (Options.IncludeBeta || ((VersionName)AssemblyData.InformationalVersion).PreRelease 
+                                                ? "Install" : "Do not install"));
         }
     }
 }

@@ -58,7 +58,7 @@ namespace PopcatClient.Updater
                 var assetId = releases.First().Assets.First(asset => asset.Name == assetFileName).Id;
                 result.ResultStatus = CheckUpdateResultStatus.UpdateAvailable;
                 result.ServerLatestVersion = releases.First().TagName;
-                result.AssetDownloadUrl = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/{assetId}";
+                result.AssetDownloadUrl = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/assets/{assetId}";
             }
             catch (Exception e)
             {
