@@ -155,62 +155,43 @@ namespace PopcatClient
 
         private void OnLeaderboardFetchFinished(object sender, LeaderboardFetchFinishedEventArgs eventArgs)
         {
-            // gets list of values of leaderboard
-            var counts = eventArgs.Leaderboard.Select(entry => entry.Value).ToList();
-            counts.Sort((x, y) => y.CompareTo(x));
+            var leaderboard = eventArgs.Leaderboard.ToList();
+            leaderboard.Sort((a, b) => b.Value.CompareTo(a.Value));
 
-            // stores the first three and current location's info
-            // Structure: {Location Code : {Rank : Count}}
-            var myLeaderboard = new List<KeyValuePair<string, KeyValuePair<int, long>>>();
-            
-            // gets the first three on board
-            for (var i = 0; i < 3; i++) myLeaderboard.Add(
-                new KeyValuePair<string, KeyValuePair<int, long>>(
-                    eventArgs.Leaderboard.First(entry => entry.Value == counts[i]).Key,
-                    new KeyValuePair<int, long>(i + 1, counts[i])));
-            
-            // add current location if current location is not included in first three
-            if (myLeaderboard.All(item => item.Key != LocationCode))
-                myLeaderboard.Add(
-                    new KeyValuePair<string, KeyValuePair<int, long>>(LocationCode,
-                        new KeyValuePair<int, long>(counts.IndexOf(eventArgs.Leaderboard[LocationCode]) + 1,
-                            eventArgs.Leaderboard[LocationCode])));
+            List<LeaderboardItem> list = new();
+            leaderboard.Take(3).ToList().ForEach(
+                pair => list.Add(new LeaderboardItem(pair.Key, leaderboard.IndexOf(pair) + 1, pair.Value)));
+            leaderboard.Skip(leaderboard.IndexOf(leaderboard.First(item => item.Key == LocationCode)) - 1)
+                .Take(3).ToList().ForEach(
+                    pair => list.Add(new LeaderboardItem(pair.Key, leaderboard.IndexOf(pair) + 1, pair.Value)));
 
-            // add location after current location if not included
-            var locationAfterHereIndex = myLeaderboard.First(country => country.Key == LocationCode).Value.Key;
-            if ((myLeaderboard.Count > 3 || myLeaderboard[2].Key == LocationCode) && locationAfterHereIndex != counts.Count)
+            // prints leaderboard
+            CommandLine.WriteMessage("============== LEADERBOARD ==============");
+            CommandLine.WriteMessage("  {0,-8} {1,-10} {2,18}", "RANK(#)", "LOCATION", "POPS");
+            var previousRank = 0;
+            foreach (var item in list)
             {
-                myLeaderboard.Add(
-                    new KeyValuePair<string, KeyValuePair<int, long>>(eventArgs.Leaderboard
-                            .First(country => country.Value == counts[locationAfterHereIndex])
-                            .Key,
-                        new KeyValuePair<int, long>(locationAfterHereIndex + 1, counts[locationAfterHereIndex])));
+                if (item.Rank - previousRank != 1) CommandLine.WriteMessage("  ...");
+                CommandLine.WriteMessage("  {0,-8:D3} {1,-10} {2,18:0,0}", 
+                    item.Rank, item.LocationCode + (item.LocationCode == LocationCode ? " (HERE)" : ""), item.Pops);
+                previousRank = item.Rank;
             }
-            
-            CommandLine.WriteMessage("================= LEADERBOARD =================");
-            CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}", "RANK(#)", "LOCATION", "POPS");
-            
-            // Writes first three items in list
-            for (var i = 0; i < 3; i++)
-                CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}", 
-                    myLeaderboard[i].Value.Key.ToString("D3"),
-                    myLeaderboard[i].Key + (myLeaderboard[i].Key == LocationCode ? " (HERE)" : ""),
-                    myLeaderboard[i].Value.Value.ToString("0,0"));
-            
-            myLeaderboard = myLeaderboard.Skip(3).ToList(); // remove the first three items in list
-            
-            // Writes current location if not yet written
-            if (myLeaderboard.Count > 0)
+            if (previousRank != leaderboard.Count) CommandLine.WriteMessage("  ...");
+            CommandLine.WriteMessage("=========================================");
+        }
+
+        private readonly struct LeaderboardItem
+        {
+            public LeaderboardItem(string locationCode, int rank, long pops)
             {
-                if (myLeaderboard.First().Value.Key != 4) CommandLine.WriteMessage("...");
-                foreach (var (code, (rank, count)) in myLeaderboard)
-                    CommandLine.WriteMessage("{0,-8} {1,-10} {2,18}",
-                        rank.ToString("D3"),
-                        code + (code == LocationCode ? " (HERE)" : ""),
-                        count.ToString("0,0"));
+                LocationCode = locationCode;
+                Rank = rank;
+                Pops = pops;
             }
-            
-            CommandLine.WriteMessage("===============================================");
+
+            public string LocationCode { get; }
+            public int Rank { get; }
+            public long Pops { get; }
         }
 
         private void End()
