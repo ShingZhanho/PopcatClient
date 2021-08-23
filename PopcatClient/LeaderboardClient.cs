@@ -81,7 +81,7 @@ namespace PopcatClient
                 {
                     // other failures
                     CommandLine.WriteErrorVerbose(Strings.Common.Msg_ResponseStatus(
-                        "Failed to get leaderboard information.", (int)response.StatusCode,
+                        Strings.Leaderboard.StatusMsg_GetLeaderboardFailed(), (int)response.StatusCode,
                         response.StatusCode.ToString()));
                 }
                 Thread.Sleep(_options.WaitTime);

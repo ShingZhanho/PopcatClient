@@ -5,13 +5,15 @@
     "leaderboard_col_header_rank": "RANK(#)",
     "leaderboard_col_header_location": "LOCATION",
     "leaderboard_col_header_pops": "POPS",
-    "leaderboard_location_here": "(HERE)",
+    "leaderboard_location_here": " (HERE)",
     "format@leaderboard_col_headers": "  {0,-8} {1,-10} {2,18}",
     "format@leaderboard_col_entries": "  {0,-8:D3} {1,-10} {2,18:0,0}",
     
     "verbose@msg_trying_get_leaderboard": "Trying to get leaderboard information.",
     "err-msg_get_leaderboard_failed_network": "Failed to get leaderboard. Please check your network connection and firewall settings.",
-    "verbose@msg_deserializing_json": "Deserializing leaderboard JSON..."
+    "verbose@msg_deserializing_json": "Deserializing leaderboard JSON...",
+    
+    "status-msg_get_leaderboard_failed": "Failed to get leaderboard information."
   },
   "import_files": null
 }

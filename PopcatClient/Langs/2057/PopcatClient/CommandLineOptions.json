@@ -1,0 +1,8 @@
+﻿{
+  "strings": {
+    "warn-msg_cmd_options_no_parameter_specified": "No parameter value for argument %%argument_name%%. Using default value %%default_val%%",
+    "warn-msg_cmd_options_invalid_parameter_specified": "Invalid value specified for argument %%argument_name%%. Using default value %%default_val%%.",
+    "warn-msg_cmd_options_parameter_specified_not_fit": "Value specified for argument %%argument_name%% does not meet the criteria. Using default value %%default_val%%"
+  },
+  "import_files": null
+}

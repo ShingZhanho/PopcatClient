@@ -33,6 +33,9 @@ namespace PopcatClient
 
             public static string Verbose_MsgDeserializingJson() => LanguageManager
                 .GetString("verbose@msg_deserializing_json");
+
+            public static string StatusMsg_GetLeaderboardFailed() => LanguageManager
+                .GetString("status-msg_get_leaderboard_failed");
         }
     }
 }

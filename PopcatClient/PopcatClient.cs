@@ -103,8 +103,8 @@ namespace PopcatClient
             if ((int)response.StatusCode == 201)
             {
                 // extract token from response if success
-                CommandLine.WriteSuccess(Strings.Common.Msg_ResponseStatus("Pops sent.", (int)response.StatusCode,
-                    response.StatusCode.ToString()));
+                CommandLine.WriteSuccess(Strings.Common.Msg_ResponseStatus(Strings.PopcatClient.StatusMsg_PopsSent(),
+                    (int)response.StatusCode, response.StatusCode.ToString()));
                 TotalPops += count;
 
                 var jo = JToken.Parse(responseString);
@@ -122,8 +122,8 @@ namespace PopcatClient
             }
             else
             {
-                CommandLine.WriteError(Strings.Common.Msg_ResponseStatus("Failed to send pops.", (int)response.StatusCode,
-                    response.StatusCode.ToString()));
+                CommandLine.WriteError(Strings.Common.Msg_ResponseStatus(Strings.PopcatClient.StatusMsg_PopsFailed(),
+                    (int)response.StatusCode, response.StatusCode.ToString()));
             }
             
             return response.StatusCode;
@@ -152,7 +152,7 @@ namespace PopcatClient
             {
                 if (item.Rank - previousRank != 1) CommandLine.WriteMessage("  ...");
                 CommandLine.WriteMessage(Strings.Leaderboard.Format_ColumnEntries(), 
-                    item.Rank, item.LocationCode + (item.LocationCode == LocationCode ? " (HERE)" : ""), item.Pops);
+                    item.Rank, item.LocationCode + (item.LocationCode == LocationCode ? Strings.Leaderboard.LocationHere() : ""), item.Pops);
                 previousRank = item.Rank;
             }
             if (previousRank != leaderboard.Count) CommandLine.WriteMessage("  ...");

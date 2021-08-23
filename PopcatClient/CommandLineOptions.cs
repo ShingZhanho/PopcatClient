@@ -68,7 +68,8 @@ namespace PopcatClient
             if (!args.Contains(argName)) return fallback;
             if (args.ToList().IndexOf(argName) + 1 == args.Count)
             {
-                CommandLine.WriteWarning($"No parameter value for argument {argName}. Using default value {fallback}");
+                CommandLine.WriteWarning(
+                    Strings.CommandLineOptions.WarnMsg_NoParameterSpecified(argName, fallback.ToString()));
                 return fallback;
             }
 
@@ -76,14 +77,16 @@ namespace PopcatClient
             
             if (!int.TryParse(s, out var result))
             {
-                CommandLine.WriteWarning($"Invalid value specified for argument {argName}. Using default value {fallback}.");
+                CommandLine.WriteWarning(
+                    Strings.CommandLineOptions.WarnMsg_InvalidParameterSpecified(argName, fallback.ToString()));
                 result = fallback;
                 return result;
             }
 
             if (criteria(result)) return result;
             
-            CommandLine.WriteWarning($"Value specified for argument {argName} does not meet the criteria. Using default value {fallback}");
+            CommandLine.WriteWarning(
+                Strings.CommandLineOptions.WarnMsg_ParameterSpecifiedDoesNotFit(argName, fallback.ToString()));
             result = fallback;
             return result;
         }

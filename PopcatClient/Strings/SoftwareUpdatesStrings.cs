@@ -44,6 +44,22 @@ namespace PopcatClient
                 LanguageManager.GetString("verbose@err-msg_asset_prepare_failed")
                     .Substitute("stacktrace", stacktrace);
             public static string Msg_InstallingUpdate() => LanguageManager.GetString("msg_installing_update");
+
+            public static string ErrMsg_InstallerExitCode(int exitCode) =>
+                LanguageManager.GetString("err-msg_installer_exit_code")
+                    .Substitute("exit_code", exitCode.ToString());
+
+            public static string Verbose_ErrMsg_InstallerExitCode_1() =>
+                LanguageManager.GetString("verbose@2rr-msg_installer_exit_code_1");
+
+            public static string Verbose_ErrMsg_InstallerExitCode_2() =>
+                LanguageManager.GetString("verbose@err-msg_installer_exit_code_2");
+
+            public static string Verbose_ErrMsg_InstallerExitCode_3() =>
+                LanguageManager.GetString("verbose@err-msg_installer_exit_code_3");
+
+            public static string Verbose_ErrMsg_InstallerExitCode_Others() =>
+                LanguageManager.GetString("verbpse@err-msg_installer_exit_code_others");
         }
     }
     

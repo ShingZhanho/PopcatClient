@@ -10,12 +10,15 @@
         "err-msg_extract_token_failed": "Cannot extract token from response. JSON format unexpected.",
         "verbose@msg_token_extracted": "Token extracted: %%token%%",
         "verbose@msg_location_code_extracted": "Location code extracted: %%code%%",
-        "err-msg_application_stopped": "Application has stopped due to error(s). Press Enter to exit."
+        "err-msg_application_stopped": "Application has stopped due to error(s). Press Enter to exit.",
+        "status-msg_pops_sent": "Pops sent.",
+        "status-msg_pops_failed": "Failed to send pops."
     },
     "import_files": [
         "CommandLine.json",
+        "CommandLineOptions.json",
+        "Leaderboard.json",
         "Program.json",
-        "SoftwareUpdates.json",
-        "Leaderboard.json"
+        "SoftwareUpdates.json"
     ]
 }

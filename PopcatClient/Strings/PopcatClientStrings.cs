@@ -45,6 +45,10 @@ namespace PopcatClient
 
             public static string ErrMsg_ApplicationStopped() => LanguageManager
                 .GetString("err-msg_application_stopped");
+
+            public static string StatusMsg_PopsSent() => LanguageManager.GetString("status-msg_pops_sent");
+            
+            public static string StatusMsg_PopsFailed() => LanguageManager.GetString("status-msg_pops_failed");
         }
     }
 }

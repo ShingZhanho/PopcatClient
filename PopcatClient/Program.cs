@@ -15,14 +15,42 @@ namespace PopcatClient
 
         public static void Main(string[] args)
         {
-            // load language packs
-            LanguageManager.FallbackLanguage = new LanguageFile(
-                Path.GetFullPath($"./Langs/{Options.FallbackLanguageId}/lang-pack.json"));
+            // load fallback language
+            var langPackPath = Path.GetFullPath($"./Langs/{Options.FallbackLanguageId}/lang-pack.json");
+            try
+            {
+                LanguageManager.FallbackLanguage = new LanguageFile(langPackPath);
+            }
+            catch (Exception e)
+            {
+                // the following messages only has English version
+                // since the packs are not loaded
+                CommandLine.WriteError($"Could not load language pack {langPackPath}. Reason: {e.Message}");
+                CommandLine.WriteErrorVerbose($"Further information: {e.StackTrace}");
+            }
             
-            var langPackPath = Path.GetFullPath($"./Langs/{Options.LanguageId}/lang-pack.json");
-            LanguageManager.Language = File.Exists(langPackPath)
-                ? new LanguageFile(langPackPath)
-                : LanguageManager.FallbackLanguage;
+            // load language packs
+            try
+            {
+                langPackPath = $"./Langs/{Options.LanguageId}/lang-pack.json";
+                LanguageManager.Language = new LanguageFile(Path.GetFullPath(langPackPath));
+            }
+            catch (Exception e)
+            {
+                LanguageManager.Language = LanguageManager.FallbackLanguage;
+                CommandLine.WriteWarning($"Failed to load language pack {langPackPath}. Using fallback language pack.");
+                CommandLine.WriteError($"Fail reason: {e.Message}");
+                CommandLine.WriteErrorVerbose($"Further information: {e.StackTrace}");
+            }
+
+            // display lang pack info
+            CommandLine.WriteMessage(Strings.PackInfo.LanguagePack() +
+                                     $" ({LanguageManager.Language.LanguageInfo.DisplayName}):" +
+                                     Strings.PackInfo.PackInfo_Authors(LanguageManager.Language.Authors));
+            if (LanguageManager.Language.Filename != LanguageManager.FallbackLanguage.Filename)
+                CommandLine.WriteMessage(Strings.PackInfo.FallbackLanguagePack() +
+                                         $" ({LanguageManager.FallbackLanguage.LanguageInfo.DisplayName}):" +
+                                         Strings.PackInfo.PackInfo_Authors(LanguageManager.FallbackLanguage.Authors));
             
             Console.Title = $"Popcat Client {AssemblyData.InformationalVersion}";
 
@@ -150,23 +178,23 @@ namespace PopcatClient
             // if the app is not killed and the following lines are run, the installer must failed at some point
 
             
-            CommandLine.WriteError($"One or more errors occured while installing new version. Exit code: {installerProcess.ExitCode}");
+            CommandLine.WriteError(Strings.SoftwareUpdates.ErrMsg_InstallerExitCode(installerProcess.ExitCode));
             switch (installerProcess.ExitCode)
             {
                 case 1:
                     // PID invalid
-                    CommandLine.WriteErrorVerbose("The PID argument was invalid.");
+                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_1());
                     break;
                 case 2:
                     // new version not exist
-                    CommandLine.WriteErrorVerbose("The new version directory does not exist.");
+                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_2());
                     break;
                 case 3:
                     // current working directory does not exist
-                    CommandLine.WriteErrorVerbose("The current working directory does not exist.");
+                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_3());
                     break;
                 default:
-                    CommandLine.WriteErrorVerbose($"Unknown error. Exit code: {installerProcess.ExitCode}");
+                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_Others());
                     break;
             }
             CommandLine.WriteErrorVerbose(await installerProcess.StandardOutput.ReadToEndAsync());

@@ -18,7 +18,12 @@
     "success-msg_asset_ready": "Asset is ready for install.",
     "err-msg_asset_prepare_failed": "Failed to prepare update asset. Reason: %%fail_reason%%",
     "verbose@err-msg_asset_prepare_failed": "More information:\n%%fail_stacktrace%%",
-    "msg_installing_update": "Running installer to install update..."
+    "msg_installing_update": "Running installer to install update...",
+    "err-msg_installer_exit_code": "One or more errors occured while installing new version. Exit code: %%exit_code%%.",
+    "verbose@2rr-msg_installer_exit_code_1": "The PID argument was invalid.",
+    "verbose@err-msg_installer_exit_code_2": "The new version directory does not exist.",
+    "verbose@err-msg_installer_exit_code_3": "The current working directory does not exist.",
+    "verbpse@err-msg_installer_exit_code_others": "Unknown error. Exit code: %%exit_code%%"
   },
   "import_files": null
 }

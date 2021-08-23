@@ -9,7 +9,11 @@
             "pack_version": "v0.1-beta.6"
         }
     },
-    "strings": null,
+    "strings": {
+        "lang_pack": "Display Language Pack:",
+        "fallback_lang_pack": "Fallback Display Language Pack:",
+        "pack-info_written_by": "Pack written by %%authors%%."
+    },
     "import_files": [
         "PopcatClient/PopcatClient.json",
         "Common.json"
