@@ -65,5 +65,7 @@ namespace PopcatClient.Languages
                     throw new InvalidLanguagePackFormatException("Value of key \"schema_version\" is invalid.");
             }
         }
+        
+        internal string this[string key] => StringEntries.ContainsKey(key) ? StringEntries[key] : string.Empty;
     }
 }
