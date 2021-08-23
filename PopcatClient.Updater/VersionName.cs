@@ -148,17 +148,14 @@ namespace PopcatClient.Updater
 
         public static bool TryParse(string s, out VersionName results)
         {
-            try
+            if (VersionNameIsValid(s))
             {
-                results = Parse(s);
-            }
-            catch
-            {
-                results = null;
-                return false;
+                results = s;
+                return true;
             }
 
-            return true;
+            results = null;
+            return false;
         }
 
         public enum VersionFlag {

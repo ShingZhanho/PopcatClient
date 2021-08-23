@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using PopcatClient.Languages;
 using PopcatClient.Updater;
 
 namespace PopcatClient

@@ -1,8 +1,7 @@
-﻿#nullable enable
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PopcatClient.Languages.Exceptions;
 using PopcatClient.Updater;
@@ -27,7 +26,7 @@ namespace PopcatClient.Languages
         /// <summary>
         /// The LCID of the language pack
         /// </summary>
-        public int LanguageId { get; internal set; }
+        public CultureInfo LanguageInfo { get; internal set; }
         /// <summary>
         /// The version that this language pack is designed for
         /// </summary>
@@ -35,8 +34,9 @@ namespace PopcatClient.Languages
         /// <summary>
         /// The author(s) of this pack, optional
         /// </summary>
-        public string[]? Authors { get; internal set; }
+        public string[] Authors { get; internal set; }
 
+        internal Dictionary<string, string> StringEntries;
         private JObject _jo;
 
         private void ParseFile()

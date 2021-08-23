@@ -1,0 +1,18 @@
+{
+    "metadata":{
+        "language_info": {
+            "lcid":2057
+        },
+        "authors": ["ShingZhanho"],
+        "pack_info":{
+            "schema_version": 1,
+            "pack_version": "v0.1-beta.6"
+        }
+    },
+    "strings": {
+        "test_string": "HelloWorld!"
+    },
+    "import_files": [
+        "PopcatClient/PopcatClient.json"
+    ]
+}
