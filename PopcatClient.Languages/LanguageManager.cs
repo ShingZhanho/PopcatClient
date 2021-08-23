@@ -8,11 +8,11 @@
         /// <summary>
         /// The default display language.
         /// </summary>
-        public static LanguageFile Language;
+        public static LanguageFile Language { get; set; }
         /// <summary>
         /// The fallback language to display when default language has errors.
         /// </summary>
-        public static LanguageFile FallbackLanguage;
+        public static LanguageFile FallbackLanguage { get; set; }
 
         /// <summary>
         /// Gets string from the default language file by the key.

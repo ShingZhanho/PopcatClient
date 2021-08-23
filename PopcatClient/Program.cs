@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +14,8 @@ namespace PopcatClient
 
         public static void Main(string[] args)
         {
+            Options = new CommandLineOptions(args);
+            
             // load fallback language
             var langPackPath = Path.GetFullPath($"./Langs/{Options.FallbackLanguageId}/lang-pack.json");
             try
@@ -53,8 +54,6 @@ namespace PopcatClient
                                          Strings.PackInfo.PackInfo_Authors(LanguageManager.FallbackLanguage.Authors));
             
             Console.Title = $"Popcat Client {AssemblyData.InformationalVersion}";
-
-            Options = new CommandLineOptions(args);
             
             CommandLine.WriteWarningVerbose(Strings.Program.WarningMsg_VerboseMode());
             CommandLine.WriteWarningDebug(Strings.Program.WarningMsg_DebugMode());
