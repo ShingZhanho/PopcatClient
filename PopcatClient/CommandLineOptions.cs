@@ -7,7 +7,7 @@ namespace PopcatClient
 {
     public class CommandLineOptions
     {
-        private CommandLineOptions(){ }
+        public CommandLineOptions() { }
         
         /// <summary>
         /// Extract command line arguments.
@@ -34,23 +34,29 @@ namespace PopcatClient
             //
             DisableUpdate = args.Contains("--disable-updates") || args.Contains("-u");
             //
+            // --lang-fallback
+            //
+            FallbackLanguage = ParseInt("--lang-fallback", args,
+                value => CultureInfo.GetCultures(CultureTypes.AllCultures).Any(culture => culture.LCID == value),
+                DefaultFallbackLanguage);
+            //
             // --include-beta (shortname: -b)
             //
             IncludeBeta = args.Contains("--include-beta") || args.Contains("-b");
             //
             // --init-pops
             //
-            InitialPops = ParseInt("--init-pops", args, value => value >= 1, DefaultCommandLineOptions.InitialPops);
+            InitialPops = ParseInt("--init-pops", args, value => value >= 1, DefaultInitialPops);
             //
             // --lang
             //
             LanguageId = ParseInt("--lang", args,
                 value => CultureInfo.GetCultures(CultureTypes.AllCultures).Any(culture => culture.LCID == value),
-                DefaultCommandLineOptions.LanguageId);
+                DefaultLanguageId);
             //
             // --max-failures
             //
-            MaxFailures = ParseInt("--max-failures", args, value => value >= 1, DefaultCommandLineOptions.MaxFailures);
+            MaxFailures = ParseInt("--max-failures", args, value => value >= 1, DefaultMaxFailures);
             //
             // --verbose (shortname: -v)
             //
@@ -58,7 +64,7 @@ namespace PopcatClient
             //
             // --wait-time
             //
-            WaitTime = ParseInt("--wait-time", args, value => value >= 30 * 1000, DefaultCommandLineOptions.WaitTime);
+            WaitTime = ParseInt("--wait-time", args, value => value >= 30 * 1000, DefaultWaitTime);
         }
 
         private static int ParseInt(string argName, IReadOnlyList<string> args, Func<int, bool> criteria, int fallback)
@@ -89,59 +95,51 @@ namespace PopcatClient
         /// <summary>
         /// Indicates whether clear the temp folder.
         /// </summary>
-        public bool ClearTempDir { get; private init; }
+        public bool ClearTempDir { get; }
         /// <summary>
         /// Indicates whether debug mode is enabled.
         /// </summary>
-        public bool Debug { get; private init;  }
+        public bool Debug { get; }
         /// <summary>
         /// Indicates whether disable the leaderboard
         /// </summary>
-        public bool DisableLeaderboard { get; private init; }
+        public bool DisableLeaderboard { get; }
         /// <summary>
         /// Indicates whether disable checking for updates on launching.
         /// </summary>
-        public bool DisableUpdate { get; private init; }
+        public bool DisableUpdate { get; }
+        /// <summary>
+        /// The LCID of the fallback app display language
+        /// </summary>
+        public int FallbackLanguage { get; } = DefaultFallbackLanguage;
+        private const int DefaultFallbackLanguage = 2057;
         /// <summary>
         /// Indicates if to include beta versions when updating. This option will always be ignored if the app is already a beta.
         /// </summary>
-        public bool IncludeBeta { get; private init; }
+        public bool IncludeBeta { get; }
         /// <summary>
         /// Indicates how many pops should the application send to the server for the first time.
         /// </summary>
-        public int InitialPops { get; private init; } = DefaultCommandLineOptions.InitialPops;
+        public int InitialPops { get; } = DefaultInitialPops;
+        private const int DefaultInitialPops = 800;
         /// <summary>
         /// The LCID of the desired app language.
         /// </summary>
-        public int LanguageId { get; private init; } = DefaultCommandLineOptions.LanguageId;
+        public int LanguageId { get; } = DefaultLanguageId;
+        private static readonly int DefaultLanguageId = CultureInfo.CurrentCulture.LCID;
         /// <summary>
         /// Indicates how many times of failures in a row should the application exit.
         /// </summary>
-        public int MaxFailures { get; private init; } = DefaultCommandLineOptions.MaxFailures;
+        public int MaxFailures { get; } = DefaultMaxFailures;
+        private const int DefaultMaxFailures = 5;
         /// <summary>
         /// Indicates whether verbose mode is enabled.
         /// </summary>
-        public bool Verbose { get; private init; }
+        public bool Verbose { get; }
         /// <summary>
         /// Indicates the time should the program wait between each pop in ms.
         /// </summary>
-        public int WaitTime { get; private init; } = DefaultCommandLineOptions.WaitTime;
-
-        /// <summary>
-        /// An instance with default options
-        /// </summary>
-        public static readonly CommandLineOptions DefaultCommandLineOptions = new()
-        {
-            ClearTempDir = false,
-            Debug = false,
-            DisableLeaderboard = false,
-            DisableUpdate = false,
-            IncludeBeta = false,
-            InitialPops = 1,
-            LanguageId = CultureInfo.CurrentCulture.LCID,
-            MaxFailures = 3,
-            Verbose = false,
-            WaitTime = 30 * 1000
-        };
+        public int WaitTime { get; } = DefaultWaitTime;
+        private const int DefaultWaitTime = 30 * 1000;
     }
 }

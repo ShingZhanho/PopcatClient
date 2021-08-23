@@ -10,7 +10,7 @@ namespace PopcatClient
 {
     public static class Program
     {
-        public static CommandLineOptions Options { get; private set; }= CommandLineOptions.DefaultCommandLineOptions;
+        public static CommandLineOptions Options { get; private set; } = new();
 
         public static void Main(string[] args)
         {
@@ -21,7 +21,7 @@ namespace PopcatClient
             CommandLine.WriteWarningVerbose("Verbose mode is enabled.");
             CommandLine.WriteWarningDebug("Debug mode is enabled.");
             
-            ShowStartOptionsVerbose(Options);
+            ShowStartOptionsVerbose();
             
             // software update
             if (Options.DisableUpdate)
@@ -164,11 +164,11 @@ namespace PopcatClient
             CommandLine.WriteErrorVerbose(await installerProcess.StandardError.ReadToEndAsync());
         }
 
-        private static void ShowStartOptionsVerbose(CommandLineOptions options)
+        private static void ShowStartOptionsVerbose()
         {
             CommandLine.WriteMessageVerbose("PopcatClient started with following settings:");
-            CommandLine.WriteMessageVerbose($"Waiting time: {options.WaitTime}ms");
-            CommandLine.WriteMessageVerbose($"Max sequential failures: {options.MaxFailures}");
+            CommandLine.WriteMessageVerbose($"Waiting time: {Options.WaitTime}ms");
+            CommandLine.WriteMessageVerbose($"Max sequential failures: {Options.MaxFailures}");
             CommandLine.WriteMessageVerbose($"Initial pops: {Options.InitialPops}");
             CommandLine.WriteMessageVerbose("Leaderboard: " + (Options.DisableLeaderboard ? "Disabled" : "Enabled"));
             CommandLine.WriteMessageVerbose("Software update: " + (Options.DisableUpdate ? "Disabled" : "Enabled"));
@@ -176,6 +176,8 @@ namespace PopcatClient
                                             (Options.IncludeBeta || ((VersionName)AssemblyData.InformationalVersion).PreRelease 
                                                 ? "Install" : "Do not install"));
             CommandLine.WriteMessageVerbose("Clear temporary directory: " + (Options.ClearTempDir ? "Yes" : "No"));
+            CommandLine.WriteMessageVerbose($"Display language pack ID: {Options.LanguageId}");
+            CommandLine.WriteMessageVerbose($"Fallback display language pack ID: {Options.FallbackLanguage}");
         }
     }
 }
