@@ -144,6 +144,23 @@ namespace PopcatClient.Updater
             return str;
         }
 
+        public static VersionName Parse(string s) => s;
+
+        public static bool TryParse(string s, out VersionName results)
+        {
+            try
+            {
+                results = Parse(s);
+            }
+            catch
+            {
+                results = null;
+                return false;
+            }
+
+            return true;
+        }
+
         public enum VersionFlag {
             Stable, Beta
         }
