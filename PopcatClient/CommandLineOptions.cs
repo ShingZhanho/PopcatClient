@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PopcatClient
 {
@@ -37,35 +39,11 @@ namespace PopcatClient
             //
             // --init-pops
             //
-            if (args.Contains("--init-pops"))
-            {
-                var indexOfOption = args.ToList().IndexOf("--init-pops");
-                if (indexOfOption + 1 > args.Length - 1)
-                    CommandLine.WriteWarning("No parameter specified for --init-pops. Using default value 1.");
-                else
-                {
-                    if (int.TryParse(args[indexOfOption + 1], out var result) && result is <= 800 and >= 0)
-                        InitialPops = result;
-                    else 
-                        CommandLine.WriteWarning("Invalid parameter specified for --init-pops. Using default value 1.");
-                }
-            }
+            InitialPops = ParseInt("--init-pops", args, value => value >= 1, DefaultCommandLineOptions.InitialPops);
             //
             // --max-failures
             //
-            if (args.Contains("--max-failures"))
-            {
-                var indexOfOption = args.ToList().IndexOf("--max-failures");
-                if (indexOfOption + 1 > args.Length - 1)
-                    CommandLine.WriteWarning("No parameter specified for --max-failures. Using default value 3.");
-                else
-                {
-                    if (int.TryParse(args[indexOfOption + 1], out var result) && result > 0)
-                        MaxFailures = result;
-                    else
-                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value 3.");
-                }
-            }
+            MaxFailures = ParseInt("--max-failures", args, value => value >= 1, DefaultCommandLineOptions.MaxFailures);
             //
             // --verbose (shortname: -v)
             //
@@ -73,18 +51,32 @@ namespace PopcatClient
             //
             // --wait-time
             //
-            if (args.Contains("--wait-time"))
+            WaitTime = ParseInt("--wait-time", args, value => value >= 30 * 1000, DefaultCommandLineOptions.WaitTime);
+        }
+
+        private static int ParseInt(string argName, IReadOnlyList<string> args, Func<int, bool> criteria, int fallback)
+        {
+            if (!args.Contains(argName)) return fallback;
+            if (args.ToList().IndexOf(argName) + 1 == args.Count)
             {
-                if (args.ToList().IndexOf("--wait-time") + 1 > args.Length - 1)
-                    CommandLine.WriteWarning("No parameter specified for --wait-time. Using default value (30000).");
-                else
-                {
-                    if (int.TryParse(args[args.ToList().IndexOf("--wait-time") + 1], out var result) && result > 30000)
-                        WaitTime = result;
-                    else
-                        CommandLine.WriteWarning("Invalid parameter specified for --wait-time. Using default value (30000).");
-                }
+                CommandLine.WriteWarning($"No parameter value for argument {argName}. Using default value {fallback}");
+                return fallback;
             }
+
+            var s = args[args.ToList().IndexOf(argName) + 1];
+            
+            if (!int.TryParse(s, out var result))
+            {
+                CommandLine.WriteWarning($"Invalid value specified for argument {argName}. Using default value {fallback}.");
+                result = fallback;
+                return result;
+            }
+
+            if (criteria(result)) return result;
+            
+            CommandLine.WriteWarning($"Value specified for argument {argName} does not meet the criteria. Using default value {fallback}");
+            result = fallback;
+            return result;
         }
         
         /// <summary>
@@ -110,11 +102,11 @@ namespace PopcatClient
         /// <summary>
         /// Indicates how many pops should the application send to the server for the first time.
         /// </summary>
-        public int InitialPops { get; private init; } = 1;
+        public int InitialPops { get; private init; } = DefaultCommandLineOptions.InitialPops;
         /// <summary>
         /// Indicates how many times of failures in a row should the application exit.
         /// </summary>
-        public int MaxFailures { get; private init; } = 3;
+        public int MaxFailures { get; private init; } = DefaultCommandLineOptions.MaxFailures;
         /// <summary>
         /// Indicates whether verbose mode is enabled.
         /// </summary>
@@ -122,13 +114,14 @@ namespace PopcatClient
         /// <summary>
         /// Indicates the time should the program wait between each pop in ms.
         /// </summary>
-        public int WaitTime { get; private init; } = 30 * 1000;
+        public int WaitTime { get; private init; } = DefaultCommandLineOptions.WaitTime;
 
         /// <summary>
         /// An instance with default options
         /// </summary>
         public static readonly CommandLineOptions DefaultCommandLineOptions = new()
         {
+            ClearTempDir = false,
             Debug = false,
             DisableLeaderboard = false,
             DisableUpdate = false,
