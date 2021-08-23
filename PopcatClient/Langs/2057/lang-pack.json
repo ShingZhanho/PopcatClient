@@ -11,6 +11,7 @@
     },
     "strings": null,
     "import_files": [
-        "PopcatClient/PopcatClient.json"
+        "PopcatClient/PopcatClient.json",
+        "Common.json"
     ]
 }

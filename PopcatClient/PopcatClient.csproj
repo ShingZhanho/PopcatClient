@@ -19,6 +19,10 @@
       <ProjectReference Include="..\PopcatClient.Updater\PopcatClient.Updater.csproj" />
     </ItemGroup>
     
+    <ItemGroup>
+      <None Remove="PopcatClient.csproj.DotSettings" />
+    </ItemGroup>
+    
     <Target Name="RunBuildTool" BeforeTargets="Build">
         <PropertyGroup>
             <SolutionDir>$([System.IO.Path]::GetDirectoryName($(MSBuildProjectDirectory)))</SolutionDir>

@@ -46,58 +46,34 @@ namespace PopcatClient
             // configure http client
             _client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client.DefaultRequestHeaders.Add("User-Agent", UserAgentString);
-            
-            CommandLine.WriteMessage("PopcatClient object started.");
-            var firstTrySuccessful = false;
-            for (var i = 0; i < Program.Options.MaxFailures; i++)
-            {
-                CommandLine.WriteMessage($"Trying to send first pop (count: {Options.InitialPops}), attempt {i + 1} of {Options.MaxFailures}.");
-                var status = SendPopRequest(Options.InitialPops);
-                if ((int) status != 201)
-                {
-                    CommandLine.WriteMessage(i + 1 < Options.MaxFailures
-                        ? $"Retrying after {Options.WaitTime / 1000}s " +
-                          $"at {DateTime.Now.AddMilliseconds(Options.WaitTime):dd-MM-yyyy hh:mm:ss tt}."
-                        : $"Failed {Program.Options.MaxFailures} times, application will exit.");
-                    if (i + 1 < Options.MaxFailures) System.Threading.Thread.Sleep(Options.WaitTime);
-                }
-                else
-                {
-                    firstTrySuccessful = true;
-                    // start leaderboard client after first pop
-                    if (!Options.DisableLeaderboard) _leaderboard.Run();
-                    break;
-                }
-            }
 
             var sequentialFailures = 0;
-            // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
-            while (firstTrySuccessful && sequentialFailures < Options.MaxFailures)
+            while (sequentialFailures < Options.MaxFailures)
             {
-                System.Threading.Thread.Sleep(Options.WaitTime);
-                var popCount = 800;
-                CommandLine.WriteMessage($"Trying to send {popCount} pops.");
+                const int popCount = 800;
+                CommandLine.WriteMessage(Strings.PopcatClient.Msg_TryingPops(popCount));
                 var status = SendPopRequest(popCount);
                 if ((int) status == 201)
                 {
                     sequentialFailures = 0;
-                    CommandLine.WriteSuccess($"Sent {popCount} pops successfully.");
-                    CommandLine.WriteMessage($"Total pops: {TotalPops}.");
+                    CommandLine.WriteSuccess(Strings.PopcatClient.SucMsg_PopSent(popCount));
+                    CommandLine.WriteMessage(Strings.PopcatClient.Msg_TotalPops(TotalPops));
                 }
                 else
                 {
-                    sequentialFailures += 1;
-                    CommandLine.WriteWarning($"Sequential failures: {sequentialFailures}. " +
-                                             $"Application will exit after failed for {Options.MaxFailures} times in a row.");
+                    sequentialFailures++;
+                    CommandLine.WriteWarning(
+                        Strings.PopcatClient.WarnMsg_SequentialFailures(sequentialFailures, Options.MaxFailures));
                 }
-                CommandLine.WriteMessage($"Sending pops after {Options.WaitTime/1000}s " +
-                                         $"at {DateTime.Now.AddMilliseconds(Options.WaitTime):dd-MM-yyyy hh:mm:ss tt}.");
+
+                CommandLine.WriteMessage(Strings.PopcatClient.Msg_NextPopTime(Options.WaitTime / 1000,
+                    DateTime.Now.AddMilliseconds(Options.WaitTime)));
+                System.Threading.Thread.Sleep(Options.WaitTime);
             }
             if (sequentialFailures == Options.MaxFailures)
             {
-                // failed for three times
-                CommandLine.WriteError($"Failed to send pops for {Options.MaxFailures} times. You may have been blocked, " +
-                                       "please try restarting the application later.");
+                // failed for maximum times
+                CommandLine.WriteError(Strings.PopcatClient.ErrMsg_MaxFailuresReached(Options.MaxFailures));
             }
             End();
         }
@@ -118,36 +94,36 @@ namespace PopcatClient
             }
             catch
             {
-                CommandLine.WriteError("Failed. Please check your network connection and firewall settings.");
+                CommandLine.WriteError(Strings.PopcatClient.ErrMsg_PopFailedNetwork());
                 return HttpStatusCode.BadRequest;
             }
             
             var responseString = response.Content.ReadAsStringAsync().Result;
-            CommandLine.WriteMessageVerbose($"Response:\n\n{responseString}");
+            CommandLine.WriteMessageVerbose(Strings.Common.Verbose_Msg_ServerResponse(responseString));
             if ((int)response.StatusCode == 201)
             {
                 // extract token from response if success
-                CommandLine.WriteSuccess($"Status: {(int) response.StatusCode} - {response.StatusCode}.");
+                CommandLine.WriteSuccess(Strings.Common.Msg_ResponseStatus("Success.", (int)response.StatusCode,
+                    response.StatusCode.ToString()));
                 TotalPops += count;
 
                 var jo = JToken.Parse(responseString);
                 if (jo["Token"] is null)
                 {
-                    CommandLine.WriteError("Cannot extract token from response. JSON format unexpected.");
+                    CommandLine.WriteError(Strings.PopcatClient.ErrMsg_ExtractTokenFailed());
                     End();
                 }
                 // get token from response
                 Token = jo["Token"]?.ToString();
-                CommandLine.WriteMessageVerbose($"Token extracted: {Token}");
+                CommandLine.WriteMessageVerbose(Strings.PopcatClient.Verbose_Msg_TokenExtracted(Token));
                 // get location code from response
                 LocationCode = jo["Location"]?["Code"]?.ToString();
-                // leaderboard debug
-                if (Options.Debug) LocationCode = "KP";
-                CommandLine.WriteMessageVerbose($"Location code extracted: {LocationCode}");
+                CommandLine.WriteMessageVerbose(Strings.PopcatClient.Verbose_Msg_LocationCodeExtracted(LocationCode));
             }
             else
             {
-                CommandLine.WriteError($"Failed. Status: {(int) response.StatusCode} - {response.StatusCode}.");
+                CommandLine.WriteError(Strings.Common.Msg_ResponseStatus("Failed.", (int)response.StatusCode,
+                    response.StatusCode.ToString()));
             }
             
             return response.StatusCode;

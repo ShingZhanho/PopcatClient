@@ -1,0 +1,8 @@
+﻿{
+  "strings": {
+    "verbose@msg_server_response": "Response: %%response%%",
+    "msg_response_status" : "%%msg%% Status: %%http_status_code%% - %%status_description%%.",
+    "format@datetime": "dd-MM-yyyy hh:mm:ss tt"
+  },
+  "import_files": null
+}
