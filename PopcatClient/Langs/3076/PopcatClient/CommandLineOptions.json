@@ -1,0 +1,8 @@
+﻿{
+  "strings": {
+    "warn-msg_cmd_options_no_parameter_specified": "未為選項 %%argument_name%% 指定引數。將使用預設值 %%default_val%%。",
+    "warn-msg_cmd_options_invalid_parameter_specified": "為選項 %%argument_name%% 指定的引數無效。將使用預設值 %%default_val%%。",
+    "warn-msg_cmd_options_parameter_specified_not_fit": "為選項 %%argument_name%% 指定的引數不符合條件。將使用預設值 %%default_val%%。"
+  },
+  "import_files": null
+}

@@ -1,0 +1,11 @@
+{
+    "strings": {
+        "output_tag_info": "資訊",
+        "output_tag_success": "成功",
+        "output_tag_error": "錯誤",
+        "output_tag_warning": "警告",
+        "output_tag_debug": "除錯",
+        "output_tag_verbose": "詳細"
+    },
+    "import_files": null
+}

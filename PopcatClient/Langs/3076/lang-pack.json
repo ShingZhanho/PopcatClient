@@ -1,0 +1,21 @@
+{
+    "metadata":{
+        "language_info": {
+            "lcid":3076
+        },
+        "authors": ["ShingZhanho"],
+        "pack_info":{
+            "schema_version": 1,
+            "pack_version": "v0.1-beta.6"
+        }
+    },
+    "strings": {
+        "lang_pack": "顯示語言套件：",
+        "fallback_lang_pack": "後備顯示語言套件：",
+        "pack-info_written_by": "語言套件作者：%%authors%%."
+    },
+    "import_files": [
+        "PopcatClient/PopcatClient.json",
+        "Common.json"
+    ]
+}

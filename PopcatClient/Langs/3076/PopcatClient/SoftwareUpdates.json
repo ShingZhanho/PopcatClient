@@ -1,0 +1,29 @@
+﻿{
+  "strings": {
+    "warn-msg_update_disabled": "You have disabled software update. Application might not work properly if you are using an outdated version.",
+    "warn-msg_new_update": "A new version (%%new_ver%%) is available.",
+    "success-msg_up_to_date": "Your application is up-to-date.",
+    "warn-msg_cannot_determine_if_uptodate": "The application cannot determine whether your application is up-to-date.",
+    "warn-msg_cannot_determine_if_downloaded": "The application cannot determine whether the asset is downloaded.",
+    "warn-msg_cannot_determine_if_ready": "The application cannot determine whether the asset is prepared.",
+    "warn-msg_update_restart_app": "The app will restart after installing update.",
+    "msg_checking_updates": "Checking for updates on server...",
+    "err-msg_update_check_failed": "Failed to check update. Reason: %%fail_reason%%",
+    "verbose@err-msg_update_check_failed": "Further message about the update failure:\n%%fail_stacktrace%%",
+    "msg_downloading_asset": "Downloading update asset from server...",
+    "success-msg_asset_downloaded": "Asset downloaded to %%file_path%%",
+    "err-msg_download_asset_failed": "Failed to download update asset. Reason: %%fail_reason%%",
+    "verbose@err-msg_download_asset_failed": "More information:\n%%fail_stacktrace%%",
+    "msg_preparing_asset": "Preparing update asset for installing...",
+    "success-msg_asset_ready": "Asset is ready for install.",
+    "err-msg_asset_prepare_failed": "Failed to prepare update asset. Reason: %%fail_reason%%",
+    "verbose@err-msg_asset_prepare_failed": "More information:\n%%fail_stacktrace%%",
+    "msg_installing_update": "Running installer to install update...",
+    "err-msg_installer_exit_code": "One or more errors occured while installing new version. Exit code: %%exit_code%%.",
+    "verbose@2rr-msg_installer_exit_code_1": "The PID argument was invalid.",
+    "verbose@err-msg_installer_exit_code_2": "The new version directory does not exist.",
+    "verbose@err-msg_installer_exit_code_3": "The current working directory does not exist.",
+    "verbpse@err-msg_installer_exit_code_others": "Unknown error. Exit code: %%exit_code%%"
+  },
+  "import_files": null
+}
