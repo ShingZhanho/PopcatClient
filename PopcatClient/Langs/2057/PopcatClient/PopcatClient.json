@@ -2,6 +2,7 @@
     "strings": null,
     "import_files": [
         "CommandLine.json",
-        "Program.json"
+        "Program.json",
+        "SoftwareUpdates.json"
     ]
 }

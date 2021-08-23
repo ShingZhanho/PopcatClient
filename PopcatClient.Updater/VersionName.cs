@@ -95,6 +95,8 @@ namespace PopcatClient.Updater
 
         public static implicit operator VersionName(string versionNameString) => new(versionNameString);
 
+        public static implicit operator string(VersionName versionName) => versionName.ToString();
+
         public static bool VersionNameIsValid(string versionName) {
             try {
                 _ = new VersionName(versionName);

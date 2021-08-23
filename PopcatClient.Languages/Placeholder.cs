@@ -19,7 +19,7 @@ namespace PopcatClient.Languages
             var match = regex.Match(text);
             var singularForm = match.Groups[1].Value;
             var pluralForm = match.Groups[2].Value;
-            return text.Replace(match.Value, value.ToString() + (value == 1 ? singularForm : pluralForm));
+            return text.Replace(match.Value, value + (value == 1 ? singularForm : pluralForm));
         }
     }
 }

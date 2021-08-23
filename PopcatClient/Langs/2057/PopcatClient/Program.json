@@ -1,14 +1,10 @@
 ﻿{
   "strings": {
-    "warn-msg_verbose_mode": "Verbose mode is enabled.",
-    "warn-msg_debug_mode": "Debug mode is enabled.",
-
-    "warn-msg_update_disabled": "You have disabled software update. Application might not work properly if you are using an outdated version.",
-    "warn-msg_new_update": "A new version (%new_ver%) is available.",
-    "warn-msg_cannot_determine_if_uptodate": "The application cannot determine whether your application is up-to-date.",
-    "warn-msg_cannot_determine_if_downloaded": "The application cannot determine whether the asset is downloaded.",
-    "warn-msg_cannot_determine_if_ready": "The application cannot determine whether the asset is prepared.",
-    "warn-msg_update_restart_app": "The app will restart after installing update."
+    "verbose@warn-msg_verbose_mode": "Verbose mode is enabled.",
+    "debug@warn-msg_debug_mode": "Debug mode is enabled.",
+    
+    "msg_clear_temp_dir": "Clearing temp dir...",
+    "success-msg_temp_dir_cleared": "Temp dir cleared."
   },
   "import_files": null
 }

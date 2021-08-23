@@ -36,7 +36,7 @@ namespace PopcatClient
             //
             // --lang-fallback
             //
-            FallbackLanguage = ParseInt("--lang-fallback", args,
+            FallbackLanguageId = ParseInt("--lang-fallback", args,
                 value => CultureInfo.GetCultures(CultureTypes.AllCultures).Any(culture => culture.LCID == value),
                 DefaultFallbackLanguage);
             //
@@ -111,7 +111,7 @@ namespace PopcatClient
         /// <summary>
         /// The LCID of the fallback app display language
         /// </summary>
-        public int FallbackLanguage { get; } = DefaultFallbackLanguage;
+        public int FallbackLanguageId { get; } = DefaultFallbackLanguage;
         private const int DefaultFallbackLanguage = 2057;
         /// <summary>
         /// Indicates if to include beta versions when updating. This option will always be ignored if the app is already a beta.

@@ -17,9 +17,9 @@ namespace PopcatClient
         {
             // load language packs
             LanguageManager.FallbackLanguage = new LanguageFile(
-                Path.GetFullPath($"./Langs/{Options.FallbackLanguage}/popcat-lang-{Options.FallbackLanguage}.json"));
+                Path.GetFullPath($"./Langs/{Options.FallbackLanguageId}/lang-pack.json"));
             
-            var langPackPath = Path.GetFullPath($"./Langs/{Options.LanguageId}/popcat-lang-{Options.LanguageId}.json");
+            var langPackPath = Path.GetFullPath($"./Langs/{Options.LanguageId}/lang-pack.json");
             LanguageManager.Language = File.Exists(langPackPath)
                 ? new LanguageFile(langPackPath)
                 : LanguageManager.FallbackLanguage;
@@ -36,20 +36,19 @@ namespace PopcatClient
             // software update
             if (Options.DisableUpdate)
                 // Disabled
-                CommandLine.WriteWarning("You have disabled software update. " +
-                                         "Application might not work properly if you are using an outdated version.");
+                CommandLine.WriteWarning(Strings.SoftwareUpdates.WarningMsg_UpdateDisabled());
             else
             {
-                CommandLine.WriteMessage("Checking for updates on server...");
+                CommandLine.WriteMessage(Strings.SoftwareUpdates.Msg_CheckingUpdates());
                 SoftwareUpdate(AssemblyData.InformationalVersion);
             }
             
             // clear temporary folder
             if (Options.ClearTempDir)
             {
-                CommandLine.WriteMessage("Clearing temporary folder...");
+                CommandLine.WriteMessage(Strings.Program.Msg_ClearTempDir());
                 Directory.Delete(Path.Combine(Path.GetTempPath(), "PopcatClient_Update"), true);
-                CommandLine.WriteSuccess("Temporary folder cleared.");
+                CommandLine.WriteSuccess(Strings.Program.SuccessMsg_TempDirCleared());
             }
 
             var leaderboardClient = new LeaderboardClient(Options);
@@ -70,22 +69,22 @@ namespace PopcatClient
             switch (checkResult.ResultStatus)
             {
                 case CheckUpdateResultStatus.UpToDate:
-                    CommandLine.WriteSuccess("Your application is up-to-date.");
+                    CommandLine.WriteSuccess(Strings.SoftwareUpdates.SucMsg_ApplicationUpToDate());
                     return;
                 case CheckUpdateResultStatus.UpdateAvailable:
-                    CommandLine.WriteWarning($"A new version ({checkResult.ServerLatestVersion.ToString()}) is available.");
+                    CommandLine.WriteWarning(Strings.SoftwareUpdates.WarningMsg_NewVersionAvailable(checkResult.ServerLatestVersion));
                     break;
                 case CheckUpdateResultStatus.Failed:
-                    CommandLine.WriteError($"Failed to check update. Reason: {checkResult.ExceptionMessage}");
-                    CommandLine.WriteErrorVerbose($"Further message about the update failure:\n{checkResult.ExceptionStackTrace}");
+                    CommandLine.WriteError(Strings.SoftwareUpdates.ErrMsg_UpdateCheckFailed(checkResult.ExceptionMessage));
+                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_UpdateCheckFailed(checkResult.ExceptionStackTrace));
                     return;
                 default:
-                    CommandLine.WriteWarning(Strings.Program.WarningMsg_CannotDetermineIfUpToDate());
+                    CommandLine.WriteWarning(Strings.SoftwareUpdates.WarningMsg_CannotDetermineIfUpToDate());
                     return;
             }
 
             // download from server
-            CommandLine.WriteMessage("Downloading update asset from server...");
+            CommandLine.WriteMessage(Strings.SoftwareUpdates.Msg_DownloadingAsset());
             CommandLine.WriteMessageVerbose($"GET {checkResult.AssetDownloadUrl}");
             var tempDir = Path.Combine(Path.GetTempPath(), "PopcatClient_Update");
             Directory.CreateDirectory(tempDir);
@@ -95,37 +94,37 @@ namespace PopcatClient
             switch (downloadResult.Status)
             {
                 case BasicResultStatus.Success:
-                    CommandLine.WriteSuccess($"Asset downloaded to {downloadResult.FilePath}");
+                    CommandLine.WriteSuccess(Strings.SoftwareUpdates.SucMsg_AssetDownloaded(downloadResult.FilePath));
                     break;
                 case BasicResultStatus.Failed:
-                    CommandLine.WriteError($"Failed to download update asset. Reason: {downloadResult.ExceptionMessage}");
-                    CommandLine.WriteErrorVerbose($"More information:\n{downloadResult.ExceptionStackTrace}");
+                    CommandLine.WriteError(Strings.SoftwareUpdates.ErrMsg_DownloadAssetFailed(downloadResult.ExceptionMessage));
+                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_DownloadAssetFailed(downloadResult.ExceptionStackTrace));
                     return;
                 default:
-                    CommandLine.WriteWarning(Strings.Program.WarningMsg_CannotDetermineIfDownloaded());
+                    CommandLine.WriteWarning(Strings.SoftwareUpdates.WarningMsg_CannotDetermineIfDownloaded());
                     return;
             }
             
             // extract downloaded file
-            CommandLine.WriteMessage("Preparing update asset for installing.");
+            CommandLine.WriteMessage(Strings.SoftwareUpdates.Msg_PreparingAsset());
             var prepareResult = await UpdateTools.PrepareUpdateAssetAsync(downloadResult.FilePath);
             switch (prepareResult.Status)
             {
                 case BasicResultStatus.Success:
-                    CommandLine.WriteSuccess("Asset is ready for install.");
+                    CommandLine.WriteSuccess(Strings.SoftwareUpdates.SucMsg_AssetIsReady());
                     break;
                 case BasicResultStatus.Failed:
-                    CommandLine.WriteError($"Failed to prepare update asset. Reason: {prepareResult.ExceptionMessage}");
-                    CommandLine.WriteErrorVerbose($"More information:\n{prepareResult.ExceptionStackTrace}");
+                    CommandLine.WriteError(Strings.SoftwareUpdates.ErrMsg_AssetPrepareFailed(prepareResult.ExceptionMessage));
+                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_AssetPrepareFailed(prepareResult.ExceptionStackTrace));
                     return;
                 default:
-                    CommandLine.WriteWarning(Strings.Program.WarningMsg_CannotDetermineIfReady());
+                    CommandLine.WriteWarning(Strings.SoftwareUpdates.WarningMsg_CannotDetermineIfReady());
                     return;
             }
             
             // run installer
-            CommandLine.WriteMessage("Running installer to install update...");
-            CommandLine.WriteWarning(Strings.Program.WarningMsg_AppWillRestartAfterUpdate());
+            CommandLine.WriteMessage(Strings.SoftwareUpdates.Msg_InstallingUpdate());
+            CommandLine.WriteWarning(Strings.SoftwareUpdates.WarningMsg_AppWillRestartAfterUpdate());
             var installerArgs = $"\"{prepareResult.ExtractedDir}\" " +
                                 $"\"{Environment.CurrentDirectory}\" " +
                                 $"{Environment.ProcessId.ToString()} " +
@@ -190,8 +189,8 @@ namespace PopcatClient
                 $"Display language pack ID: {Options.LanguageId} " +
                 $"({CultureInfo.GetCultureInfo(Options.LanguageId).DisplayName})");
             CommandLine.WriteMessageVerbose(
-                $"Fallback display language pack ID: {Options.FallbackLanguage} " +
-                $"({CultureInfo.GetCultureInfo(Options.FallbackLanguage).DisplayName})");
+                $"Fallback display language pack ID: {Options.FallbackLanguageId} " +
+                $"({CultureInfo.GetCultureInfo(Options.FallbackLanguageId).DisplayName})");
         }
     }
 }
