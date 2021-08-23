@@ -17,6 +17,11 @@ namespace PopcatClient
                     .Substitute("status_description", description);
 
             public static string Format_Datetime() => LanguageManager.GetString("format@datetime");
+
+            public static string Enabled() => LanguageManager.GetString("enabled");
+            public static string Disabled() => LanguageManager.GetString("disabled");
+            public static string Yes() => LanguageManager.GetString("yes");
+            public static string No() => LanguageManager.GetString("no");
         }
     }
 }

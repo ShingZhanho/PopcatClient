@@ -175,22 +175,35 @@ namespace PopcatClient
 
         private static void ShowStartOptionsVerbose()
         {
-            CommandLine.WriteMessageVerbose("PopcatClient started with following settings:");
-            CommandLine.WriteMessageVerbose($"Waiting time: {Options.WaitTime}ms");
-            CommandLine.WriteMessageVerbose($"Max sequential failures: {Options.MaxFailures}");
-            CommandLine.WriteMessageVerbose($"Initial pops: {Options.InitialPops}");
-            CommandLine.WriteMessageVerbose("Leaderboard: " + (Options.DisableLeaderboard ? "Disabled" : "Enabled"));
-            CommandLine.WriteMessageVerbose("Software update: " + (Options.DisableUpdate ? "Disabled" : "Enabled"));
-            CommandLine.WriteMessageVerbose("Install beta versions: " + 
-                                            (Options.IncludeBeta || ((VersionName)AssemblyData.InformationalVersion).PreRelease 
-                                                ? "Install" : "Do not install"));
-            CommandLine.WriteMessageVerbose("Clear temporary directory: " + (Options.ClearTempDir ? "Yes" : "No"));
-            CommandLine.WriteMessageVerbose(
-                $"Display language pack ID: {Options.LanguageId} " +
-                $"({CultureInfo.GetCultureInfo(Options.LanguageId).DisplayName})");
-            CommandLine.WriteMessageVerbose(
-                $"Fallback display language pack ID: {Options.FallbackLanguageId} " +
-                $"({CultureInfo.GetCultureInfo(Options.FallbackLanguageId).DisplayName})");
+            CommandLine.WriteMessageVerbose(Strings.Program.Msg_ClientStartOptions());
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_WaitTime(), $"{Options.WaitTime}ms");
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_MaxFailures(), Options.MaxFailures);
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_Leaderboard(),
+                Options.DisableLeaderboard ? Strings.Common.Disabled() : Strings.Common.Enabled());
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_CheckUpdate(),
+                Options.DisableUpdate ? Strings.Common.No() : Strings.Common.Yes());
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_InstallBeta(),
+                Options.IncludeBeta || ((VersionName)AssemblyData.InformationalVersion).PreRelease
+                ? Strings.Common.Yes() : Strings.Common.No());
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_ClearTempDir(), Options.ClearTempDir ? Strings.Common.Yes() : Strings.Common.No());
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_LanguageId(), Options.LanguageId);
+            
+            CommandLine.WriteMessageVerbose(Strings.Program.Format_StartupOptionsEntries(),
+                Strings.Program.StartupOptions_FallbackLanguageId(), Options.FallbackLanguageId);
         }
     }
 }

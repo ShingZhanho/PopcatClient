@@ -1,0 +1,843 @@
+4096   Afar                                               Qafar
+4096   Afar (Djibouti)                                    Qafar (Yabuuti)
+4096   Afar (Eritrea)                                     Qafar (Eretria)
+4096   Afar (Ethiopia)                                    Qafar (Otobbia)
+54     Afrikaans                                          Afrikaans
+4096   Afrikaans (Namibia)                                Afrikaans (Namibië)
+1078   Afrikaans (South Africa)                           Afrikaans (Suid-Afrika)
+4096   Aghem                                              Aghem
+4096   Aghem (Cameroon)                                   Aghem (Kàmàlûŋ)
+4096   Akan                                               Akan
+4096   Akan (Ghana)                                       Akan (Gaana)
+28     Albanian                                           shqip
+1052   Albanian (Albania)                                 shqip (Shqipëri)
+4096   Albanian (Kosovo)                                  shqip (Kosovë)
+4096   Albanian (Macedonia, FYRO)                         shqip (Republika e Maqedonisë)
+1156   Alsatian (France)                                  Elsässisch (Frànkrisch)
+94     Amharic                                            አማርኛ
+1118   Amharic (Ethiopia)                                 አማርኛ (ኢትዮጵያ)
+1      Arabic                                             العربية
+5121   Arabic (Algeria)                                   العربية (الجزائر)
+15361  Arabic (Bahrain)                                   العربية (البحرين)
+4096   Arabic (Chad)                                      العربية (تشاد)
+4096   Arabic (Comoros)                                   العربية (جزر القمر)
+4096   Arabic (Djibouti)                                  العربية (جيبوتي)
+3073   Arabic (Egypt)                                     العربية (مصر)
+4096   Arabic (Eritrea)                                   العربية (إريتريا)
+2049   Arabic (Iraq)                                      العربية (العراق)
+4096   Arabic (Israel)                                    العربية (إسرائيل)
+11265  Arabic (Jordan)                                    العربية (الأردن)
+13313  Arabic (Kuwait)                                    العربية (الكويت)
+12289  Arabic (Lebanon)                                   العربية (لبنان)
+4097   Arabic (Libya)                                     العربية (ليبيا)
+4096   Arabic (Mauritania)                                العربية (موريتانيا)
+6145   Arabic (Morocco)                                   العربية (المملكة المغربية)
+8193   Arabic (Oman)                                      العربية (عمان)
+4096   Arabic (Palestinian Authority)                     العربية (السلطة الفلسطينية)
+16385  Arabic (Qatar)                                     العربية (قطر)
+1025   Arabic (Saudi Arabia)                              العربية (المملكة العربية السعودية)
+4096   Arabic (Somalia)                                   العربية (الصومال)
+4096   Arabic (South Sudan)                               العربية (جنوب السودان)
+4096   Arabic (Sudan)                                     العربية (السودان)
+10241  Arabic (Syria)                                     العربية (سوريا)
+7169   Arabic (Tunisia)                                   العربية (تونس)
+14337  Arabic (United Arab Emirates)                      العربية (الإمارات العربية المتحدة)
+4096   Arabic (World)                                     العربية (العالم)
+9217   Arabic (Yemen)                                     العربية (اليمن)
+43     Armenian                                           Հայերեն
+1067   Armenian (Armenia)                                 Հայերեն (Հայաստան)
+77     Assamese                                           অসমীয়া
+1101   Assamese (India)                                   অসমীয়া (ভাৰত)
+4096   Asturian                                           asturianu
+4096   Asturian (Spain)                                   asturianu (España)
+4096   Asu                                                Kipare
+4096   Asu (Tanzania)                                     Kipare (Tadhania)
+44     Azerbaijani                                        azərbaycan
+29740  Azerbaijani (Cyrillic)                             Азәрбајҹан дили
+2092   Azerbaijani (Cyrillic, Azerbaijan)                 азәрбајҹан (Азәрбајҹан)
+30764  Azerbaijani (Latin)                                azərbaycan
+1068   Azerbaijani (Latin, Azerbaijan)                    azərbaycan (Azərbaycan)
+4096   Bafia                                              rikpa
+4096   Bafia (Cameroon)                                   rikpa (kamɛrún)
+4096   Bamanankan                                         bamanakan
+4096   Bamanankan (Latin)                                 bamanakan
+4096   Bamanankan (Latin, Mali)                           bamanakan (Mali)
+69     Bangla                                             বাংলা
+2117   Bangla (Bangladesh)                                বাংলা (বাংলাদেশ)
+1093   Bangla (India)                                     বাংলা (ভারত)
+4096   Basaa                                              Ɓàsàa
+4096   Basaa (Cameroon)                                   Ɓàsàa (Kàmɛ̀rûn)
+109    Bashkir                                            Башҡорт
+1133   Bashkir (Russia)                                   Башҡорт (Рәсәй)
+45     Basque                                             euskara
+1069   Basque (Basque)                                    euskara (euskara)
+35     Belarusian                                         Беларуская
+1059   Belarusian (Belarus)                               Беларуская (Беларусь)
+4096   Bemba                                              Ichibemba
+4096   Bemba (Zambia)                                     Ichibemba (Zambia)
+4096   Bena                                               Hibena
+4096   Bena (Tanzania)                                    Hibena (Hutanzania)
+4096   Blin                                               ብሊን
+4096   Blin (Eritrea)                                     ብሊን (ኤርትራ)
+4096   Bodo                                               बड़ो
+4096   Bodo (India)                                       बड़ो (भारत)
+30746  Bosnian                                            bosanski
+25626  Bosnian (Cyrillic)                                 босански
+8218   Bosnian (Cyrillic, Bosnia and Herzegovina)         босански (Босна и Херцеговина)
+26650  Bosnian (Latin)                                    bosanski
+5146   Bosnian (Latin, Bosnia and Herzegovina)            bosanski (Bosna i Hercegovina)
+126    Breton                                             brezhoneg
+1150   Breton (France)                                    brezhoneg (Frañs)
+2      Bulgarian                                          български
+1026   Bulgarian (Bulgaria)                               български (България)
+85     Burmese                                            ဗမာ
+1109   Burmese (Myanmar)                                  မြန်မာ (မြန်မာ)
+3      Catalan                                            català
+4096   Catalan (Andorra)                                  català (Andorra)
+1027   Catalan (Catalan)                                  català (català)
+4096   Catalan (France)                                   català (França)
+4096   Catalan (Italy)                                    català (Itàlia)
+95     Central Atlas Tamazight                            Tamaziɣt n laṭlaṣ
+4096   Central Atlas Tamazight (Arabic)                   أطلس المركزية التامازيتية
+1119   Central Atlas Tamazight (Arabic, Morocco)          أطلس المركزية التامازيتية (Morocco)
+31839  Central Atlas Tamazight (Latin)                    Tamaziɣt n laṭlaṣ
+2143   Central Atlas Tamazight (Latin, Algeria)           Tamaziɣt n laṭlaṣ (Djazaïr)
+4096   Central Atlas Tamazight (Latin, Morocco)           Tamaziɣt n laṭlaṣ (Meṛṛuk)
+30815  Central Atlas Tamazight (Tifinagh)                 ⵜⴰⵎⴰⵣⵉⵖⵜ
+4191   Central Atlas Tamazight (Tifinagh, Morocco)        ⵜⴰⵎⴰⵣⵉⵖⵜ (ⵍⵎⵖⵔⵉⴱ)
+31890  Central Kurdish                                    کوردیی ناوەڕاست
+146    Central Kurdish                                    کوردیی ناوەڕاست
+1170   Central Kurdish (Iraq)                             کوردیی ناوەڕاست (عێراق)
+4096   Chechen                                            нохчийн
+4096   Chechen (Russia)                                   нохчийн (Росси)
+31836  Cherokee                                           ᏣᎳᎩ
+92     Cherokee                                           ᏣᎳᎩ
+1116   Cherokee (Cherokee, United States)                 ᏣᎳᎩ (ᏌᏊ ᎢᏳᎾᎵᏍᏔᏅ ᏍᎦᏚᎩ)
+4096   Chiga                                              Rukiga
+4096   Chiga (Uganda)                                     Rukiga (Uganda)
+30724  Chinese                                            中文
+4096   Chinese (Simplified Han, Hong Kong SAR)            中文 (香港特别行政区)
+4096   Chinese (Simplified Han, Macao SAR)                中文 (澳门特别行政区)
+4      Chinese (Simplified)                               中文(简体)
+4      Chinese (Simplified) Legacy                        中文(简体) 旧版
+2052   Chinese (Simplified, China)                        中文(中国)
+4100   Chinese (Simplified, Singapore)                    中文(新加坡)
+31748  Chinese (Traditional)                              中文(繁體)
+31748  Chinese (Traditional) Legacy                       中文(繁體) 舊版
+3076   Chinese (Traditional, Hong Kong SAR)               中文(香港特別行政區)
+5124   Chinese (Traditional, Macao SAR)                   中文(澳門特別行政區)
+1028   Chinese (Traditional, Taiwan)                      中文(台灣)
+4096   Church Slavic                                      церковнослове́нскїй
+4096   Church Slavic (Russia)                             церковнослове́нскїй (рѡссі́а)
+4096   Colognian                                          Kölsch
+4096   Colognian (Germany)                                Kölsch (Doütschland)
+4096   Cornish                                            kernewek
+4096   Cornish (United Kingdom)                           kernewek (Rywvaneth Unys)
+131    Corsican                                           Corsu
+1155   Corsican (France)                                  Corsu (Francia)
+26     Croatian                                           hrvatski
+4122   Croatian (Bosnia and Herzegovina)                  hrvatski (Bosna i Hercegovina)
+1050   Croatian (Croatia)                                 hrvatski (Hrvatska)
+5      Czech                                              čeština
+1029   Czech (Czechia)                                    čeština (Česko)
+6      Danish                                             dansk
+1030   Danish (Denmark)                                   dansk (Danmark)
+4096   Danish (Greenland)                                 dansk (Grønland)
+140    Dari                                               درى
+1164   Dari (Afghanistan)                                 درى (افغانستان)
+101    Divehi                                             ދިވެހިބަސް
+1125   Divehi (Maldives)                                  ދިވެހިބަސް (ދިވެހި ރާއްޖެ)
+4096   Duala                                              duálá
+4096   Duala (Cameroon)                                   duálá (Cameroun)
+19     Dutch                                              Nederlands
+4096   Dutch (Aruba)                                      Nederlands (Aruba)
+2067   Dutch (Belgium)                                    Nederlands (België)
+4096   Dutch (Bonaire, Sint Eustatius and Saba)           Nederlands (Bonaire, Sint Eustatius en Saba)
+4096   Dutch (Curaçao)                                    Nederlands (Curaçao)
+1043   Dutch (Netherlands)                                Nederlands (Nederland)
+4096   Dutch (Sint Maarten)                               Nederlands (Sint-Maarten)
+4096   Dutch (Suriname)                                   Nederlands (Suriname)
+4096   Dzongkha                                           རྫོང་ཁ
+3153   Dzongkha (Bhutan)                                  རྫོང་ཁ (འབྲུག)
+102    Edo                                                Ẹ̀dó
+1126   Edo (Nigeria)                                      Ẹ̀dó (Nigeria)
+4096   Embu                                               Kĩembu
+4096   Embu (Kenya)                                       Kĩembu (Kenya)
+9      English                                            English
+4096   English (American Samoa)                           English (American Samoa)
+4096   English (Anguilla)                                 English (Anguilla)
+4096   English (Antigua and Barbuda)                      English (Antigua and Barbuda)
+3081   English (Australia)                                English (Australia)
+4096   English (Austria)                                  English (Austria)
+4096   English (Bahamas)                                  English (Bahamas)
+4096   English (Barbados)                                 English (Barbados)
+4096   English (Belgium)                                  English (Belgium)
+10249  English (Belize)                                   English (Belize)
+4096   English (Bermuda)                                  English (Bermuda)
+4096   English (Botswana)                                 English (Botswana)
+4096   English (British Indian Ocean Territory)           English (British Indian Ocean Territory)
+4096   English (British Virgin Islands)                   English (British Virgin Islands)
+4096   English (Burundi)                                  English (Burundi)
+4096   English (Cameroon)                                 English (Cameroon)
+4105   English (Canada)                                   English (Canada)
+9225   English (Caribbean)                                English (Caribbean)
+4096   English (Cayman Islands)                           English (Cayman Islands)
+4096   English (Christmas Island)                         English (Christmas Island)
+4096   English (Cocos (Keeling) Islands)                  English (Cocos (Keeling) Islands)
+4096   English (Cook Islands)                             English (Cook Islands)
+4096   English (Cyprus)                                   English (Cyprus)
+4096   English (Denmark)                                  English (Denmark)
+4096   English (Dominica)                                 English (Dominica)
+4096   English (Eritrea)                                  English (Eritrea)
+4096   English (Europe)                                   English (Europe)
+4096   English (Falkland Islands)                         English (Falkland Islands)
+4096   English (Fiji)                                     English (Fiji)
+4096   English (Finland)                                  English (Finland)
+4096   English (Gambia)                                   English (Gambia)
+4096   English (Germany)                                  English (Germany)
+4096   English (Ghana)                                    English (Ghana)
+4096   English (Gibraltar)                                English (Gibraltar)
+4096   English (Grenada)                                  English (Grenada)
+4096   English (Guam)                                     English (Guam)
+4096   English (Guernsey)                                 English (Guernsey)
+4096   English (Guyana)                                   English (Guyana)
+15369  English (Hong Kong SAR)                            English (Hong Kong SAR)
+16393  English (India)                                    English (India)
+14345  English (Indonesia)                                English (Indonesia)
+6153   English (Ireland)                                  English (Ireland)
+4096   English (Isle of Man)                              English (Isle of Man)
+4096   English (Israel)                                   English (Israel)
+8201   English (Jamaica)                                  English (Jamaica)
+4096   English (Jersey)                                   English (Jersey)
+4096   English (Kenya)                                    English (Kenya)
+4096   English (Kiribati)                                 English (Kiribati)
+4096   English (Lesotho)                                  English (Lesotho)
+4096   English (Liberia)                                  English (Liberia)
+4096   English (Macao SAR)                                English (Macao SAR)
+4096   English (Madagascar)                               English (Madagascar)
+4096   English (Malawi)                                   English (Malawi)
+17417  English (Malaysia)                                 English (Malaysia)
+4096   English (Malta)                                    English (Malta)
+4096   English (Marshall Islands)                         English (Marshall Islands)
+4096   English (Mauritius)                                English (Mauritius)
+4096   English (Micronesia)                               English (Micronesia)
+4096   English (Montserrat)                               English (Montserrat)
+4096   English (Namibia)                                  English (Namibia)
+4096   English (Nauru)                                    English (Nauru)
+4096   English (Netherlands)                              English (Netherlands)
+5129   English (New Zealand)                              English (New Zealand)
+4096   English (Nigeria)                                  English (Nigeria)
+4096   English (Niue)                                     English (Niue)
+4096   English (Norfolk Island)                           English (Norfolk Island)
+4096   English (Northern Mariana Islands)                 English (Northern Mariana Islands)
+4096   English (Pakistan)                                 English (Pakistan)
+4096   English (Palau)                                    English (Palau)
+4096   English (Papua New Guinea)                         English (Papua New Guinea)
+13321  English (Philippines)                              English (Philippines)
+4096   English (Pitcairn Islands)                         English (Pitcairn Islands)
+4096   English (Puerto Rico)                              English (Puerto Rico)
+4096   English (Rwanda)                                   English (Rwanda)
+4096   English (Saint Kitts and Nevis)                    English (Saint Kitts and Nevis)
+4096   English (Saint Lucia)                              English (Saint Lucia)
+4096   English (Saint Vincent and the Grenadines)         English (Saint Vincent and the Grenadines)
+4096   English (Samoa)                                    English (Samoa)
+4096   English (Seychelles)                               English (Seychelles)
+4096   English (Sierra Leone)                             English (Sierra Leone)
+18441  English (Singapore)                                English (Singapore)
+4096   English (Sint Maarten)                             English (Sint Maarten)
+4096   English (Slovenia)                                 English (Slovenia)
+4096   English (Solomon Islands)                          English (Solomon Islands)
+7177   English (South Africa)                             English (South Africa)
+4096   English (South Sudan)                              English (South Sudan)
+4096   English (St Helena, Ascension, Tristan da Cunha)   English (St Helena, Ascension, Tristan da Cunha)
+4096   English (Sudan)                                    English (Sudan)
+4096   English (Swaziland)                                English (Swaziland)
+4096   English (Sweden)                                   English (Sweden)
+4096   English (Switzerland)                              English (Switzerland)
+4096   English (Tanzania)                                 English (Tanzania)
+4096   English (Tokelau)                                  English (Tokelau)
+4096   English (Tonga)                                    English (Tonga)
+11273  English (Trinidad and Tobago)                      English (Trinidad and Tobago)
+4096   English (Turks and Caicos Islands)                 English (Turks and Caicos Islands)
+4096   English (Tuvalu)                                   English (Tuvalu)
+4096   English (U.S. Outlying Islands)                    English (U.S. Outlying Islands)
+4096   English (U.S. Virgin Islands)                      English (U.S. Virgin Islands)
+4096   English (Uganda)                                   English (Uganda)
+2057   English (United Kingdom)                           English (United Kingdom)
+1033   English (United States)                            English (United States)
+4096   English (Vanuatu)                                  English (Vanuatu)
+4096   English (World)                                    English (World)
+4096   English (Zambia)                                   English (Zambia)
+12297  English (Zimbabwe)                                 English (Zimbabwe)
+4096   Esperanto                                          esperanto
+4096   Esperanto (World)                                  esperanto (World)
+37     Estonian                                           eesti
+1061   Estonian (Estonia)                                 eesti (Eesti)
+4096   Ewe                                                Eʋegbe
+4096   Ewe (Ghana)                                        Eʋegbe (Ghana nutome)
+4096   Ewe (Togo)                                         Eʋegbe (Togo nutome)
+4096   Ewondo                                             ewondo
+4096   Ewondo (Cameroon)                                  ewondo (Kamərún)
+56     Faroese                                            føroyskt
+4096   Faroese (Denmark)                                  føroyskt (Danmark)
+1080   Faroese (Faroe Islands)                            føroyskt (Føroyar)
+100    Filipino                                           Filipino
+1124   Filipino (Philippines)                             Filipino (Pilipinas)
+11     Finnish                                            suomi
+1035   Finnish (Finland)                                  suomi (Suomi)
+12     French                                             français
+4096   French (Algeria)                                   français (Algérie)
+2060   French (Belgium)                                   français (Belgique)
+4096   French (Benin)                                     français (Bénin)
+4096   French (Burkina Faso)                              français (Burkina Faso)
+4096   French (Burundi)                                   français (Burundi)
+11276  French (Cameroon)                                  français (Cameroun)
+3084   French (Canada)                                    français (Canada)
+7180   French (Caribbean)                                 français (caraïbes)
+4096   French (Central African Republic)                  français (République centrafricaine)
+4096   French (Chad)                                      français (Tchad)
+4096   French (Comoros)                                   français (Comores)
+4096   French (Congo)                                     français (Congo)
+12300  French (Côte d’Ivoire)                             français (Côte d’Ivoire)
+4096   French (Djibouti)                                  français (Djibouti)
+4096   French (Equatorial Guinea)                         français (Guinée équatoriale)
+1036   French (France)                                    français (France)
+4096   French (French Guiana)                             français (Guyane française)
+4096   French (French Polynesia)                          français (Polynésie française)
+4096   French (Gabon)                                     français (Gabon)
+4096   French (Guadeloupe)                                français (Guadeloupe)
+4096   French (Guinea)                                    français (Guinée)
+15372  French (Haiti)                                     français (Haïti)
+5132   French (Luxembourg)                                français (Luxembourg)
+4096   French (Madagascar)                                français (Madagascar)
+13324  French (Mali)                                      français (Mali)
+4096   French (Martinique)                                français (Martinique)
+4096   French (Mauritania)                                français (Mauritanie)
+4096   French (Mauritius)                                 français (Maurice)
+4096   French (Mayotte)                                   français (Mayotte)
+6156   French (Monaco)                                    français (Monaco)
+14348  French (Morocco)                                   français (Maroc)
+4096   French (New Caledonia)                             français (Nouvelle-Calédonie)
+4096   French (Niger)                                     français (Niger)
+8204   French (Réunion)                                   français (La Réunion)
+4096   French (Rwanda)                                    français (Rwanda)
+4096   French (Saint Barthélemy)                          français (Saint-Barthélemy)
+4096   French (Saint Martin)                              français (Saint-Martin)
+4096   French (Saint Pierre and Miquelon)                 français (Saint-Pierre-et-Miquelon)
+10252  French (Senegal)                                   français (Sénégal)
+4096   French (Seychelles)                                français (Seychelles)
+4108   French (Switzerland)                               français (Suisse)
+4096   French (Syria)                                     français (Syrie)
+4096   French (Togo)                                      français (Togo)
+4096   French (Tunisia)                                   français (Tunisie)
+4096   French (Vanuatu)                                   français (Vanuatu)
+4096   French (Wallis and Futuna)                         français (Wallis-et-Futuna)
+9228   French Congo (DRC)                                 français (Congo, République démocratique du)
+4096   Friulian                                           furlan
+4096   Friulian (Italy)                                   furlan (Italie)
+103    Fulah                                              Fulah
+31847  Fulah                                              Fulah
+4096   Fulah (Cameroon)                                   Pulaar (Kameruun)
+4096   Fulah (Guinea)                                     Pulaar (Gine)
+2151   Fulah (Latin, Senegal)                             Fulah (Sénégal)
+4096   Fulah (Mauritania)                                 Pulaar (Muritani)
+1127   Fulah (Nigeria)                                    Pulaar (Nigeria)
+86     Galician                                           galego
+1110   Galician (Galician)                                galego (galego)
+4096   Ganda                                              Luganda
+4096   Ganda (Uganda)                                     Luganda (Yuganda)
+55     Georgian                                           ქართული
+1079   Georgian (Georgia)                                 ქართული (საქართველო)
+7      German                                             Deutsch
+3079   German (Austria)                                   Deutsch (Österreich)
+4096   German (Belgium)                                   Deutsch (Belgien)
+1031   German (Germany)                                   Deutsch (Deutschland)
+4096   German (Italy)                                     Deutsch (Italien)
+5127   German (Liechtenstein)                             Deutsch (Liechtenstein)
+4103   German (Luxembourg)                                Deutsch (Luxemburg)
+2055   German (Switzerland)                               Deutsch (Schweiz)
+8      Greek                                              Ελληνικά
+4096   Greek (Cyprus)                                     Ελληνικά (Κύπρος)
+1032   Greek (Greece)                                     Ελληνικά (Ελλάδα)
+111    Greenlandic                                        kalaallisut
+1135   Greenlandic (Greenland)                            kalaallisut (Kalaallit Nunaat)
+116    Guarani                                            Avañe’ẽ
+1140   Guarani (Paraguay)                                 Avañe’ẽ (Paraguái)
+71     Gujarati                                           ગુજરાતી
+1095   Gujarati (India)                                   ગુજરાતી (ભારત)
+4096   Gusii                                              Ekegusii
+4096   Gusii (Kenya)                                      Ekegusii (Kenya)
+104    Hausa                                              Hausa
+31848  Hausa (Latin)                                      Hausa
+4096   Hausa (Latin, Ghana)                               Hausa (Gana)
+4096   Hausa (Latin, Niger)                               Hausa (Nijar)
+1128   Hausa (Latin, Nigeria)                             Hausa (Najeriya)
+117    Hawaiian                                           ʻŌlelo Hawaiʻi
+1141   Hawaiian (United States)                           ʻŌlelo Hawaiʻi (ʻAmelika Hui Pū ʻIa)
+13     Hebrew                                             עברית
+1037   Hebrew (Israel)                                    עברית (ישראל)
+57     Hindi                                              हिन्दी
+1081   Hindi (India)                                      हिन्दी (भारत)
+14     Hungarian                                          magyar
+1038   Hungarian (Hungary)                                magyar (Magyarország)
+105    Ibibio                                             Ibibio-Efik
+1129   Ibibio (Nigeria)                                   Ibibio-Efik (Nigeria)
+15     Icelandic                                          íslenska
+1039   Icelandic (Iceland)                                íslenska (Ísland)
+112    Igbo                                               Igbo
+1136   Igbo (Nigeria)                                     Igbo (Naịjịrịa)
+33     Indonesian                                         Indonesia
+1057   Indonesian (Indonesia)                             Indonesia (Indonesia)
+4096   Interlingua                                        interlingua
+4096   Interlingua (France)                               interlingua (Francia)
+4096   Interlingua (World)                                interlingua (World)
+93     Inuktitut                                          Inuktitut
+31837  Inuktitut (Latin)                                  Inuktitut
+2141   Inuktitut (Latin, Canada)                          Inuktitut (Kanatami)
+30813  Inuktitut (Syllabics)                              ᐃᓄᒃᑎᑐᑦ
+1117   Inuktitut (Syllabics, Canada)                      ᐃᓄᒃᑎᑐᑦ (ᑲᓇᑕᒥ)
+127    Invariant Language (Invariant Country)             Invariant Language (Invariant Country)
+60     Irish                                              Gaeilge
+2108   Irish (Ireland)                                    Gaeilge (Éire)
+52     isiXhosa                                           isiXhosa
+1076   isiXhosa (South Africa)                            isiXhosa (eMzantsi Afrika)
+53     isiZulu                                            isiZulu
+1077   isiZulu (South Africa)                             isiZulu (iNingizimu Afrika)
+16     Italian                                            italiano
+1040   Italian (Italy)                                    italiano (Italia)
+4096   Italian (San Marino)                               italiano (San Marino)
+2064   Italian (Switzerland)                              italiano (Svizzera)
+4096   Italian (Vatican City)                             italiano (Città del Vaticano)
+17     Japanese                                           日本語
+1041   Japanese (Japan)                                   日本語 (日本)
+4096   Javanese                                           Basa Jawa
+4096   Javanese                                           Basa Jawa
+4096   Javanese (Indonesia)                               Basa Jawa (Indonesia)
+4096   Javanese (Javanese)                                ꦧꦱꦗꦮ
+4096   Javanese (Javanese, Indonesia)                     ꦧꦱꦗꦮ (Indonesia)
+4096   Jola-Fonyi                                         joola
+4096   Jola-Fonyi (Senegal)                               joola (Senegal)
+4096   Kabuverdianu                                       kabuverdianu
+4096   Kabuverdianu (Cabo Verde)                          kabuverdianu (Kabu Verdi)
+4096   Kabyle                                             Taqbaylit
+4096   Kabyle (Algeria)                                   Taqbaylit (Lezzayer)
+4096   Kako                                               kakɔ
+4096   Kako (Cameroon)                                    kakɔ (Kamɛrun)
+4096   Kalenjin                                           Kalenjin
+4096   Kalenjin (Kenya)                                   Kalenjin (Emetab Kenya)
+4096   Kamba                                              Kikamba
+4096   Kamba (Kenya)                                      Kikamba (Kenya)
+75     Kannada                                            ಕನ್ನಡ
+1099   Kannada (India)                                    ಕನ್ನಡ (ಭಾರತ)
+113    Kanuri                                             Kanuri
+1137   Kanuri (Nigeria)                                   Kanuri (Nigeria)
+96     Kashmiri                                           کٲشُر
+4096   Kashmiri (Devanagari)                              कॉशुर
+2144   Kashmiri (Devanagari)                              कॉशुर
+1120   Kashmiri (Perso-Arabic)                            کٲشُر
+4096   Kashmiri (Perso-Arabic)                            کٲشُر (اَربی)
+63     Kazakh                                             қазақ тілі
+1087   Kazakh (Kazakhstan)                                қазақ тілі (Қазақстан)
+83     Khmer                                              ភាសាខ្មែរ
+1107   Khmer (Cambodia)                                   ភាសាខ្មែរ (កម្ពុជា)
+31878  K'iche'                                            K'iche'
+134    K'iche'                                            K'iche'
+1158   K'iche' (Guatemala)                                K'iche' (Guatemala)
+4096   Kikuyu                                             Gikuyu
+4096   Kikuyu (Kenya)                                     Gikuyu (Kenya)
+135    Kinyarwanda                                        Kinyarwanda
+1159   Kinyarwanda (Rwanda)                               Kinyarwanda (U Rwanda)
+65     Kiswahili                                          Kiswahili
+4096   Kiswahili (Congo DRC)                              Kiswahili (Jamhuri ya Kidemokrasia ya Kongo)
+1089   Kiswahili (Kenya)                                  Kiswahili (Kenya)
+4096   Kiswahili (Tanzania)                               Kiswahili (Tanzania)
+4096   Kiswahili (Uganda)                                 Kiswahili (Uganda)
+87     Konkani                                            कोंकणी
+1111   Konkani (India)                                    कोंकणी (भारत)
+18     Korean                                             한국어
+1042   Korean (Korea)                                     한국어(대한민국)
+4096   Korean (North Korea)                               한국어 (조선민주주의인민공화국)
+4096   Koyra Chiini                                       Koyra ciini
+4096   Koyra Chiini (Mali)                                Koyra ciini (Maali)
+4096   Koyraboro Senni                                    Koyraboro senni
+4096   Koyraboro Senni (Mali)                             Koyraboro senni (Maali)
+4096   Kurdish (Perso-Arabic, Iran)                       کوردی (ئێران)
+4096   Kwasio                                             Kwasio
+4096   Kwasio (Cameroon)                                  Kwasio (Kamerun)
+64     Kyrgyz                                             Кыргыз
+1088   Kyrgyz (Kyrgyzstan)                                Кыргыз (Кыргызстан)
+4096   Lakota                                             Lakȟólʼiyapi
+4096   Lakota (United States)                             Lakȟólʼiyapi (Mílahaŋska Tȟamákȟočhe)
+4096   Langi                                              Kɨlaangi
+4096   Langi (Tanzania)                                   Kɨlaangi (Taansanía)
+84     Lao                                                ລາວ
+1108   Lao (Laos)                                         ລາວ (ລາວ)
+118    Latin                                              lingua latīna
+1142   Latin (World)                                      lingua latīna (World)
+38     Latvian                                            latviešu
+1062   Latvian (Latvia)                                   latviešu (Latvija)
+4096   Lingala                                            lingála
+4096   Lingala (Angola)                                   lingála (Angóla)
+4096   Lingala (Central African Republic)                 lingála (Repibiki ya Afríka ya Káti)
+4096   Lingala (Congo DRC)                                lingála (Republíki ya Kongó Demokratíki)
+4096   Lingala (Congo)                                    lingála (Kongo)
+39     Lithuanian                                         lietuvių
+1063   Lithuanian (Lithuania)                             lietuvių (Lietuva)
+4096   Low German                                         Neddersass’sch
+4096   Low German (Germany)                               Neddersass’sch (Düütschland)
+4096   Low German (Netherlands)                           Neddersass’sch (Nedderlannen)
+31790  Lower Sorbian                                      dolnoserbšćina
+2094   Lower Sorbian (Germany)                            dolnoserbšćina (Nimska)
+4096   Luba-Katanga                                       Tshiluba
+4096   Luba-Katanga (Congo DRC)                           Tshiluba (Ditunga wa Kongu)
+4096   Luo                                                Dholuo
+4096   Luo (Kenya)                                        Dholuo (Kenya)
+110    Luxembourgish                                      Lëtzebuergesch
+1134   Luxembourgish (Luxembourg)                         Lëtzebuergesch (Lëtzebuerg)
+4096   Luyia                                              Luluhia
+4096   Luyia (Kenya)                                      Luluhia (Kenya)
+47     Macedonian                                         македонски
+1071   Macedonian (Macedonia, FYRO)                       македонски (Република Македонија)
+4096   Machame                                            Kimachame
+4096   Machame (Tanzania)                                 Kimachame (Tanzania)
+4096   Makhuwa-Meetto                                     Makua
+4096   Makhuwa-Meetto (Mozambique)                        Makua (Umozambiki)
+4096   Makonde                                            Chimakonde
+4096   Makonde (Tanzania)                                 Chimakonde (Tanzania)
+4096   Malagasy                                           Malagasy
+4096   Malagasy (Madagascar)                              Malagasy (Madagasikara)
+62     Malay                                              Melayu
+2110   Malay (Brunei)                                     Melayu (Brunei)
+1086   Malay (Malaysia)                                   Melayu (Malaysia)
+4096   Malay (Singapore)                                  Melayu (Singapura)
+76     Malayalam                                          മലയാളം
+1100   Malayalam (India)                                  മലയാളം (ഇന്ത്യ)
+58     Maltese                                            Malti
+1082   Maltese (Malta)                                    Malti (Malta)
+88     Manipuri                                           মৈতৈলোন্
+1112   Manipuri (India)                                   মৈতৈলোন্ (India)
+4096   Manx                                               Gaelg
+4096   Manx (Isle of Man)                                 Gaelg (Ellan Vannin)
+129    Maori                                              te reo Māori
+1153   Maori (New Zealand)                                te reo Māori (Aotearoa)
+122    Mapudungun                                         Mapudungun
+1146   Mapudungun (Chile)                                 Mapudungun (Chile)
+78     Marathi                                            मराठी
+1102   Marathi (India)                                    मराठी (भारत)
+4096   Masai                                              Maa
+4096   Masai (Kenya)                                      Maa (Kenya)
+4096   Masai (Tanzania)                                   Maa (Tansania)
+4096   Mazanderani                                        مازرونی
+4096   Mazanderani (Iran)                                 مازرونی (ایران)
+4096   Meru                                               Kĩmĩrũ
+4096   Meru (Kenya)                                       Kĩmĩrũ (Kenya)
+4096   Metaʼ                                              metaʼ
+4096   Metaʼ (Cameroon)                                   metaʼ (Kamalun)
+124    Mohawk                                             Kanien’kéha
+1148   Mohawk (Mohawk)                                    Kanien'kéha
+30800  Mongolian                                          монгол
+80     Mongolian                                          монгол
+1104   Mongolian (Mongolia)                               монгол (Монгол)
+31824  Mongolian (Traditional Mongolian)                  ᠮᠣᠩᠭᠣᠤᠯ ᠬᠡᠯᠡ
+2128   Mongolian (Traditional Mongolian, China)           ᠮᠣᠩᠭᠣᠤᠯ ᠬᠡᠯᠡ (ᠪᠦᠭᠦᠳᠡ ᠨᠠᠢᠷᠠᠮᠳᠠᠬᠤ ᠳᠤᠮᠳᠠᠳᠤ ᠠᠷᠠᠳ ᠣᠯᠣᠰ)
+3152   Mongolian (Traditional Mongolian, Mongolia)        ᠮᠣᠩᠭᠣᠯ ᠬᠡᠯᠡ (ᠮᠣᠩᠭᠣᠯ ᠣᠯᠣᠰ)
+4096   Morisyen                                           kreol morisien
+4096   Morisyen (Mauritius)                               kreol morisien (Moris)
+4096   Mundang                                            MUNDAŊ
+4096   Mundang (Cameroon)                                 MUNDAŊ (kameruŋ)
+4096   Nama                                               Khoekhoegowab
+4096   Nama (Namibia)                                     Khoekhoegowab (Namibiab)
+97     Nepali                                             नेपाली
+2145   Nepali (India)                                     नेपाली (भारत)
+1121   Nepali (Nepal)                                     नेपाली (नेपाल)
+4096   Ngiemboon                                          Shwóŋò ngiembɔɔn
+4096   Ngiemboon (Cameroon)                               Shwóŋò ngiembɔɔn (Kàmalûm)
+4096   Ngomba                                             Ndaꞌa
+4096   Ngomba (Cameroon)                                  Ndaꞌa (Kamɛlûn)
+4096   N'ko                                               ߒߞߏ
+4096   N'ko (Guinea)                                      ߒߞߏ (ߖߌ߬ߣߍ߬ ߞߊ߲ߓߍ߲)
+4096   North Ndebele                                      isiNdebele
+4096   North Ndebele (Zimbabwe)                           isiNdebele (Zimbabwe)
+4096   Northern Luri                                      لۊری شومالی
+4096   Northern Luri (Iran)                               لۊری شومالی (Iran)
+4096   Northern Luri (Iraq)                               لۊری شومالی (Iraq)
+59     Northern Sami                                      davvisámegiella
+20     Norwegian                                          norsk
+31764  Norwegian Bokmål                                   norsk bokmål
+1044   Norwegian Bokmål (Norway)                          norsk bokmål (Norge)
+4096   Norwegian Bokmål (Svalbard and Jan Mayen)          norsk bokmål (Svalbard og Jan Mayen)
+30740  Norwegian Nynorsk                                  nynorsk
+2068   Norwegian Nynorsk (Norway)                         nynorsk (Noreg)
+4096   Nuer                                               Thok Nath
+4096   Nuer (South Sudan)                                 Thok Nath (South Sudan)
+4096   Nyankole                                           Runyankore
+4096   Nyankole (Uganda)                                  Runyankore (Uganda)
+130    Occitan                                            Occitan
+1154   Occitan (France)                                   Occitan (França)
+72     Odia                                               ଓଡ଼ିଆ
+1096   Odia (India)                                       ଓଡ଼ିଆ (ଭାରତ)
+114    Oromo                                              Oromoo
+1138   Oromo (Ethiopia)                                   Oromoo (Itoophiyaa)
+4096   Oromo (Kenya)                                      Oromoo (Keeniyaa)
+4096   Ossetic                                            ирон
+4096   Ossetic (Georgia)                                  ирон (Гуырдзыстон)
+4096   Ossetic (Russia)                                   ирон (Уӕрӕсе)
+121    Papiamento                                         Papiamentu
+1145   Papiamento (Caribbean)                             Papiamentu (Caribbean)
+99     Pashto                                             پښتو
+1123   Pashto (Afghanistan)                               پښتو (افغانستان)
+41     Persian                                            فارسی
+1065   Persian (Iran)                                     فارسی (ایران)
+21     Polish                                             polski
+1045   Polish (Poland)                                    polski (Polska)
+22     Portuguese                                         português
+4096   Portuguese (Angola)                                português (Angola)
+1046   Portuguese (Brazil)                                português (Brasil)
+4096   Portuguese (Cabo Verde)                            português (Cabo Verde)
+4096   Portuguese (Equatorial Guinea)                     português (Guiné Equatorial)
+4096   Portuguese (Guinea-Bissau)                         português (Guiné-Bissau)
+4096   Portuguese (Luxembourg)                            português (Luxemburgo)
+4096   Portuguese (Macao SAR)                             português (RAE de Macau)
+4096   Portuguese (Mozambique)                            português (Moçambique)
+2070   Portuguese (Portugal)                              português (Portugal)
+4096   Portuguese (São Tomé and Príncipe)                 português (São Tomé e Príncipe)
+4096   Portuguese (Switzerland)                           português (Suíça)
+4096   Portuguese (Timor-Leste)                           português (Timor-Leste)
+4096   Prussian                                           prūsiskan
+4096   Prussian (World)                                   prūsiskan (swītai)
+4096   Punjabi                                            ਪੰਜਾਬੀ
+31814  Punjabi                                            پنجابی
+70     Punjabi                                            ਪੰਜਾਬੀ
+1094   Punjabi (India)                                    ਪੰਜਾਬੀ (ਭਾਰਤ)
+2118   Punjabi (Pakistan)                                 پنجابی (پاکستان)
+107    Quechua                                            Runasimi
+1131   Quechua (Bolivia)                                  Runasimi (Bolivia)
+3179   Quechua (Peru)                                     Runasimi (Perú)
+2155   Quichua (Ecuador)                                  Runasimi (Ecuador)
+24     Romanian                                           română
+2072   Romanian (Moldova)                                 română (Republica Moldova)
+1048   Romanian (Romania)                                 română (România)
+23     Romansh                                            rumantsch
+1047   Romansh (Switzerland)                              rumantsch (Svizra)
+4096   Rombo                                              Kihorombo
+4096   Rombo (Tanzania)                                   Kihorombo (Tanzania)
+4096   Rundi                                              Ikirundi
+4096   Rundi (Burundi)                                    Ikirundi (Uburundi)
+25     Russian                                            русский
+4096   Russian (Belarus)                                  русский (Беларусь)
+4096   Russian (Kazakhstan)                               русский (Казахстан)
+4096   Russian (Kyrgyzstan)                               русский (Киргизия)
+2073   Russian (Moldova)                                  русский (Молдова)
+1049   Russian (Russia)                                   русский (Россия)
+4096   Russian (Ukraine)                                  русский (Украина)
+4096   Rwa                                                Kiruwa
+4096   Rwa (Tanzania)                                     Kiruwa (Tanzania)
+4096   Saho                                               Saho
+4096   Saho (Eritrea)                                     Saho (Eretria)
+133    Sakha                                              Саха
+1157   Sakha (Russia)                                     Саха (Россия)
+4096   Samburu                                            Kisampur
+4096   Samburu (Kenya)                                    Kisampur (Kenya)
+28731  Sami (Inari)                                       anarâškielâ
+31803  Sami (Lule)                                        julevusámegiella
+29755  Sami (Skolt)                                       sää´mǩiõll
+30779  Sami (Southern)                                    åarjelsaemiengïele
+9275   Sami, Inari (Finland)                              anarâškielâ (Suomâ)
+4155   Sami, Lule (Norway)                                julevusámegiella (Vuodna)
+5179   Sami, Lule (Sweden)                                julevusámegiella (Svierik)
+3131   Sami, Northern (Finland)                           davvisámegiella (Suopma)
+1083   Sami, Northern (Norway)                            davvisámegiella (Norga)
+2107   Sami, Northern (Sweden)                            davvisámegiella (Ruoŧŧa)
+8251   Sami, Skolt (Finland)                              sää´mǩiõll (Lää´ddjânnam)
+6203   Sami, Southern (Norway)                            åarjelsaemiengïele (Nöörje)
+7227   Sami, Southern (Sweden)                            åarjelsaemiengïele (Sveerje)
+4096   Sango                                              Sängö
+4096   Sango (Central African Republic)                   Sängö (Ködörösêse tî Bêafrîka)
+4096   Sangu                                              Ishisangu
+4096   Sangu (Tanzania)                                   Ishisangu (Tansaniya)
+79     Sanskrit                                           संस्कृत
+1103   Sanskrit (India)                                   संस्कृत (भारतम्)
+145    Scottish Gaelic                                    Gàidhlig
+1169   Scottish Gaelic (United Kingdom)                   Gàidhlig (An Rìoghachd Aonaichte)
+4096   Sena                                               sena
+4096   Sena (Mozambique)                                  sena (Moçambique)
+31770  Serbian                                            srpski
+27674  Serbian (Cyrillic)                                 српски
+7194   Serbian (Cyrillic, Bosnia and Herzegovina)         српски (Босна и Херцеговина)
+4096   Serbian (Cyrillic, Kosovo)                         српски (Косово)
+12314  Serbian (Cyrillic, Montenegro)                     српски (Црна Гора)
+10266  Serbian (Cyrillic, Serbia)                         српски (Србија)
+28698  Serbian (Latin)                                    srpski
+6170   Serbian (Latin, Bosnia and Herzegovina)            srpski (Bosna i Hercegovina)
+4096   Serbian (Latin, Kosovo)                            srpski (Kosovo)
+11290  Serbian (Latin, Montenegro)                        srpski (Crna Gora)
+9242   Serbian (Latin, Serbia)                            srpski (Srbija)
+48     Sesotho                                            Sesotho
+4096   Sesotho (Lesotho)                                  Sesotho (Lesotho)
+1072   Sesotho (South Africa)                             Sesotho (South Africa)
+108    Sesotho sa Leboa                                   Sesotho sa Leboa
+1132   Sesotho sa Leboa (South Africa)                    Sesotho sa Leboa (Afrika Borwa)
+50     Setswana                                           Setswana
+2098   Setswana (Botswana)                                Setswana (Botswana)
+1074   Setswana (South Africa)                            Setswana (Aforika Borwa)
+4096   Shambala                                           Kishambaa
+4096   Shambala (Tanzania)                                Kishambaa (Tanzania)
+4096   Shona                                              chiShona
+4096   Shona (Latin)                                      chiShona (Latin)
+4096   Shona (Latin, Zimbabwe)                            chiShona (Zimbabwe)
+31833  Sindhi                                             سنڌي
+89     Sindhi                                             سنڌي
+4096   Sindhi (Devanagari)                                सिन्धी
+1113   Sindhi (Devanagari, India)                         सिन्धी (India)
+2137   Sindhi (Pakistan)                                  سنڌي (پاکستان)
+91     Sinhala                                            සිංහල
+1115   Sinhala (Sri Lanka)                                සිංහල (ශ්‍රී ලංකාව)
+4096   siSwati                                            Siswati
+4096   siSwati (South Africa)                             siSwati (South Africa)
+4096   siSwati (Swaziland)                                siSwati (Swaziland)
+27     Slovak                                             slovenčina
+1051   Slovak (Slovakia)                                  slovenčina (Slovensko)
+36     Slovenian                                          slovenščina
+1060   Slovenian (Slovenia)                               slovenščina (Slovenija)
+4096   Soga                                               Olusoga
+4096   Soga (Uganda)                                      Olusoga (Yuganda)
+119    Somali                                             Soomaali
+4096   Somali (Djibouti)                                  Soomaali (Jabuuti)
+4096   Somali (Ethiopia)                                  Soomaali (Itoobiya)
+4096   Somali (Kenya)                                     Soomaali (Kiiniya)
+1143   Somali (Somalia)                                   Soomaali (Soomaaliya)
+4096   South Ndebele                                      isiNdebele
+4096   South Ndebele (South Africa)                       isiNdebele (South Africa)
+10     Spanish                                            español
+11274  Spanish (Argentina)                                español (Argentina)
+4096   Spanish (Belize)                                   español (Belice)
+16394  Spanish (Bolivia)                                  español (Bolivia)
+4096   Spanish (Brazil)                                   español (Brasil)
+13322  Spanish (Chile)                                    español (Chile)
+9226   Spanish (Colombia)                                 español (Colombia)
+5130   Spanish (Costa Rica)                               español (Costa Rica)
+23562  Spanish (Cuba)                                     español (Cuba)
+7178   Spanish (Dominican Republic)                       español (República Dominicana)
+12298  Spanish (Ecuador)                                  español (Ecuador)
+17418  Spanish (El Salvador)                              español (El Salvador)
+4096   Spanish (Equatorial Guinea)                        español (Guinea Ecuatorial)
+4106   Spanish (Guatemala)                                español (Guatemala)
+18442  Spanish (Honduras)                                 español (Honduras)
+22538  Spanish (Latin America)                            español (Latinoamérica)
+2058   Spanish (Mexico)                                   español (México)
+19466  Spanish (Nicaragua)                                español (Nicaragua)
+6154   Spanish (Panama)                                   español (Panamá)
+15370  Spanish (Paraguay)                                 español (Paraguay)
+10250  Spanish (Peru)                                     español (Perú)
+4096   Spanish (Philippines)                              español (Filipinas)
+20490  Spanish (Puerto Rico)                              español (Puerto Rico)
+3082   Spanish (Spain, International Sort)                español (España, alfabetización internacional)
+21514  Spanish (United States)                            español (Estados Unidos)
+14346  Spanish (Uruguay)                                  español (Uruguay)
+8202   Spanish (Venezuela)                                español (Venezuela)
+4096   Standard Moroccan Tamazight                        ⵜⴰⵎⴰⵣⵉⵖⵜ
+4096   Standard Moroccan Tamazight (Tifinagh)             ⵜⴰⵎⴰⵣⵉⵖⵜ
+4096   Standard Moroccan Tamazight (Tifinagh, Morocco)    ⵜⴰⵎⴰⵣⵉⵖⵜ (ⵍⵎⵖⵔⵉⴱ)
+29     Swedish                                            svenska
+4096   Swedish (Åland Islands)                            svenska (Åland)
+2077   Swedish (Finland)                                  svenska (Finland)
+1053   Swedish (Sweden)                                   svenska (Sverige)
+132    Swiss German                                       Schwiizertüütsch
+4096   Swiss German (Liechtenstein)                       Schwiizertüütsch (Liächteschtäi)
+4096   Swiss German (Switzerland)                         Schwiizertüütsch (Schwiiz)
+90     Syriac                                             ܣܘܪܝܝܐ
+1114   Syriac (Syria)                                     ܣܘܪܝܝܐ (ܣܘܪܝܐ)
+4096   Tachelhit                                          ⵜⴰⵛⵍⵃⵉⵜ
+4096   Tachelhit (Latin)                                  Tashelḥiyt
+4096   Tachelhit (Latin, Morocco)                         Tashelḥiyt (lmɣrib)
+4096   Tachelhit (Tifinagh)                               ⵜⴰⵛⵍⵃⵉⵜ
+4096   Tachelhit (Tifinagh, Morocco)                      ⵜⴰⵛⵍⵃⵉⵜ (ⵍⵎⵖⵔⵉⴱ)
+4096   Taita                                              Kitaita
+4096   Taita (Kenya)                                      Kitaita (Kenya)
+40     Tajik                                              Тоҷикӣ
+31784  Tajik (Cyrillic)                                   тоҷикӣ
+1064   Tajik (Cyrillic, Tajikistan)                       тоҷикӣ (Тоҷикистон)
+73     Tamil                                              தமிழ்
+1097   Tamil (India)                                      தமிழ் (இந்தியா)
+4096   Tamil (Malaysia)                                   தமிழ் (மலேசியா)
+4096   Tamil (Singapore)                                  தமிழ் (சிங்கப்பூர்)
+2121   Tamil (Sri Lanka)                                  தமிழ் (இலங்கை)
+4096   Tasawaq                                            Tasawaq senni
+4096   Tasawaq (Niger)                                    Tasawaq senni (Nižer)
+68     Tatar                                              Татар
+1092   Tatar (Russia)                                     Татар (Россия)
+74     Telugu                                             తెలుగు
+1098   Telugu (India)                                     తెలుగు (భారత దేశం)
+4096   Teso                                               Kiteso
+4096   Teso (Kenya)                                       Kiteso (Kenia)
+4096   Teso (Uganda)                                      Kiteso (Uganda)
+30     Thai                                               ไทย
+1054   Thai (Thailand)                                    ไทย (ไทย)
+81     Tibetan                                            བོད་ཡིག
+1105   Tibetan (China)                                    བོད་ཡིག (ཀྲུང་ཧྭ་མི་དམངས་སྤྱི་མཐུན་རྒྱལ་ཁབ།)
+4096   Tibetan (India)                                    བོད་སྐད་ (རྒྱ་གར་)
+4096   Tigre                                              ትግረ
+4096   Tigre (Eritrea)                                    ትግረ (ኤርትራ)
+115    Tigrinya                                           ትግርኛ
+2163   Tigrinya (Eritrea)                                 ትግርኛ (ኤርትራ)
+1139   Tigrinya (Ethiopia)                                ትግርኛ (ኢትዮጵያ)
+4096   Tongan                                             lea fakatonga
+4096   Tongan (Tonga)                                     lea fakatonga (Tonga)
+49     Tsonga                                             Xitsonga
+31     Turkish                                            Türkçe
+4096   Turkish (Cyprus)                                   Türkçe (Kıbrıs)
+1055   Turkish (Turkey)                                   Türkçe (Türkiye)
+66     Turkmen                                            Türkmen dili
+1090   Turkmen (Turkmenistan)                             Türkmen dili (Türkmenistan)
+34     Ukrainian                                          українська
+1058   Ukrainian (Ukraine)                                українська (Україна)
+46     Upper Sorbian                                      hornjoserbšćina
+1070   Upper Sorbian (Germany)                            hornjoserbšćina (Němska)
+32     Urdu                                               اُردو
+2080   Urdu (India)                                       اردو (بھارت)
+1056   Urdu (Pakistan)                                    اُردو (پاکستان)
+128    Uyghur                                             ئۇيغۇرچە
+1152   Uyghur (China)                                     ئۇيغۇرچە (جۇڭخۇا خەلق جۇمھۇرىيىتى)
+67     Uzbek                                              o‘zbek
+30787  Uzbek (Cyrillic)                                   ўзбекча
+2115   Uzbek (Cyrillic, Uzbekistan)                       ўзбекча (Ўзбекистон)
+31811  Uzbek (Latin)                                      o‘zbek
+1091   Uzbek (Latin, Uzbekistan)                          o‘zbek (Oʻzbekiston)
+4096   Uzbek (Perso-Arabic)                               اوزبیک
+4096   Uzbek (Perso-Arabic, Afghanistan)                  اوزبیک (افغانستان)
+4096   Vai                                                ꕙꔤ
+4096   Vai (Latin)                                        Vai
+4096   Vai (Latin, Liberia)                               Vai (Laibhiya)
+4096   Vai (Vai)                                          ꕙꔤ
+4096   Vai (Vai, Liberia)                                 ꕙꔤ (ꕞꔤꔫꕩ)
+2051   Valencian (Spain)                                  valencià (Espanya)
+51     Venda                                              Tshivenḓa
+1075   Venda (South Africa)                               Tshivenḓa (South Africa)
+42     Vietnamese                                         Tiếng Việt
+1066   Vietnamese (Vietnam)                               Tiếng Việt (Việt Nam)
+4096   Volapük                                            Volapük
+4096   Volapük (World)                                    Volapük (World)
+4096   Vunjo                                              Kyivunjo
+4096   Vunjo (Tanzania)                                   Kyivunjo (Tanzania)
+4096   Walser                                             Walser
+4096   Walser (Switzerland)                               Walser (Schwiz)
+82     Welsh                                              Cymraeg
+1106   Welsh (United Kingdom)                             Cymraeg (Y Deyrnas Unedig)
+98     Western Frisian                                    Frysk
+1122   Western Frisian (Netherlands)                      Frysk (Nederlân)
+4096   Wolaytta                                           ወላይታቱ
+4096   Wolaytta (Ethiopia)                                ወላይታቱ (ኢትዮጵያ)
+136    Wolof                                              Wolof
+1160   Wolof (Senegal)                                    Wolof (Senegaal)
+1073   Xitsonga (South Africa)                            Xitsonga (South Africa)
+4096   Yangben                                            nuasue
+4096   Yangben (Cameroon)                                 nuasue (Kemelún)
+120    Yi                                                 ꆈꌠꁱꂷ
+1144   Yi (China)                                         ꆈꌠꁱꂷ (ꍏꉸꏓꂱꇭꉼꇩ)
+61     Yiddish                                            ייִדיש
+1085   Yiddish (World)                                    ייִדיש (וועלט)
+106    Yoruba                                             Èdè Yorùbá
+4096   Yoruba (Benin)                                     Èdè Yorùbá (Orílɛ́ède Bɛ̀nɛ̀)
+1130   Yoruba (Nigeria)                                   Èdè Yorùbá (Orílẹ́ède Nàìjíríà)
+4096   Zarma                                              Zarmaciine
+4096   Zarma (Niger)                                      Zarmaciine (Nižer)

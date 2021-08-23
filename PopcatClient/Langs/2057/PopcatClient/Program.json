@@ -4,7 +4,18 @@
     "debug@warn-msg_debug_mode": "Debug mode is enabled.",
     
     "msg_clear_temp_dir": "Clearing temp dir...",
-    "success-msg_temp_dir_cleared": "Temp dir cleared."
+    "success-msg_temp_dir_cleared": "Temp dir cleared.",
+    
+    "msg_client_started_with_following": "PopcatClient started with following settings:",
+    "format@startup_option_entries": "{0,-30} {1}",
+    "startup_option_wait_time": "Waiting Time",
+    "startup_option_max_failures": "Max sequential failures",
+    "startup_option_leaderboard": "Leaderboard",
+    "startup_option_check_update": "Check updates",
+    "startup_option_install_beta": "Install Beta versions",
+    "startup_option_clear_temp_dir": "Clear temp dir",
+    "startup_option_lang_id": "Display Language",
+    "startup_option_fallback_lang_id": "Fallback Language"
   },
   "import_files": null
 }

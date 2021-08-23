@@ -34,6 +34,14 @@ namespace PopcatClient
         public static void WriteMessageVerbose(string text) => OutputWithTag($"[{Strings.CommandLine.InfoTag()}] {text}",
             Strings.CommandLine.VerboseTag(), NormalText, NormalBack);
         /// <summary>
+        /// Writes a formatted verbose message to the console. Has no effect if verbose mode is not enabled.
+        /// </summary>
+        /// <param name="text">The message to write.</param>
+        /// <param name="args">The format parameters.</param>
+        public static void WriteMessageVerbose(string text, params object[]? args) =>
+            OutputWithTag($"[{Strings.CommandLine.InfoTag()}] {text}", Strings.CommandLine.VerboseTag(), NormalText,
+                ErrorBack, args);
+        /// <summary>
         /// Writes a debug message to the console. Has no effect if debug mode is not enabled.
         /// </summary>
         /// <param name="text">The message to write</param>

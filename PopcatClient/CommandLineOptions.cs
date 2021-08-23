@@ -44,10 +44,6 @@ namespace PopcatClient
             //
             IncludeBeta = args.Contains("--include-beta") || args.Contains("-b");
             //
-            // --init-pops
-            //
-            InitialPops = ParseInt("--init-pops", args, value => value >= 1, DefaultInitialPops);
-            //
             // --lang
             //
             LanguageId = ParseInt("--lang", args,
@@ -117,11 +113,6 @@ namespace PopcatClient
         /// Indicates if to include beta versions when updating. This option will always be ignored if the app is already a beta.
         /// </summary>
         public bool IncludeBeta { get; }
-        /// <summary>
-        /// Indicates how many pops should the application send to the server for the first time.
-        /// </summary>
-        public int InitialPops { get; } = DefaultInitialPops;
-        private const int DefaultInitialPops = 800;
         /// <summary>
         /// The LCID of the desired app language.
         /// </summary>

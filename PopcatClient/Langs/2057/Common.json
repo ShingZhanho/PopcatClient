@@ -2,7 +2,12 @@
   "strings": {
     "verbose@msg_server_response": "Response: %%response%%",
     "msg_response_status" : "%%msg%% Status: %%http_status_code%% - %%status_description%%.",
-    "format@datetime": "dd-MM-yyyy hh:mm:ss tt"
+    "format@datetime": "dd-MM-yyyy hh:mm:ss tt",
+    
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "yes": "Yes",
+    "no": "No"
   },
   "import_files": null
 }
