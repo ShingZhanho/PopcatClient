@@ -9,9 +9,6 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <Compile Include="..\PopcatClient\Properties\Exceptions\InvalidLanguagePackFormatException.cs">
-          <Link>Properties\Exception\InvalidLanguagePackFormatException.cs</Link>
-        </Compile>
         <Compile Include="..\PopcatClient\Properties\GlobalAssemblyInfo.cs">
             <Link>.\Properties\GlobalAssemblyInfo.cs</Link>
         </Compile>

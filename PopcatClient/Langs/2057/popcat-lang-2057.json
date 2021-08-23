@@ -9,9 +9,7 @@
             "pack_version": "v0.1-beta.6"
         }
     },
-    "strings": {
-        "test_string": "HelloWorld!"
-    },
+    "strings": null,
     "import_files": [
         "PopcatClient/PopcatClient.json"
     ]

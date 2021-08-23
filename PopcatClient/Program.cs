@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,15 @@ namespace PopcatClient
 
         public static void Main(string[] args)
         {
+            // load language packs
+            LanguageManager.FallbackLanguage = new LanguageFile(
+                Path.GetFullPath($"./Langs/{Options.FallbackLanguage}/popcat-lang-{Options.FallbackLanguage}.json"));
+            
+            var langPackPath = Path.GetFullPath($"./Langs/{Options.LanguageId}/popcat-lang-{Options.LanguageId}.json");
+            LanguageManager.Language = File.Exists(langPackPath)
+                ? new LanguageFile(langPackPath)
+                : LanguageManager.FallbackLanguage;
+            
             Console.Title = $"Popcat Client {AssemblyData.InformationalVersion}";
 
             Options = new CommandLineOptions(args);
@@ -176,8 +186,12 @@ namespace PopcatClient
                                             (Options.IncludeBeta || ((VersionName)AssemblyData.InformationalVersion).PreRelease 
                                                 ? "Install" : "Do not install"));
             CommandLine.WriteMessageVerbose("Clear temporary directory: " + (Options.ClearTempDir ? "Yes" : "No"));
-            CommandLine.WriteMessageVerbose($"Display language pack ID: {Options.LanguageId}");
-            CommandLine.WriteMessageVerbose($"Fallback display language pack ID: {Options.FallbackLanguage}");
+            CommandLine.WriteMessageVerbose(
+                $"Display language pack ID: {Options.LanguageId} " +
+                $"({CultureInfo.GetCultureInfo(Options.LanguageId).DisplayName})");
+            CommandLine.WriteMessageVerbose(
+                $"Fallback display language pack ID: {Options.FallbackLanguage} " +
+                $"({CultureInfo.GetCultureInfo(Options.FallbackLanguage).DisplayName})");
         }
     }
 }

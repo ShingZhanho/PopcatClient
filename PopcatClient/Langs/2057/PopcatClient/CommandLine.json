@@ -1,0 +1,11 @@
+{
+    "strings": {
+        "output_tag_info": "INFO",
+        "output_tag_success": "SUCCESS",
+        "output_tag_error": "ERROR",
+        "output_tag_warning": "WARNING",
+        "output_tag_debug": "DEBUG",
+        "output_tag_verbose": "VERBOSE"
+    },
+    "import_files": null
+}

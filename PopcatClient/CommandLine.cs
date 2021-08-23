@@ -26,67 +26,76 @@ namespace PopcatClient
         /// <param name="text">The message to write</param>
         /// <param name="args">The format parameters</param>
         public static void WriteMessage(string text, params object[]? args) =>
-            Output($"[INFO] {text}", NormalText, NormalBack, args);
+            Output($"[{Strings.CommandLine.InfoTag()}] {text}", NormalText, NormalBack, args);
         /// <summary>
         /// Writes a verbose message to the console. Has no effect if verbose mode is not enabled.
         /// </summary>
         /// <param name="text">The message to write</param>
-        public static void WriteMessageVerbose(string text) => OutputWithTag($"[INFO] {text}", "VERBOSE", NormalText, NormalBack);
+        public static void WriteMessageVerbose(string text) => OutputWithTag($"[{Strings.CommandLine.InfoTag()}] {text}",
+            Strings.CommandLine.VerboseTag(), NormalText, NormalBack);
         /// <summary>
         /// Writes a debug message to the console. Has no effect if debug mode is not enabled.
         /// </summary>
         /// <param name="text">The message to write</param>
-        public static void WriteMessageDebug(string text) => OutputWithTag($"[INFO] {text}", "DEBUG", NormalText, NormalBack);
+        public static void WriteMessageDebug(string text) => OutputWithTag($"[{Strings.CommandLine.InfoTag()}] {text}", 
+            Strings.CommandLine.InfoTag(), NormalText, NormalBack);
         
         /// <summary>
         /// Writes an error message to console.
         /// </summary>
         /// <param name="text">The error message to write.</param>
-        public static void WriteError(string text) => Output($"[ERROR] {text}", ErrorText, ErrorBack);
+        public static void WriteError(string text) => 
+            Output($"[{Strings.CommandLine.ErrorTag()}] {text}", ErrorText, ErrorBack);
         /// <summary>
         /// Writes a verbose error message to console. Has no effect if verbose mode is not enabled.
         /// </summary>
         /// <param name="text"></param>
-        public static void WriteErrorVerbose(string text) => OutputWithTag($"[ERROR] {text}", "VERBOSE", ErrorText, ErrorBack);
+        public static void WriteErrorVerbose(string text) => OutputWithTag($"[{Strings.CommandLine.ErrorTag()}] {text}", 
+            Strings.CommandLine.VerboseTag(), ErrorText, ErrorBack);
         /// <summary>
         /// Writes a debug error message to the console. Has no effect if debug mode is not enabled.
         /// </summary>
         /// <param name="text">The error message to write</param>
-        public static void WriteErrorDebug(string text) => OutputWithTag($"[ERROR] {text}", "DEBUG", ErrorText, ErrorBack);
+        public static void WriteErrorDebug(string text) => OutputWithTag($"[{Strings.CommandLine.ErrorTag()}] {text}",
+            Strings.CommandLine.DebugTag(), ErrorText, ErrorBack);
         
         /// <summary>
         /// Writes a warning message to console.
         /// </summary>
         /// <param name="text">The warning message to write</param>
-        public static void WriteWarning(string text) => Output($"[WARNING] {text}", WarningText, WarningBack);
+        public static void WriteWarning(string text) => 
+            Output($"[{Strings.CommandLine.WarningTag()}] {text}", WarningText, WarningBack);
         /// <summary>
         /// Writes a verbose error message to console. Has no effect if verbose mode is not enabled.
         /// </summary>
         /// <param name="text">The warning message to write</param>
-        public static void WriteWarningVerbose(string text) => OutputWithTag($"[WARNING] {text}", "VERBOSE", WarningText, WarningBack);
+        public static void WriteWarningVerbose(string text) => OutputWithTag($"[{Strings.CommandLine.WarningTag()}] {text}",
+            Strings.CommandLine.VerboseTag(), WarningText, WarningBack);
         /// <summary>
         /// Writes a debug warning message to the console. Has no effect if debug mode is not enabled.
         /// </summary>
         /// <param name="text">The warning message to write</param>
-        public static void WriteWarningDebug(string text) =>   
-            OutputWithTag($"[WARNING] {text}", "DEBUG", WarningText, WarningBack);
+        public static void WriteWarningDebug(string text) => OutputWithTag($"[{Strings.CommandLine.WarningTag()}] {text}", 
+            Strings.CommandLine.DebugTag(), WarningText, WarningBack);
 
         /// <summary>
         /// Writes a success message to the console.
         /// </summary>
         /// <param name="text">The success message to write</param>
-        public static void WriteSuccess(string text) => Output($"[SUCCESS] {text}", SuccessText, SuccessBack);
+        public static void WriteSuccess(string text) => 
+            Output($"[{Strings.CommandLine.SuccessTag()}] {text}", SuccessText, SuccessBack);
         /// <summary>
         /// Writes a verbose success message to the console. Has no effect if verbose mode is not enabled.
         /// </summary>
         /// <param name="text">The success message to write</param>
-        public static void WriteSuccessVerbose(string text) => OutputWithTag($"[SUCCESS] {text}", "VERBOSE", SuccessText, SuccessBack);
+        public static void WriteSuccessVerbose(string text) => OutputWithTag($"[{Strings.CommandLine.SuccessTag()}] {text}", 
+            Strings.CommandLine.VerboseTag(), SuccessText, SuccessBack);
         /// <summary>
         /// Writes a debug success message to the console. Has not effect if debug mode is not enabled.
         /// </summary>
         /// <param name="text">The success message to write</param>
-        public static void WriteSuccessDebug(string text) =>
-            OutputWithTag($"[SUCCESS] {text}", "DEBUG", SuccessText, SuccessBack);
+        public static void WriteSuccessDebug(string text) => OutputWithTag($"[{Strings.CommandLine.SuccessTag()}] {text}", 
+            Strings.CommandLine.DebugTag(), SuccessText, SuccessBack);
 
         private static void Output(string text, ConsoleColor textColour, ConsoleColor backgroundColour, object[]? args = null)
         {
