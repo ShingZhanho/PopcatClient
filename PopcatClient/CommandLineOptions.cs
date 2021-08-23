@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace PopcatClient
@@ -14,7 +15,7 @@ namespace PopcatClient
         /// <param name="args">Command line arguments</param>
         public CommandLineOptions(string[] args)
         {
-            args ??= System.Array.Empty<string>();
+            args ??= Array.Empty<string>();
             // parsing options
             //
             // --clear-temp
@@ -40,6 +41,12 @@ namespace PopcatClient
             // --init-pops
             //
             InitialPops = ParseInt("--init-pops", args, value => value >= 1, DefaultCommandLineOptions.InitialPops);
+            //
+            // --lang
+            //
+            LanguageId = ParseInt("--lang", args,
+                value => CultureInfo.GetCultures(CultureTypes.AllCultures).Any(culture => culture.LCID == value),
+                DefaultCommandLineOptions.LanguageId);
             //
             // --max-failures
             //
@@ -104,6 +111,10 @@ namespace PopcatClient
         /// </summary>
         public int InitialPops { get; private init; } = DefaultCommandLineOptions.InitialPops;
         /// <summary>
+        /// The LCID of the desired app language.
+        /// </summary>
+        public int LanguageId { get; private init; } = DefaultCommandLineOptions.LanguageId;
+        /// <summary>
         /// Indicates how many times of failures in a row should the application exit.
         /// </summary>
         public int MaxFailures { get; private init; } = DefaultCommandLineOptions.MaxFailures;
@@ -127,6 +138,7 @@ namespace PopcatClient
             DisableUpdate = false,
             IncludeBeta = false,
             InitialPops = 1,
+            LanguageId = CultureInfo.CurrentCulture.LCID,
             MaxFailures = 3,
             Verbose = false,
             WaitTime = 30 * 1000
