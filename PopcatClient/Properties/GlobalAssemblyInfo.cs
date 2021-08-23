@@ -27,5 +27,9 @@ namespace PopcatClient
             "0.1.0.50"
             // </FileVersionName>
             ;
+
+        // Specifies the minimum version of language pack,
+        // loading packs that are older than this version will cause loading fallback language
+        public const string MinimumLanguagePackVersion = "v0.1-beta.6";
     }
 }
