@@ -13,8 +13,7 @@ namespace PopcatClient
         {
             Options = options;
             _leaderboard = leaderboardClient;
-            if (leaderboardClient.LeaderboardRunning)
-                leaderboardClient.LeaderboardFetchFinished += OnLeaderboardFetchFinished;
+            _leaderboard.LeaderboardFetchFinished += OnLeaderboardFetchFinished;
         }
 
         /// <summary>
@@ -58,6 +57,7 @@ namespace PopcatClient
                     sequentialFailures = 0;
                     CommandLine.WriteSuccess(Strings.PopcatClient.SucMsg_PopSent(popCount));
                     CommandLine.WriteMessage(Strings.PopcatClient.Msg_TotalPops(TotalPops));
+                    if (!_leaderboard.LeaderboardRunning && !Options.DisableLeaderboard) _leaderboard.Run();
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace PopcatClient
             if ((int)response.StatusCode == 201)
             {
                 // extract token from response if success
-                CommandLine.WriteSuccess(Strings.Common.Msg_ResponseStatus("Success.", (int)response.StatusCode,
+                CommandLine.WriteSuccess(Strings.Common.Msg_ResponseStatus("Pops sent.", (int)response.StatusCode,
                     response.StatusCode.ToString()));
                 TotalPops += count;
 
@@ -122,7 +122,7 @@ namespace PopcatClient
             }
             else
             {
-                CommandLine.WriteError(Strings.Common.Msg_ResponseStatus("Failed.", (int)response.StatusCode,
+                CommandLine.WriteError(Strings.Common.Msg_ResponseStatus("Failed to send pops.", (int)response.StatusCode,
                     response.StatusCode.ToString()));
             }
             
@@ -142,18 +142,21 @@ namespace PopcatClient
                     pair => list.Add(new LeaderboardItem(pair.Key, leaderboard.IndexOf(pair) + 1, pair.Value)));
 
             // prints leaderboard
-            CommandLine.WriteMessage("============== LEADERBOARD ==============");
-            CommandLine.WriteMessage("  {0,-8} {1,-10} {2,18}", "RANK(#)", "LOCATION", "POPS");
+            CommandLine.WriteMessage(Strings.Leaderboard.OpenLine());
+            CommandLine.WriteMessage(Strings.Leaderboard.Format_ColumnHeaders(),
+                Strings.Leaderboard.ColumnHeader_Rank(),
+                Strings.Leaderboard.ColumnHeader_Location(),
+                Strings.Leaderboard.ColumnHeader_Pops());
             var previousRank = 0;
             foreach (var item in list)
             {
                 if (item.Rank - previousRank != 1) CommandLine.WriteMessage("  ...");
-                CommandLine.WriteMessage("  {0,-8:D3} {1,-10} {2,18:0,0}", 
+                CommandLine.WriteMessage(Strings.Leaderboard.Format_ColumnEntries(), 
                     item.Rank, item.LocationCode + (item.LocationCode == LocationCode ? " (HERE)" : ""), item.Pops);
                 previousRank = item.Rank;
             }
             if (previousRank != leaderboard.Count) CommandLine.WriteMessage("  ...");
-            CommandLine.WriteMessage("=========================================");
+            CommandLine.WriteMessage(Strings.Leaderboard.CloseLine());
         }
 
         private readonly struct LeaderboardItem
@@ -172,7 +175,7 @@ namespace PopcatClient
 
         private void End()
         {
-            CommandLine.WriteError("Application has stopped due to error(s). Press any key to exit.");
+            CommandLine.WriteError(Strings.PopcatClient.ErrMsg_ApplicationStopped());
             Dispose();
         }
 

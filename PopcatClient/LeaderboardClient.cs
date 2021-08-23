@@ -12,7 +12,7 @@ namespace PopcatClient
         public LeaderboardClient(CommandLineOptions options)
         {
             _options = options;
-            LeaderboardRunning = !_options.DisableLeaderboard;
+            LeaderboardRunning = false;
         }
 
         private readonly CommandLineOptions _options;
@@ -39,6 +39,9 @@ namespace PopcatClient
 
         public void Run()
         {
+            if (_terminateThread) return;
+            LeaderboardRunning = true;
+            
             // configure http client
             _client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client.DefaultRequestHeaders.Add("User-Agent", UserAgentString);
@@ -51,7 +54,7 @@ namespace PopcatClient
         {
             while (!_terminateThread)
             {
-                CommandLine.WriteMessageVerbose("Trying to get leaderboard information.");
+                CommandLine.WriteMessageVerbose(Strings.Leaderboard.Verbose_Msg_TryingGetLeaderboard());
                 CommandLine.WriteMessageVerbose($"GET {RequestUrl}");
                 // get leaderboard information
                 HttpResponseMessage response;
@@ -61,8 +64,7 @@ namespace PopcatClient
                 }
                 catch
                 {
-                    CommandLine.WriteError("Failed to get leaderboard. " +
-                                           "Please check your network connection and firewall settings.");
+                    CommandLine.WriteError(Strings.Leaderboard.ErrMsg_GetLeaderboardFailedNetwork());
                     Thread.Sleep(_options.WaitTime);
                     continue;
                 }
@@ -71,15 +73,16 @@ namespace PopcatClient
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     // 200 OK
-                    CommandLine.WriteMessageVerbose($"Returned: {responseString}");
+                    CommandLine.WriteMessageVerbose(Strings.Common.Verbose_Msg_ServerResponse(responseString));
                     ExtractLeaderboard(responseString);
                     LeaderboardFetchFinished?.Invoke(this, new LeaderboardFetchFinishedEventArgs(Leaderboard));
                 }
                 else
                 {
                     // other failures
-                    CommandLine.WriteErrorVerbose($"Failed to get leaderboard information. Status: " +
-                                                  $"{(int)response.StatusCode} - {response.StatusCode.ToString()}");
+                    CommandLine.WriteErrorVerbose(Strings.Common.Msg_ResponseStatus(
+                        "Failed to get leaderboard information.", (int)response.StatusCode,
+                        response.StatusCode.ToString()));
                 }
                 Thread.Sleep(_options.WaitTime);
             }
@@ -89,7 +92,7 @@ namespace PopcatClient
 
         private void ExtractLeaderboard(string json)
         {
-            CommandLine.WriteMessageVerbose("Deserializing leaderboard JSON");
+            CommandLine.WriteMessageVerbose(Strings.Leaderboard.Verbose_MsgDeserializingJson());
             var jObject = (JObject) JToken.Parse(json);
             var dict = new Dictionary<string, long>();
             foreach (var (key, value) in jObject) dict.Add(key, long.Parse(value.ToString()));

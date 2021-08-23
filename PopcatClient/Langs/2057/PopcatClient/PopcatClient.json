@@ -15,6 +15,7 @@
     "import_files": [
         "CommandLine.json",
         "Program.json",
-        "SoftwareUpdates.json"
+        "SoftwareUpdates.json",
+        "Leaderboard.json"
     ]
 }
