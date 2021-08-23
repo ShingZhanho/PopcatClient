@@ -28,8 +28,8 @@ namespace PopcatClient
 
             Options = new CommandLineOptions(args);
             
-            CommandLine.WriteWarningVerbose("Verbose mode is enabled.");
-            CommandLine.WriteWarningDebug("Debug mode is enabled.");
+            CommandLine.WriteWarningVerbose(Strings.Program.WarningMsg_VerboseMode());
+            CommandLine.WriteWarningDebug(Strings.Program.WarningMsg_DebugMode());
             
             ShowStartOptionsVerbose();
             
@@ -80,7 +80,7 @@ namespace PopcatClient
                     CommandLine.WriteErrorVerbose($"Further message about the update failure:\n{checkResult.ExceptionStackTrace}");
                     return;
                 default:
-                    CommandLine.WriteWarning("The application cannot determine whether your application is up-to-date.");
+                    CommandLine.WriteWarning(Strings.Program.WarningMsg_CannotDetermineIfUpToDate());
                     return;
             }
 
@@ -102,7 +102,7 @@ namespace PopcatClient
                     CommandLine.WriteErrorVerbose($"More information:\n{downloadResult.ExceptionStackTrace}");
                     return;
                 default:
-                    CommandLine.WriteWarning("The application cannot determine whether the asset is downloaded.");
+                    CommandLine.WriteWarning(Strings.Program.WarningMsg_CannotDetermineIfDownloaded());
                     return;
             }
             
@@ -119,13 +119,13 @@ namespace PopcatClient
                     CommandLine.WriteErrorVerbose($"More information:\n{prepareResult.ExceptionStackTrace}");
                     return;
                 default:
-                    CommandLine.WriteWarning("The application cannot determine whether the asset is prepared.");
+                    CommandLine.WriteWarning(Strings.Program.WarningMsg_CannotDetermineIfReady());
                     return;
             }
             
             // run installer
             CommandLine.WriteMessage("Running installer to install update...");
-            CommandLine.WriteWarning("The app will restart after installing update.");
+            CommandLine.WriteWarning(Strings.Program.WarningMsg_AppWillRestartAfterUpdate());
             var installerArgs = $"\"{prepareResult.ExtractedDir}\" " +
                                 $"\"{Environment.CurrentDirectory}\" " +
                                 $"{Environment.ProcessId.ToString()} " +
