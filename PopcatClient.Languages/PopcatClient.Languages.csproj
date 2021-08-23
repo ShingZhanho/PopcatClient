@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Compile Include="..\PopcatClient\Properties\GlobalAssemblyInfo.cs">
+            <Link>.\Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+
+</Project>

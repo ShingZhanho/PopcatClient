@@ -1,6 +1,5 @@
 using System.Reflection;
 using PopcatClient;
-using PopcatClient.Updater;
 
 // Version information
 [assembly: AssemblyInformationalVersion(AssemblyData.InformationalVersion)]

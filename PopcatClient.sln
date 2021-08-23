@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopcatClient.Updater", "Pop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTool", "BuildTool\BuildTool.csproj", "{4844AC43-87C0-4718-8A77-9B73EB4D7229}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopcatClient.Languages", "PopcatClient.Languages\PopcatClient.Languages.csproj", "{35401A2E-FC5F-43DE-B22F-CF1D35F7A77E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{4844AC43-87C0-4718-8A77-9B73EB4D7229}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4844AC43-87C0-4718-8A77-9B73EB4D7229}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4844AC43-87C0-4718-8A77-9B73EB4D7229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35401A2E-FC5F-43DE-B22F-CF1D35F7A77E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35401A2E-FC5F-43DE-B22F-CF1D35F7A77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35401A2E-FC5F-43DE-B22F-CF1D35F7A77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35401A2E-FC5F-43DE-B22F-CF1D35F7A77E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(RiderSharedRunConfigurations) = postSolution
 		File = JBRider.run\PopcatClient.run.xml
