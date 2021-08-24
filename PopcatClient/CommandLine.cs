@@ -121,12 +121,8 @@ namespace PopcatClient
 
         private static void OutputWithTag(string text, string tag,  ConsoleColor textColour, ConsoleColor backgroundColour, object[]? args = null)
         {
-            switch (tag)
-            {
-                case "DEBUG" when !Program.Options.Debug:
-                case "VERBOSE" when !Program.Options.Verbose:
-                    return;
-            }
+            if (Strings.CommandLine.DebugTag() == tag && !Program.Options.Debug) return;
+            if (Strings.CommandLine.VerboseTag() == tag && !Program.Options.Verbose) return;
 
             // Write timestamp
             Console.BackgroundColor = ConsoleColor.Black;
