@@ -5,7 +5,7 @@
         "msg_total_pops": "Total pops: %%pop_count%%",
         "warn-msg_sequential_failures": "Sequential failures: %%failure_count%%. Application will exit after failing for %%max_failures| time| times.%%",
         "msg-next_pop_time": "Sending pops after %%wait_time%% seconds at %%datetime%%.",
-        "err-msg_max_failures_reached": "Sequential failures reached maximum (%%max_failures| time| times%%. You may have been blocked by the server. Please start the app later.",
+        "err-msg_max_failures_reached": "Sequential failures reached maximum (%%max_fails| time| times%%). You may have been blocked by the server. Please start the app later.",
         "err-msg_pop_failed_network": "Failed to send pops. Please check your network connection and firewall settings.",
         "err-msg_extract_token_failed": "Cannot extract token from response. JSON format unexpected.",
         "verbose@msg_token_extracted": "Token extracted: %%token%%",

@@ -29,7 +29,7 @@ namespace PopcatClient
 
             public static string ErrMsg_MaxFailuresReached(int maxFailures) => LanguageManager
                 .GetString("err-msg_max_failures_reached")
-                .Substitute("max_failures", maxFailures.ToString());
+                .SubstituteNumeric("max_fails", maxFailures);
 
             public static string ErrMsg_PopFailedNetwork() => LanguageManager.GetString("err-msg_pop_failed_network");
 
