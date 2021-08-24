@@ -1,0 +1,13 @@
+﻿{
+  "strings": {
+    "verbose@msg_server_response": "伺服器回應：%%response%%",
+    "msg_response_status" : "%%msg%% 狀態： %%http_status_code%% - %%status_description%%.",
+    "format@datetime": "dd-MM-yyyy tt hh:mm:ss",
+    
+    "enabled": "已啟用",
+    "disabled": "已停用",
+    "yes": "是",
+    "no": "否"
+  },
+  "import_files": null
+}

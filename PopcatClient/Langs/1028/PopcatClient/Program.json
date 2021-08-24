@@ -1,0 +1,21 @@
+﻿{
+  "strings": {
+    "verbose@warn-msg_verbose_mode": "詳細模式(Verbose)已啟用。",
+    "debug@warn-msg_debug_mode": "除錯模式已啟用。",
+    
+    "msg_clear_temp_dir": "正在清除暫存資料夾...",
+    "success-msg_temp_dir_cleared": "暫存資料夾已清除。",
+    
+    "msg_client_started_with_following": "PopcatClient 正使用以下設定：",
+    "format@startup_option_entries": "{0,-30} {1}",
+    "startup_option_wait_time": "等候時間",
+    "startup_option_max_failures": "最大連續失敗次數",
+    "startup_option_leaderboard": "排行榜",
+    "startup_option_check_update": "軟體更新",
+    "startup_option_install_beta": "下載測試版軟體",
+    "startup_option_clear_temp_dir": "清理暫存資料夾",
+    "startup_option_lang_id": "顯示語言",
+    "startup_option_fallback_lang_id": "後備顯示語言"
+  },
+  "import_files": null
+}

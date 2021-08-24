@@ -1,0 +1,19 @@
+﻿{
+  "strings": {
+    "leaderboard_open": "============== LEADERBOARD ==============",
+    "leaderboard_close": "=========================================",
+    "leaderboard_col_header_rank": "排名",
+    "leaderboard_col_header_location": "國家代碼",
+    "leaderboard_col_header_pops": "POPS",
+    "leaderboard_location_here": " *",
+    "format@leaderboard_col_headers": "  {0,-8} {1,-10} {2,18}",
+    "format@leaderboard_col_entries": "  {0,-8:D3} {1,-10} {2,18:0,0}",
+    
+    "verbose@msg_trying_get_leaderboard": "正在從伺服器中取得排行榜資料...",
+    "err-msg_get_leaderboard_failed_network": "無法取得排行榜。請檢查你的網際網路連線及防火牆設定。",
+    "verbose@msg_deserializing_json": "Deserializing leaderboard JSON...",
+    
+    "status-msg_get_leaderboard_failed": "無法取得排行榜。"
+  },
+  "import_files": null
+}

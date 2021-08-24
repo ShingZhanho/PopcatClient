@@ -1,0 +1,29 @@
+﻿{
+  "strings": {
+    "warn-msg_update_disabled": "你已禁用自動更新功能，使用過期的版本可能導致出錯。",
+    "warn-msg_new_update": "有新的版本 (%%new_ver%%) 可供下載。",
+    "success-msg_up_to_date": "你正在使用最新版的應用程式。",
+    "warn-msg_cannot_determine_if_uptodate": "程式無法判斷當前版本是否最新。",
+    "warn-msg_cannot_determine_if_downloaded": "程式無法判斷更新套件是否已經下載。",
+    "warn-msg_cannot_determine_if_ready": "程式無法判斷更新套件是否已經準備就緒。",
+    "warn-msg_update_restart_app": "程式將會在更新安裝後重新啟動。",
+    "msg_checking_updates": "正在從伺服器中檢查更新...",
+    "err-msg_update_check_failed": "無法檢查更新。原因：%%fail_reason%%",
+    "verbose@err-msg_update_check_failed": "更多關於檢查更新失敗的資料：\n%%fail_stacktrace%%",
+    "msg_downloading_asset": "正在下載更新套件...",
+    "success-msg_asset_downloaded": "更新套件已經下載至 %%file_path%%",
+    "err-msg_download_asset_failed": "無法下載更新套件。原因：%%fail_reason%%",
+    "verbose@err-msg_download_asset_failed": "更多關於下載更新套件失敗的資料：\n%%fail_stacktrace%%",
+    "msg_preparing_asset": "正在準備更新...",
+    "success-msg_asset_ready": "更新套件準備就緒。",
+    "err-msg_asset_prepare_failed": "無法準備更新。原因：%%fail_reason%%",
+    "verbose@err-msg_asset_prepare_failed": "更多關於無法準備更新的資料：\n%%fail_stacktrace%%",
+    "msg_installing_update": "正在啟動更新工具...",
+    "err-msg_installer_exit_code": "更新時發生了一個或多個錯誤，更新無法繼續。更新工具的結束代碼：%%exit_code%%.",
+    "verbose@2rr-msg_installer_exit_code_1": "傳入更新工具的執行緒編號無效。",
+    "verbose@err-msg_installer_exit_code_2": "傳入更新工具的新版套件位置不存在。",
+    "verbose@err-msg_installer_exit_code_3": "傳入更新工具的當前版本位置不存在。",
+    "verbpse@err-msg_installer_exit_code_others": "錯誤不明。更新工具的結束代碼：%%exit_code%%"
+  },
+  "import_files": null
+}

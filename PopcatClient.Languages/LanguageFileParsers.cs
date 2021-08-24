@@ -49,7 +49,11 @@ namespace PopcatClient.Languages
             try
             {
                 if (VersionName.TryParse(jObject["metadata"]["pack_info"]["pack_version"].ToString(), out var results))
-                    languageFile.LanguagePackVersion = results;
+                    if (results >= AssemblyData.MinimumLanguagePackVersion)
+                        languageFile.LanguagePackVersion = results;
+                    else
+                        throw new InvalidLanguagePackFormatException(
+                            "The specified language pack is too old and cannot be used.");
                 else
                     throw new InvalidLanguagePackFormatException("The value of key \"pack_version\" is invalid.");
             }
