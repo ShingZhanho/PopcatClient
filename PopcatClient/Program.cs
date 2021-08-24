@@ -157,6 +157,9 @@ namespace PopcatClient
                                 $"{Environment.ProcessId.ToString()} " +
                                 Convert.ToBase64String(Encoding.UTF8.GetBytes(
                                     string.Join(" ", Environment.CommandLine.Split(' ').Skip(1))));
+            // fix: installer exit with code 6 if no parameter
+            if (installerArgs.Split(' ').Length == 3) installerArgs += "IA==";
+            
             var installerProcess = new Process
             {
                 StartInfo = new ProcessStartInfo

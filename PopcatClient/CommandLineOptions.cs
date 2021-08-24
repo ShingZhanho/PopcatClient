@@ -16,6 +16,7 @@ namespace PopcatClient
         public CommandLineOptions(string[] args)
         {
             args ??= Array.Empty<string>();
+            if (args.Length == 0) return;
             // parsing options
             //
             // --clear-temp
