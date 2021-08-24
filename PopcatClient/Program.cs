@@ -17,7 +17,11 @@ namespace PopcatClient
             Options = new CommandLineOptions(args);
             
             // load fallback language
-            var langPackPath = Path.GetFullPath($"./Langs/{Options.FallbackLanguageId}/lang-pack.json");
+            var langPackPath = Path.GetFullPath(Path.Combine(
+                Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
+                "Langs",
+                Options.FallbackLanguageId.ToString(),
+                "lang-pack.json"));
             try
             {
                 LanguageManager.FallbackLanguage = new LanguageFile(langPackPath);
@@ -26,14 +30,20 @@ namespace PopcatClient
             {
                 // the following messages only has English version
                 // since the packs are not loaded
-                CommandLine.WriteError($"Could not load language pack {langPackPath}. Reason: {e.Message}");
-                CommandLine.WriteErrorVerbose($"Further information: {e.StackTrace}");
+                Console.WriteLine($"Could not load language pack {langPackPath}. Reason: {e.Message}");
+                Console.WriteLine($"Further information: {e.StackTrace}");
+                Console.Read();
+                return;
             }
             
             // load language packs
             try
             {
-                langPackPath = $"./Langs/{Options.LanguageId}/lang-pack.json";
+                langPackPath = Path.GetFullPath(Path.Combine(
+                    Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
+                    "Langs",
+                    Options.LanguageId.ToString(),
+                    "lang-pack.json"));
                 LanguageManager.Language = new LanguageFile(Path.GetFullPath(langPackPath));
             }
             catch (Exception e)
