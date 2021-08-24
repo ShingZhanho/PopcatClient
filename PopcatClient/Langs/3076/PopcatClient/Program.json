@@ -6,7 +6,7 @@
     "msg_clear_temp_dir": "正在清除暫存資料夾...",
     "success-msg_temp_dir_cleared": "暫存資料夾已清除。",
     
-    "msg_client_started_with_following": "PopcatClient 正使用以下設定啟動：",
+    "msg_client_started_with_following": "PopcatClient 正使用以下設定：",
     "format@startup_option_entries": "{0,-30} {1}",
     "startup_option_wait_time": "等候時間",
     "startup_option_max_failures": "最大連續失敗次數",

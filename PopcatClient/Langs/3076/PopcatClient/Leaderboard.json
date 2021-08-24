@@ -2,10 +2,10 @@
   "strings": {
     "leaderboard_open": "============== LEADERBOARD ==============",
     "leaderboard_close": "=========================================",
-    "leaderboard_col_header_rank": "排名(#)",
+    "leaderboard_col_header_rank": "排名",
     "leaderboard_col_header_location": "國家代碼",
     "leaderboard_col_header_pops": "POPS",
-    "leaderboard_location_here": " (你在此)",
+    "leaderboard_location_here": " *",
     "format@leaderboard_col_headers": "  {0,-8} {1,-10} {2,18}",
     "format@leaderboard_col_entries": "  {0,-8:D3} {1,-10} {2,18:0,0}",
     

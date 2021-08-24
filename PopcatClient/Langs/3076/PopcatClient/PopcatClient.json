@@ -1,15 +1,15 @@
 {
     "strings": {
-        "msg_trying_pop": "正在傳送 %%pop_count| 個Pop| 個Pops%%...",
-        "success-msg_pop_sent": "成功傳送 %%pop_count| 個Pop| 個Pops%%！",
+        "msg_trying_pop": "正在傳送%%pop_count|個Pop|個Pops%%...",
+        "success-msg_pop_sent": "成功傳送%%pop_count|個Pop|個Pops%%！",
         "msg_total_pops": "總Pop數：%%pop_count%%",
-        "warn-msg_sequential_failures": "連續出錯次數：%%failure_count%%。當程式連續出錯%%max_failures| | %%次後會自動退出。",
+        "warn-msg_sequential_failures": "連續出錯次數：%%failure_count%%。當程式連續出錯%%max_failures|次|次%%後會自動退出。",
         "msg-next_pop_time": "將在%%wait_time%%秒後 (%%datetime%%) 傳送下一次Pop。",
-        "err-msg_max_failures_reached": "連續出錯次數已達上限 (%%max_failures| | %%次)。你可能已被伺服器封錯。請在稍後重啟程式。",
+        "err-msg_max_failures_reached": "連續出錯次數已達上限 (%%max_failures|次|次%%)。你可能已被伺服器封錯。請在稍後重啟程式。",
         "err-msg_pop_failed_network": "傳送Pop時出錯，請檢查你的網際網路連線和防火牆設定。",
         "err-msg_extract_token_failed": "無法從伺服器回應中取回Token。不明的JSON格式。",
-        "verbose@msg_token_extracted": "Token： %%token%%",
-        "verbose@msg_location_code_extracted": "國家代碼： %%code%%",
+        "verbose@msg_token_extracted": "Token：%%token%%",
+        "verbose@msg_location_code_extracted": "國家代碼：%%code%%",
         "err-msg_application_stopped": "程式因出錯現已停止，按Enter來退出。",
         "status-msg_pops_sent": "已傳送Pops。",
         "status-msg_pops_failed": "無法傳送Pops。"
