@@ -154,7 +154,7 @@ namespace PopcatClient
             CommandLine.WriteWarning(Strings.SoftwareUpdates.WarningMsg_AppWillRestartAfterUpdate());
             var installerArgs = $"\"{prepareResult.ExtractedDir}\" " +
                                 $"\"{Environment.CurrentDirectory}\" " +
-                                $"{Environment.ProcessId.ToString()} " +
+                                $"{Process.GetCurrentProcess().Id} " +
                                 Convert.ToBase64String(Encoding.UTF8.GetBytes(
                                     string.Join(" ", Environment.CommandLine.Split(' ').Skip(1))));
             // fix: installer exit with code 6 if no parameter
@@ -170,37 +170,41 @@ namespace PopcatClient
                     CreateNoWindow = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true
+                },
+                EnableRaisingEvents = true
+            };
+
+            installerProcess.Exited += (_, _) =>
+            {
+                // app should be killed and restarted if installation is successful
+                // if the app is not killed and the following lines are run, the installer must failed at some point
+
+                CommandLine.WriteError(Strings.SoftwareUpdates.ErrMsg_InstallerExitCode(installerProcess.ExitCode));
+                switch (installerProcess.ExitCode)
+                {
+                    case 1:
+                        // PID invalid
+                        CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_1());
+                        break;
+                    case 2:
+                        // new version not exist
+                        CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_2());
+                        break;
+                    case 3:
+                        // current working directory does not exist
+                        CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_3());
+                        break;
+                    default:
+                        CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates
+                            .Verbose_ErrMsg_InstallerExitCode_Others());
+                        break;
                 }
+
+                CommandLine.WriteErrorVerbose(installerProcess.StandardOutput.ReadToEnd());
+                CommandLine.WriteErrorVerbose(installerProcess.StandardError.ReadToEnd());
             };
             
             installerProcess.Start();
-            await installerProcess.WaitForExitAsync();
-            
-            // app should be killed and restarted if installation is successful
-            // if the app is not killed and the following lines are run, the installer must failed at some point
-
-            
-            CommandLine.WriteError(Strings.SoftwareUpdates.ErrMsg_InstallerExitCode(installerProcess.ExitCode));
-            switch (installerProcess.ExitCode)
-            {
-                case 1:
-                    // PID invalid
-                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_1());
-                    break;
-                case 2:
-                    // new version not exist
-                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_2());
-                    break;
-                case 3:
-                    // current working directory does not exist
-                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_3());
-                    break;
-                default:
-                    CommandLine.WriteErrorVerbose(Strings.SoftwareUpdates.Verbose_ErrMsg_InstallerExitCode_Others());
-                    break;
-            }
-            CommandLine.WriteErrorVerbose(await installerProcess.StandardOutput.ReadToEndAsync());
-            CommandLine.WriteErrorVerbose(await installerProcess.StandardError.ReadToEndAsync());
         }
 
         private static void ShowStartOptionsVerbose()

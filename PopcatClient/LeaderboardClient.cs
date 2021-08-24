@@ -95,7 +95,7 @@ namespace PopcatClient
             CommandLine.WriteMessageVerbose(Strings.Leaderboard.Verbose_MsgDeserializingJson());
             var jObject = (JObject) JToken.Parse(json);
             var dict = new Dictionary<string, long>();
-            foreach (var (key, value) in jObject) dict.Add(key, long.Parse(value.ToString()));
+            foreach (var keyPair in jObject) dict.Add(keyPair.Key, long.Parse(keyPair.Value.ToString()));
             Leaderboard = dict;
         }
 

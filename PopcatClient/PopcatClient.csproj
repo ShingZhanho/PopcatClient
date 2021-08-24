@@ -2,7 +2,8 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,9 +30,9 @@
             <BuildToolRuntimeDir>$(SolutionDir)\BuildTool\bin\$(Configuration)\net5.0\runtime</BuildToolRuntimeDir>
         </PropertyGroup>
 
-        <Exec Command="dotnet &quot;$(MSBuildBinPath)\MSBuild.dll&quot; &quot;$(SolutionDir)\BuildTool\BuildTool.csproj&quot;" />
+        <Exec Command="dotnet build &quot;$(SolutionDir)\BuildTool\BuildTool.csproj&quot;" />
         <Exec Command="mkdir &quot;$(BuildToolRuntimeDir)&quot;" IgnoreExitCode="true" />
-        <Exec Command="&quot;$(SolutionDir)\BuildTool\bin\$(Configuration)\net5.0\BuildTool.exe&quot; &quot;$(SolutionDir)\PopcatClient\Properties\GlobalAssemblyInfo.cs&quot;" WorkingDirectory="$(BuildToolRuntimeDir)" />
+        <Exec Command="&quot;$(SolutionDir)\BuildTool\bin\$(Configuration)\netcoreapp3.1\BuildTool.exe&quot; &quot;$(SolutionDir)\PopcatClient\Properties\GlobalAssemblyInfo.cs&quot;" WorkingDirectory="$(BuildToolRuntimeDir)" />
     </Target>
     
     <Target Name="CopyLanguagePacks" BeforeTargets="Build">
@@ -39,7 +40,7 @@
             <SolutionDir>$([System.IO.Path]::GetDirectoryName($(MSBuildProjectDirectory)))</SolutionDir>
         </PropertyGroup>
         
-        <Exec Command="XCOPY &quot;$(SolutionDir)\PopcatClient\Langs&quot; &quot;$(SolutionDir)\PopcatClient\bin\$(Configuration)\net5.0\Langs\&quot; /S /Y" />
+        <Exec Command="XCOPY &quot;$(SolutionDir)\PopcatClient\Langs&quot; &quot;$(SolutionDir)\PopcatClient\bin\$(Configuration)\net48\Langs\&quot; /S /Y /D" />
     </Target>
 
 </Project>

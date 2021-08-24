@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Octokit;
 using PopcatClient.Updater.Utils;
+using FileMode = System.IO.FileMode;
 
 namespace PopcatClient.Updater
 {
@@ -21,7 +22,8 @@ namespace PopcatClient.Updater
         /// <param name="currentVersion">The current application's version</param>
         /// <param name="includeBeta">Whether include beta versions</param>
         /// <returns>The results object</returns>
-        public static async Task<CheckUpdateResult> CheckUpdateAsync(VersionName currentVersion, bool includeBeta = false)
+        public static async Task<CheckUpdateResult> CheckUpdateAsync(VersionName currentVersion,
+            bool includeBeta = false)
         {
             var result = new CheckUpdateResult
             {
@@ -32,7 +34,7 @@ namespace PopcatClient.Updater
             {
                 var github = new GitHubClient(new ProductHeaderValue(nameof(UpdateTools)));
                 var releases = (await github.Repository.Release.GetAll(RepoOwner, RepoName)).ToList();
-            
+
                 // remove unpublished drafts
                 releases = releases.Where(release => !release.Draft).ToList();
                 // remove unsupported version names
@@ -47,8 +49,8 @@ namespace PopcatClient.Updater
                     result.ResultStatus = CheckUpdateResultStatus.UpToDate;
                     return result;
                 }
-                
-                releases.Sort((a, b) => ((VersionName) b.TagName).CompareTo(a.TagName));
+
+                releases.Sort((a, b) => ((VersionName)b.TagName).CompareTo(a.TagName));
                 // get the download asset's file name
                 var assetFileName = releases.First().Body.StringBetween("<AssetFileName>", "</AssetFileName>");
                 // no file name is found for the version
@@ -61,7 +63,8 @@ namespace PopcatClient.Updater
                 var assetId = releases.First().Assets.First(asset => asset.Name == assetFileName).Id;
                 result.ResultStatus = CheckUpdateResultStatus.UpdateAvailable;
                 result.ServerLatestVersion = releases.First().TagName;
-                result.AssetDownloadUrl = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/assets/{assetId}";
+                result.AssetDownloadUrl =
+                    $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/assets/{assetId}";
             }
             catch (Exception e)
             {
@@ -104,52 +107,54 @@ namespace PopcatClient.Updater
         /// </summary>
         /// <param name="assetFile">The downloaded asset file</param>
         /// <returns></returns>
-        public static async Task<PrepareAssetResult> PrepareUpdateAssetAsync(string assetFile)
-        {
-            var result = new PrepareAssetResult();
-            try
+        public static async Task<PrepareAssetResult> PrepareUpdateAssetAsync(string assetFile) =>
+            await Task.Run(() =>
             {
-                if (!File.Exists(assetFile))
-                    throw new FileNotFoundException($"The specified update file could not be found. ({assetFile})");
-                
-                // read the file
-                await using var fileMemoryStream = new MemoryStream(await File.ReadAllBytesAsync(assetFile));
-                using var zipArchive = new ZipArchive(fileMemoryStream);
-                
-                // extract files to folder
-                var extractDir = Path.Combine(Path.GetDirectoryName(assetFile)!, "PopcatClient_new_ver");
-                if (Directory.Exists(extractDir)) Directory.Delete(extractDir, true);
-                zipArchive.ExtractToDirectory(extractDir, true);
-                
-                // copy installer to installer dir
-                var installerDir = Path.Combine(Path.GetDirectoryName(assetFile)!, "installer");
-                if (Directory.Exists(installerDir)) Directory.Delete(installerDir, true);
-                Directory.CreateDirectory(installerDir);
-                var installerFiles = new[] // copy these file from extractDir to installerDir
+                var result = new PrepareAssetResult();
+                try
                 {
-                    "PopcatClient.Updater.exe",
-                    "PopcatClient.Updater.dll",
-                    "PopcatClient.Updater.deps.json",
-                    "PopcatClient.Updater.runtimeconfig.json",
-                    "PopcatClient.Updater.runtimeconfig.dev.json",
-                    "Octokit.dll"
-                };
-                foreach (var file in installerFiles)
-                    File.Copy(Path.Combine(extractDir, file), Path.Combine(installerDir, file), true);
-                
-                // return results
-                result.Status = BasicResultStatus.Success;
-                result.ExtractedDir = extractDir;
-                result.InstallerExecutable = Path.Combine(installerDir, "PopcatClient.Updater.exe");
-            }
-            catch (Exception e)
-            {
-                result.Status = BasicResultStatus.Failed;
-                result.ExceptionMessage = e.Message;
-                result.ExceptionStackTrace = e.StackTrace;
-            }
+                    if (!File.Exists(assetFile))
+                        throw new FileNotFoundException($"The specified update file could not be found. ({assetFile})");
 
-            return result;
-        }
+                    // read the file
+                    using var fileMemoryStream =
+                        new FileStream(assetFile, FileMode.Open, FileAccess.Read, FileShare.None);
+                    using var zipArchive = new ZipArchive(fileMemoryStream);
+
+                    // extract files to folder
+                    var extractDir = Path.Combine(Path.GetDirectoryName(assetFile)!, "PopcatClient_new_ver");
+                    if (Directory.Exists(extractDir)) Directory.Delete(extractDir, true);
+                    zipArchive.ExtractToDirectory(extractDir);
+
+                    // copy installer to installer dir
+                    var installerDir = Path.Combine(Path.GetDirectoryName(assetFile)!, "installer");
+                    if (Directory.Exists(installerDir)) Directory.Delete(installerDir, true);
+                    Directory.CreateDirectory(installerDir);
+                    var installerFiles = new[] // copy these file from extractDir to installerDir
+                    {
+                        "PopcatClient.Updater.exe",
+                        "PopcatClient.Updater.dll",
+                        "PopcatClient.Updater.deps.json",
+                        "PopcatClient.Updater.runtimeconfig.json",
+                        "PopcatClient.Updater.runtimeconfig.dev.json",
+                        "Octokit.dll"
+                    };
+                    foreach (var file in installerFiles)
+                        File.Copy(Path.Combine(extractDir, file), Path.Combine(installerDir, file), true);
+
+                    // return results
+                    result.Status = BasicResultStatus.Success;
+                    result.ExtractedDir = extractDir;
+                    result.InstallerExecutable = Path.Combine(installerDir, "PopcatClient.Updater.exe");
+                }
+                catch (Exception e)
+                {
+                    result.Status = BasicResultStatus.Failed;
+                    result.ExceptionMessage = e.Message;
+                    result.ExceptionStackTrace = e.StackTrace;
+                }
+
+                return result;
+            });
     }
 }

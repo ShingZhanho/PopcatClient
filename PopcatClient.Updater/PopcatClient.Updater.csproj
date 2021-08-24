@@ -2,7 +2,8 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -13,10 +14,17 @@
         <Compile Include="..\PopcatClient\Properties\GlobalAssemblyInfo.cs">
             <Link>Properties\GlobalAssemblyInfo.cs</Link>
         </Compile>
+        <Compile Include="..\PopcatClient\Properties\CsCompilerBugFix.cs">
+            <Link>Properties\CsCompilerBugFix.cs</Link>
+        </Compile>
     </ItemGroup>
     
     <ItemGroup>
       <PackageReference Include="Octokit" Version="0.50.0" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Reference Include="System.IO.Compression" />
     </ItemGroup>
 
 </Project>

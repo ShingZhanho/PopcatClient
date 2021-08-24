@@ -58,11 +58,11 @@ namespace PopcatClient.Updater
             try {
                 // dirs
                 foreach (var directory in Directory.GetDirectories(fromDir, "*", SearchOption.AllDirectories))
-                    Directory.CreateDirectory(Path.Combine(toDir, directory[(fromDir.Length + 1)..]));
+                    Directory.CreateDirectory(Path.Combine(toDir, directory.Substring(fromDir.Length + 1)));
 
                 // files
                 foreach (var file in Directory.GetFiles(fromDir, "*", SearchOption.AllDirectories))
-                    File.Copy(file, Path.Combine(toDir, file[(fromDir.Length + 1)..]));
+                    File.Copy(file, Path.Combine(toDir, file.Substring(fromDir.Length + 1)));
             } catch (Exception e) {
                 throw new InvalidOperationException("Error occured while copying files.", e);
             }

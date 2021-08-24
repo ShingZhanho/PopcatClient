@@ -83,8 +83,8 @@ namespace PopcatClient.Languages
             try
             {
                 if (stringKeysDictionary != null) 
-                    foreach (var (stringName, stringValue) in stringKeysDictionary)
-                        result.Add(stringName, stringValue);
+                    foreach (var keyPair in stringKeysDictionary)
+                        result.Add(keyPair.Key, keyPair.Value);
             }
             catch (ArgumentException keyAlreadyExistsException)
             {
@@ -105,9 +105,9 @@ namespace PopcatClient.Languages
                             ? null
                             : JArray.Parse(JObject.Parse(fileContent)["import_files"].ToString()); // the array of files to import in the file to be imported
                         
-                        foreach (var (stringName, stringValue) in ReadAllStringFromFile(importFilename,
+                        foreach (var keyPair in ReadAllStringFromFile(importFilename,
                             keysObject.ToString(), filesArray)) 
-                            result.Add(stringName, stringValue);
+                            result.Add(keyPair.Key, keyPair.Value);
                     }
             }
             catch (Exception e)
