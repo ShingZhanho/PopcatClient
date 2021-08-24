@@ -17,15 +17,14 @@
         /// <summary>
         /// Gets string from the default language file by the key.
         /// If the default language file does not contain that key, get the string from fallback language.
-        /// If the key still cannot be found, the given fallback string or empty string is returned.
+        /// If the key still cannot be found, the key itself is returned.
         /// </summary>
         /// <param name="key">The key of string to get.</param>
-        /// <param name="fallback">The fallback string to return if not found. Default is empty.</param>
         /// <returns>The string got.</returns>
-        public static string GetString(string key, string fallback = "")
+        public static string GetString(string key)
             => string.IsNullOrEmpty(Language[key])
                 ? string.IsNullOrEmpty(FallbackLanguage[key])
-                    ? fallback
+                    ? key // return the key directly if not found
                     : FallbackLanguage[key]
                 : Language[key];
     }
