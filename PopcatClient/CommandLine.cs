@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using PopcatClient.Languages;
 
 namespace PopcatClient
 {
@@ -110,7 +111,7 @@ namespace PopcatClient
             // Write timestamp
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write($"{DateTime.Now:dd-MM-yyyy hh:mm:ss tt} ");
+            Console.Write(DateTime.Now.ToString(Strings.Common.Format_Datetime(), LanguageManager.Language.LanguageInfo));
             // Change color
             Console.BackgroundColor = backgroundColour;
             Console.ForegroundColor = textColour;
@@ -126,7 +127,7 @@ namespace PopcatClient
             // Write timestamp
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write($"{DateTime.Now:dd-MM-yyyy hh:mm:ss tt} ");
+            Console.Write(DateTime.Now.ToString(Strings.Common.Format_Datetime(), LanguageManager.Language.LanguageInfo));
             // Write tag
             Console.BackgroundColor = textColour;
             Console.ForegroundColor = backgroundColour;

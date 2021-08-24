@@ -24,7 +24,8 @@ namespace PopcatClient
             public static string Msg_NextPopTime(int waitTime, DateTime nextPopTime) => LanguageManager
                 .GetString("msg-next_pop_time")
                 .Substitute("wait_time", waitTime.ToString())
-                .Substitute("datetime", nextPopTime.ToString(Common.Format_Datetime()));
+                .Substitute("datetime", nextPopTime.ToString(Common.Format_Datetime(), 
+                    LanguageManager.Language.LanguageInfo));
 
             public static string ErrMsg_MaxFailuresReached(int maxFailures) => LanguageManager
                 .GetString("err-msg_max_failures_reached")
