@@ -64,17 +64,16 @@ namespace PopcatClient
                     sequentialFailures++;
                     CommandLine.WriteWarning(
                         Strings.PopcatClient.WarnMsg_SequentialFailures(sequentialFailures, Options.MaxFailures));
+                    if (sequentialFailures == Options.MaxFailures) break;
                 }
 
                 CommandLine.WriteMessage(Strings.PopcatClient.Msg_NextPopTime(Options.WaitTime / 1000,
                     DateTime.Now.AddMilliseconds(Options.WaitTime)));
                 System.Threading.Thread.Sleep(Options.WaitTime);
             }
-            if (sequentialFailures == Options.MaxFailures)
-            {
-                // failed for maximum times
-                CommandLine.WriteError(Strings.PopcatClient.ErrMsg_MaxFailuresReached(Options.MaxFailures));
-            }
+            
+            // failed for maximum times
+            CommandLine.WriteError(Strings.PopcatClient.ErrMsg_MaxFailuresReached(Options.MaxFailures));
             End();
         }
 
