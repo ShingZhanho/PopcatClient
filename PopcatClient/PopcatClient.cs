@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace PopcatClient
@@ -19,7 +21,7 @@ namespace PopcatClient
         /// <summary>
         /// The captcha token being sent to the server
         /// </summary>
-        public string Token { get; private set; } = "8964";
+        public string Token { get; private set; } = "default_token";
         /// <summary>
         /// The total pop count the application has sent.
         /// </summary>
@@ -34,8 +36,7 @@ namespace PopcatClient
         public string LocationCode { get; private set; }
 
         private readonly HttpClient _client = new();
-        private const string UserAgentString =
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
+        private const string UserAgentString = "PopcatClient";
         private const string RequestUrl = "https://stats.popcat.click/pop";
 
         private readonly LeaderboardClient _leaderboard;
@@ -45,6 +46,11 @@ namespace PopcatClient
             // configure http client
             _client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client.DefaultRequestHeaders.Add("User-Agent", UserAgentString);
+            
+            // look for .token file
+            var tokenFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "token.temp");
+            if (File.Exists(tokenFile))
+                Token = File.ReadAllText(tokenFile);
 
             var sequentialFailures = 0;
             while (sequentialFailures < Options.MaxFailures)
@@ -57,7 +63,12 @@ namespace PopcatClient
                     sequentialFailures = 0;
                     CommandLine.WriteSuccess(Strings.PopcatClient.SucMsg_PopSent(popCount));
                     CommandLine.WriteMessage(Strings.PopcatClient.Msg_TotalPops(TotalPops));
+                    
+                    // start leaderboard service
                     if (!_leaderboard.LeaderboardRunning && !Options.DisableLeaderboard) _leaderboard.Run();
+                    
+                    // store token to .token file
+                    File.WriteAllText(tokenFile, Token, Encoding.UTF8);
                 }
                 else
                 {
