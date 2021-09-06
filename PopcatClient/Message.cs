@@ -7,16 +7,13 @@ namespace PopcatClient
     /// </summary>
     public class Message
     {
-        public Message(string messageBody, MessageType type, MessageMode mode, DateTime messageTime)
+        public Message(string messageBody, MessageType type = MessageType.Info, MessageMode mode = MessageMode.Normal)
         {
             MessageBody = messageBody;
             Type = type;
             Mode = mode;
-            MessageTime = messageTime;
+            MessageTime = DateTime.Now;
         }
-
-        public Message(string messageBody, DateTime messageTime) : this(messageBody, MessageType.Normal,
-            MessageMode.Normal, messageTime) { }
 
         public MessageType Type { get; }
         public MessageMode Mode { get; }
@@ -26,7 +23,7 @@ namespace PopcatClient
 
     public enum MessageType
     {
-        Normal, Success, Error, Warning
+        Info, Success, Error, Warning
     }
 
     public enum MessageMode

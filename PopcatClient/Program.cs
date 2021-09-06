@@ -11,6 +11,8 @@ namespace PopcatClient
     public static class Program
     {
         public static CommandLineOptions Options { get; private set; } = new();
+        public static ColourScheme ColourScheme { get; private set; } = new();
+        public static MessagesPool MessagesPool { get; } = new();
 
         public static void Main(string[] args)
         {
