@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+using System;
+using System.Globalization;
 
 namespace PopcatClient
 {
@@ -7,9 +9,11 @@ namespace PopcatClient
     /// </summary>
     public class Message
     {
-        public Message(string messageBody, MessageType type = MessageType.Info, MessageMode mode = MessageMode.Normal)
+        public Message(string messageBody, MessageType type = MessageType.Info, MessageMode mode = MessageMode.Normal, object[]? formatters = null)
         {
             MessageBody = messageBody;
+            if (formatters != null)
+                MessageBody = string.Format(MessageBody, formatters);
             Type = type;
             Mode = mode;
             MessageTime = DateTime.Now;

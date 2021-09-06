@@ -24,7 +24,7 @@ namespace PopcatClient
             ;
         public const string FileVersion = 
             // <FileVersionName> (this tag is required for build tools to run)
-            "0.2.0.127"
+            "0.2.0.132"
             // </FileVersionName>
             ;
 

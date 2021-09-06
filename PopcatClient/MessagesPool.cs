@@ -90,7 +90,7 @@ namespace PopcatClient
                 Console.ForegroundColor = tagTextColour;
                 try
                 {
-                    Console.Write($@"[{message.Mode switch
+                    Console.Write($@" [{message.Mode switch
                     {
                         MessageMode.Debug => Strings.CommandLine.DebugTag(),
                         MessageMode.Verbose => Strings.CommandLine.VerboseTag(),
@@ -141,6 +141,7 @@ namespace PopcatClient
                 default:
                     return;
             }
+            if (message.Mode != MessageMode.Normal) Console.Write(" ");
             
             // writes tag
             switch (message.Type)
