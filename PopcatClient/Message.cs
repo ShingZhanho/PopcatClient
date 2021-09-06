@@ -18,9 +18,9 @@ namespace PopcatClient
         public Message(string messageBody, DateTime messageTime) : this(messageBody, MessageType.Normal,
             MessageMode.Normal, messageTime) { }
 
-        public MessageType Type { get; } = MessageType.Normal;
-        public MessageMode Mode { get; } = MessageMode.Normal;
-        public string MessageBody { get; } = string.Empty;
+        public MessageType Type { get; }
+        public MessageMode Mode { get; }
+        public string MessageBody { get; }
         public DateTime MessageTime { get; }
     }
 
