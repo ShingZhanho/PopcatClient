@@ -25,16 +25,9 @@ Indicates the application not to check for updates.
 Include beta verions while checking for updates.
 This option will always enable if the current option itself is beta.
 
-### `--init-pops <int: initial pops count>` option
-Specifies how many pops should the application send to the server for testing.
-1 is the default value.
-
-* `<int: inital pops count>` parameter: Non-optional, an integer specifies the number of pops
-to send when starting the application. Must be larger than 0 and smaller than 801.
-
 ### `--max-failures <int: failures count>` option
 Specifies how many failures in a row should the application exit automatically.
-3 is the default value.
+5 is the default value.
 
 * `<int: failure count>` parameter: Non-optional, an integer specifies the maximum sequential failures.
 Must be larger than 0.
