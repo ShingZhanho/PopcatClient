@@ -1,0 +1,7 @@
+{
+    "strings": {
+        "err-msg_unexpected_message_type": "A message with an unexpected type (enum value: %%enum_val%%) is added to the message pool.\nThe original message body: %%original_body%%",
+        "err-msg_unexpected_message_mode": "A message with an unexpected mode (enum value: %%enum_val%%) is added to the message pool.\nThe original message body: %%original_body%%"
+    },
+    "import_files": null
+}

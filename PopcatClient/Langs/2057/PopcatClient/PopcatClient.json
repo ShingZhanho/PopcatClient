@@ -19,6 +19,7 @@
         "CommandLineOptions.json",
         "Leaderboard.json",
         "Program.json",
-        "SoftwareUpdates.json"
+        "SoftwareUpdates.json",
+        "MessagePool.json"
     ]
 }
